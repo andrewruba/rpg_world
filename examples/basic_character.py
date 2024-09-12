@@ -1,4 +1,4 @@
-from rpg_simulator.character.base_character import BaseCharacter
+from rpg_world.character.base_character import BaseCharacter
 
 class Warrior(BaseCharacter):
     def take_action(self, action_name: str, target=None):
@@ -27,15 +27,15 @@ if __name__ == "__main__":
     # Create an enemy character
     attributes_enemy = {'health': 80, 'max_health': 80, 'strength': 15}
     enemy = Warrior(name="Enemy Orc", attributes=attributes_enemy)
-    
+
     # Conan attacks the enemy
     conan.take_action('attack', target=enemy)
     print(enemy)
-    
+
     # Conan receives a buff to strength
     conan.process_effect({'attribute': 'strength', 'amount': 5})
     print(conan)
-    
+
     # Heal Conan by adding to health
     conan.process_effect({'attribute': 'health', 'amount': 10})
     print(conan)

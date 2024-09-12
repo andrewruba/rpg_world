@@ -1,4 +1,4 @@
-# rpg_simulation/__init__.py
+# rpg_world/__init__.py
 
 # Version of the package
 __version__ = '0.1.0'

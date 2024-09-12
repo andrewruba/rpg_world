@@ -1,4 +1,4 @@
-name: rpg_simulator_env
+name: rpg_world_env
 channels:
   - defaults
 dependencies:
