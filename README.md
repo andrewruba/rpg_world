@@ -2,6 +2,7 @@
 A Python library that can simulate RPG battles
 
 # Tentative project structure
+```
 rpg_world/
 │
 ├── src/                                # Source code directory
@@ -63,3 +64,4 @@ rpg_world/
 ├── setup.py                            # Setup file for installation
 ├── README.md                           # Readme with project overview
 └── LICENSE                             # License for the package
+```
