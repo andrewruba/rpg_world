@@ -1,0 +1,17 @@
+name: rpg_simulator_env
+channels:
+  - defaults
+dependencies:
+  - python
+  - pip
+  - numpy
+  - pandas
+  - pip:
+    - pytest
+    - pyflakes
+    - pycodestyle
+
+# conda env create -f environment.yml
+# conda env update --file environment.yml
+# conda remove -n ENV_NAME --all
+# conda env config vars set my_var=value
