@@ -6,7 +6,7 @@ A Python library that can simulate RPG battles
 rpg_world/
 │
 ├── src/                                # Source code directory
-│   └── rpg_world/                  # Core package folder (inside src)
+│   └── rpg_world/                      # Core package folder (inside src)
 │       ├── __init__.py                 # Package initialization
 │       ├── character/                  # Character-related logic
 │       │   ├── __init__.py
@@ -54,7 +54,7 @@ rpg_world/
 │
 ├── examples/                           # Example scripts
 │   ├── basic_battle.py                 # Example of a simple battle setup
-│   └── rpg_world_example.py       # Example RPG simulation using various components
+│   └── rpg_world_example.py            # Example RPG simulation using various components
 │
 ├── docs/                               # Documentation
 │   ├── index.md
