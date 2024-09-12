@@ -1,7 +1,7 @@
 # rpg_world/__init__.py
 
 # Version of the package
-__version__ = '0.1.0'
+from .__version__ import __version__
 
 # Exposing core classes and functions
 from .character.base_character import BaseCharacter
