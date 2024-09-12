@@ -65,3 +65,15 @@ rpg_world/
 ├── README.md                           # Readme with project overview
 └── LICENSE                             # License for the package
 ```
+
+# Build
+
+Activate the conda env:
+```
+conda activate rpg_world_env
+```
+
+Build the package
+```
+python setup.py sdist bdist_wheel
+```
