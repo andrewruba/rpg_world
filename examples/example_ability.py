@@ -1,5 +1,5 @@
 from rpg_world.character.base_character import BaseCharacter
-from rpg_world.abilities.base_ability import BaseAbility
+from rpg_world.ability.base_ability import BaseAbility
 
 class Spell(BaseAbility):
     def __init__(self, name, attributes):

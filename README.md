@@ -90,3 +90,8 @@ Install
 ```
 pip install dist/rpg_world-*.whl --force-reinstall
 ```
+
+Alternatively, run the build and install bash script
+```
+./scripts/build_install.sh
+```
