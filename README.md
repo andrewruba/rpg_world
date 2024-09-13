@@ -12,31 +12,39 @@ rpg_world/
 │       │   ├── __init__.py
 │       │   ├── base_character.py       # Base class for characters
 │       │   ├── player_character.py     # Player character class, extending base
-│       │   ├── npc_character.py        # Non-player character (NPC) class
-│       │   └── character_stats.py      # Character statistics (HP, strength, etc.)
+│       │   ├── npc_character.py        # Non-player character (NPC) class with AI behavior
+│       │   ├── character_stats.py      # Character statistics (health, strength, etc.)
+│       │   └── status_effects.py       # Effects like stuns, freezes, buffs, debuffs
 │       │
 │       ├── abilities/                  # Abilities/spells system
 │       │   ├── __init__.py
 │       │   ├── base_ability.py         # Base ability class
-│       │   ├── spells.py               # Spell classes (fireball, shield, etc.)
-│       │   └── effects.py              # Effects from abilities (buffs, debuffs, etc.)
+│       │   └── spells.py               # Spell classes (fireball, shield, etc.)
 │       │
 │       ├── items/                      # Item system (weapons, potions, etc.)
 │       │   ├── __init__.py
 │       │   ├── base_item.py            # Base item class
 │       │   ├── weapon.py               # Weapon class
+│       │   ├── armor.py                # Armor class
 │       │   └── consumable.py           # Consumable item class (healing potions, etc.)
 │       │
-│       ├── combat/                     # Combat system and mechanics
+│       ├── combat/                     # Real-time combat system
 │       │   ├── __init__.py
-│       │   ├── combat_system.py        # Core combat mechanics (turns, damage, etc.)
-│       │   ├── battle.py               # Battle scenarios (1v1, party vs enemy, etc.)
-│       │   ├── turn_order.py           # Turn order system
-│       │   └── damage_calculation.py   # Damage formulas and calculations
+│       │   ├── real_time_combat.py     # Core real-time combat mechanics (event-driven)
+│       │   ├── action_queue.py         # Queue of actions to handle in real-time processing
+│       │   ├── cooldown_manager.py     # Cooldowns for abilities and items
+│       │   ├── damage_calculation.py   # Dynamic damage calculations
+│       │   └── spell_casting.py        # Continuous input for casting spells in real time
 │       │
-│       ├── balance/                    # Balancing utilities
+│       ├── ai/                         # AI logic and training system
 │       │   ├── __init__.py
-│       │   ├── ai_balancing.py         # AI vs AI simulations for balancing
+│       │   ├── ai_training.py          # Core class for training AI characters
+│       │   ├── rl_agent.py             # Reinforcement learning agents for real-time AI
+│       │   ├── behavior_tree.py        # Optional: Behavior trees for AI decisions
+│       │
+│       ├── balance/                    # Balancing utilities (modified for real-time)
+│       │   ├── __init__.py
+│       │   ├── ai_balancing.py         # AI vs AI real-time simulations for balancing
 │       │   └── metrics.py              # Metrics for tracking balance (win rates, etc.)
 │       │
 │       ├── utils/                      # Helper functions and utilities
