@@ -13,6 +13,10 @@ class BaseAbility(ABC):
         self.attributes = attributes
         self.last_cast_time = None  # Track the last time the ability was cast
 
+        # Ensure cooldown is an attribute, set to 0 if not specified
+        if 'cooldown' not in self.attributes:
+            self.attributes['cooldown'] = 0
+
     def get_attribute(self, attr_name):
         """
         Retrieve the value of a specific attribute.
@@ -34,19 +38,6 @@ class BaseAbility(ABC):
             value: The value to assign to the attribute.
         """
         self.attributes[attr_name] = value
-
-    def apply_special_effects(self, target):
-        """
-        Apply special effects (if any) to the target. This method can be called when a spell is cast.
-        
-        Args:
-            target: The entity receiving the effects.
-        """
-        special_effects = self.get_attribute('special_effects')
-        if special_effects:
-            for effect, value in special_effects.items():
-                print(f"{self.name} applies {effect} with value {value} to {target.name}")
-                # You can implement logic to apply effects like burning, freezing, buffing, etc.
 
     def is_on_cooldown(self, current_time):
         """
