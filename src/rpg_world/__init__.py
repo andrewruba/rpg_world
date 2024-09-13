@@ -7,7 +7,7 @@ from .__version__ import __version__
 from .character.base_character import BaseCharacter
 # from .character.player_character import PlayerCharacter
 # from .character.npc_character import NPCCharacter
-# from .abilities.spells import Spell
+# from .ability.spells import Spell
 # from .combat.combat_system import CombatSystem
 # from .items.weapon import Weapon
 # from .items.consumable import Consumable

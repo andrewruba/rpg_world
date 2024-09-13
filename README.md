@@ -16,7 +16,7 @@ rpg_world/
 │       │   ├── character_stats.py      # Character statistics (health, strength, etc.)
 │       │   └── status_effects.py       # Effects like stuns, freezes, buffs, debuffs
 │       │
-│       ├── abilities/                  # Abilities/spells system
+│       ├── ability/                  # ability/spells system
 │       │   ├── __init__.py
 │       │   ├── base_ability.py         # Base ability class
 │       │   └── spells.py               # Spell classes (fireball, shield, etc.)
@@ -32,7 +32,7 @@ rpg_world/
 │       │   ├── __init__.py
 │       │   ├── real_time_combat.py     # Core real-time combat mechanics (event-driven)
 │       │   ├── action_queue.py         # Queue of actions to handle in real-time processing
-│       │   ├── cooldown_manager.py     # Cooldowns for abilities and items
+│       │   ├── cooldown_manager.py     # Cooldowns for ability and items
 │       │   ├── damage_calculation.py   # Dynamic damage calculations
 │       │   └── spell_casting.py        # Continuous input for casting spells in real time
 │       │
