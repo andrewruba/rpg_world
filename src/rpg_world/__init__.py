@@ -5,6 +5,7 @@ from .__version__ import __version__
 
 # Exposing core classes and functions
 from .character.base_character import BaseCharacter
+from .ability.base_ability import BaseAbility
 # from .character.player_character import PlayerCharacter
 # from .character.npc_character import NPCCharacter
 # from .ability.spells import Spell
