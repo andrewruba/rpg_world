@@ -74,7 +74,7 @@ rpg_world/
 └── LICENSE                             # License for the package
 ```
 
-# Build
+# Development
 
 Activate the conda env:
 ```
@@ -84,4 +84,9 @@ conda activate rpg_world_env
 Build the package
 ```
 python setup.py sdist bdist_wheel
+```
+
+Install
+```
+pip install dist/rpg_world-*.whl --force-reinstall
 ```
