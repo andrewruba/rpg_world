@@ -26,12 +26,31 @@ rpg_world/
 │       │   ├── base_effect.py          # Calculates effects of abilities on targets
 │       │   └── spell_effect.py         # Calculates effects of spells on targets
 │       │
-│       ├── spellbook/                  # Spellbook system for different themes
+│       ├── combat/                     # Combat system
 │       │   ├── __init__.py
-│       │   ├── spellbook.py            # Base spellbook class
-│       │   ├── classic_spellbook.py    # Classic medieval magic spells
-│       │   ├── egyptian_spellbook.py   # Egyptian magic spells
-│       │   └── alien_spellbook.py      # Alien magic spells
+│       │   ├── battle_manager.py       # Manages battles, turn order, and actions
+│       │   ├── turn_order.py           # Turn-based combat system
+│       │   ├── action_queue.py         # Action queue for real-time combat
+│       │   └── battle_state.py         # Represents the current state of a battle
+│       │
+│       ├── items/                      # Item system (weapons, potions, etc.)
+│       │   ├── __init__.py
+│       │   ├── item.py                 # Base item class
+│       │   ├── consumable.py           # Consumable items (e.g., potions)
+│       │   ├── equipment.py            # Equipment items (weapons, armor)
+│       │   └── inventory.py            # Manages inventory of items for characters/party
+│       │
+│       ├── world/                      # World and exploration logic
+│       │   ├── __init__.py
+│       │   ├── world.py                # Represents the game world, locations, and navigation
+│       │   ├── location.py             # Represents locations in the game world
+│       │   └── event.py                # Represents game events and triggers
+│       │
+│       ├── quest/                      # Quest and objective system
+│       │   ├── __init__.py
+│       │   ├── quest.py                # Represents quests with objectives and rewards
+│       │   ├── quest_objective.py      # Individual objectives within a quest
+│       │   └── quest_manager.py        # Manages active quests and progression
 │       │
 │       ├── ai/                         # AI logic and training system
 │       │   ├── __init__.py
@@ -50,7 +69,9 @@ rpg_world/
 │       │
 │       ├── game/                       # Game logic and execution
 │       │   ├── __init__.py
-│       │   └── game.py                 # Main gameplay loop logic
+│       │   ├── game.py                 # Core game loop logic
+│       │   ├── turn_based_combat.py    # Handles turn-based combat logic
+│       │   └── real_time_combat.py     # Handles real-time combat logic
 │       │
 │       ├── config.py                   # Configuration for game settings
 │
@@ -69,11 +90,18 @@ rpg_world/
 │   └── typecast_demo.py                # Demonstration of the TypeCast game mechanics
 │
 ├── docs/                               # Documentation
-│   ├── index.md
-│   ├── usage.md
-│   └── api_reference.md
+│   ├── index.md                        # Main documentation index
+│   ├── usage.md                        # Usage instructions
+│   └── api_reference.md                # API reference for developers
 │
-├── setup.py                            # Setup file for installation
+├── scripts/                            # Folder for utility scripts
+│   ├── build_install.sh                # Script for building and installing the package
+│   └── update_requirements.sh          # Script for updating the requirements.txt file
+│
+├── .gitignore                          # Specifies files and directories to ignore in Git
+├── environment.yml                     # Conda environment configuration
+├── requirements.txt                    # Python package dependencies
+├── setup.py                            # Setup file for package installation
 ├── README.md                           # Readme with project overview
 └── LICENSE                             # License for the package
 
