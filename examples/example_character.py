@@ -1,4 +1,4 @@
-from rpg_world.character.base_character import BaseCharacter
+from rpg_world import BaseCharacter
 
 class Warrior(BaseCharacter):
     def take_action(self, action_name: str, target=None):

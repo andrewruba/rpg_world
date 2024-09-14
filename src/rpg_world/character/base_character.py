@@ -13,6 +13,10 @@ class BaseCharacter(ABC):
         self.attributes = attributes
         self.is_alive_flag = True  # Track if the character is alive or not
 
+        # Ensure health is an attribute, set to 100 if not specified
+        if 'health' not in self.attributes:
+            self.attributes['health'] = 100
+
     def get_attribute(self, attr_name: str):
         """
         Retrieve the value of a specific attribute.
@@ -48,31 +52,35 @@ class BaseCharacter(ABC):
 
     def process_effect(self, effect: dict):
         """
-        Process an effect applied to the character. The effect is assumed to be pre-calculated, 
-        with the 'amount' field being positive or negative based on the intended modification.
+        Process an effect applied to the character. The effect modifies the attribute by the specified amount.
 
         Args:
             effect (dict): A dictionary describing the effect. Example:
-                           {'attribute': 'health', 'amount': -30}
-                           {'attribute': 'strength', 'amount': 10}
+                        {'attribute': 'health', 'amount': -30}
+                        {'attribute': 'strength', 'amount': 10}
         """
         attribute = effect.get('attribute')
         amount = effect.get('amount')
 
         if attribute not in self.attributes:
-            print(f"{self.name} does not have the attribute '{attribute}'")
-            return
+            print(f"{self.name} does not have the attribute '{attribute}'. Adding it with initial value 0.")
+            self.attributes[attribute] = 0  # Initialize the attribute if it doesn't exist
 
         current_value = self.get_attribute(attribute)
         new_value = current_value + amount
 
+        # Cap certain attributes at 0 (e.g., health, mana, focus) to prevent negative values
+        if attribute in ['health', 'mana', 'focus'] and new_value < 0:
+            new_value = 0
+
         self.set_attribute(attribute, new_value)
         print(f"{self.name}'s {attribute} changed from {current_value} to {new_value} by adding {amount}.")
 
-        # Optional: Check for conditions like character death
-        if attribute == 'health' and new_value <= 0:
+        # Check for character death based on health
+        if attribute == 'health' and new_value == 0:
             self.is_alive_flag = False
             print(f"{self.name} has died.")
+
 
     def is_alive(self) -> bool:
         """
