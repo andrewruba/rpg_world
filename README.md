@@ -16,7 +16,7 @@ rpg_world/
 │       │   ├── character_stats.py      # Character statistics (health, strength, etc.)
 │       │   └── status_effects.py       # Effects like stuns, freezes, buffs, debuffs
 │       │
-│       ├── ability/                  # ability/spells system
+│       ├── ability/                    # ability/spells system
 │       │   ├── __init__.py
 │       │   ├── base_ability.py         # Base ability class
 │       │   └── spells.py               # Spell classes (fireball, shield, etc.)
