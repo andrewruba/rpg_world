@@ -1,88 +1,79 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+from .character_stats import CharacterStats
 
 class BaseCharacter(ABC):
-    def __init__(self, name: str, attributes: dict):
+    def __init__(self, name: str, stats: CharacterStats = None, **kwargs):
         """
-        Initialize a base character with a dynamic set of attributes.
+        Initialize a base character with character statistics.
 
         Args:
             name (str): The character's name.
-            attributes (dict): A dictionary of character attributes (e.g., {'health': 100, 'strength': 20}).
+            stats (CharacterStats, optional): An instance of CharacterStats.
+            **kwargs: Additional attributes to be passed to CharacterStats if stats is not provided.
         """
         self.name = name
-        self.attributes = attributes
-        self.is_alive_flag = True  # Track if the character is alive or not
+        if stats:
+            self.stats = stats
+        else:
+            self.stats = CharacterStats(**kwargs)
 
-        # Ensure health is an attribute, set to 100 if not specified
-        if 'health' not in self.attributes:
-            self.attributes['health'] = 100
+        self.is_alive_flag = True  # Track if the character is alive or not
 
     def get_attribute(self, attr_name: str):
         """
-        Retrieve the value of a specific attribute.
+        Retrieve the value of a specific attribute from CharacterStats.
 
         Args:
             attr_name (str): The name of the attribute to retrieve.
-        
+
         Returns:
             The value of the attribute or None if it doesn't exist.
         """
-        return self.attributes.get(attr_name)
+        return self.stats.get(attr_name)
 
     def set_attribute(self, attr_name: str, value):
         """
-        Set the value of a specific attribute.
+        Set the value of a specific attribute in CharacterStats.
 
         Args:
             attr_name (str): The name of the attribute to set.
             value: The value to assign to the attribute.
         """
-        self.attributes[attr_name] = value
+        self.stats.set(attr_name, value)
 
     def process_effect(self, effect: dict):
         """
-        Process an effect applied to the character. The effect modifies the attribute by the specified amount.
+        Process an effect applied to the character.
 
         Args:
-            effect (dict): A dictionary describing the effect. Example:
-                        {'attribute': 'health', 'amount': -30}
-                        {'attribute': 'strength', 'amount': 10}
+            effect (dict): A dictionary describing the effect.
         """
         attribute = effect.get('attribute')
         amount = effect.get('amount')
 
-        if attribute not in self.attributes:
-            print(f"{self.name} does not have the attribute '{attribute}'. Adding it with initial value 0.")
-            self.attributes[attribute] = 0  # Initialize the attribute if it doesn't exist
+        if not attribute:
+            print(f"No attribute specified in effect: {effect}")
+            return
 
-        current_value = self.get_attribute(attribute)
-        new_value = current_value + amount
+        self.stats.modify(attribute, amount)
+        print(f"{self.name}'s {attribute} changed by {amount}. New value: {self.get_attribute(attribute)}")
 
-        # Cap certain attributes at 0 (e.g., health, mana, focus) to prevent negative values
-        if attribute in ['health', 'mana', 'focus'] and new_value < 0:
-            new_value = 0
-
-        self.set_attribute(attribute, new_value)
-        print(f"{self.name}'s {attribute} changed from {current_value} to {new_value} by adding {amount}.")
-
-        # Check for character death based on health
-        if attribute == 'health' and new_value == 0:
+        # Update alive status
+        if attribute == 'health' and not self.stats.is_alive():
             self.is_alive_flag = False
             print(f"{self.name} has died.")
 
-
     def is_alive(self) -> bool:
         """
-        Checks if the character is still alive based on its attributes.
-        
+        Checks if the character is still alive.
+
         Returns:
-            bool: True if the character is alive, False if not.
+            bool: True if the character is alive, False otherwise.
         """
         return self.is_alive_flag
 
     def __str__(self):
         """
-        String representation of the character's attributes.
+        String representation of the character's name and stats.
         """
-        attrs = ', '.join(f"{key}: {value}" for key, value in self.attributes.items())
-        return f"{self.name}: {attrs}"
+        return f"{self.name}: {self.stats}"

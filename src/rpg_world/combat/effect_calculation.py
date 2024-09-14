@@ -1,40 +1,44 @@
+from ..character.base_character import BaseCharacter
+from ..ability.base_ability import BaseAbility
+
 class EffectCalculation:
-    def __init__(self, spell, caster, target):
+    def __init__(self, ability: BaseAbility, caster: BaseCharacter, target: BaseCharacter):
         """
-        Initialize the effect calculation with a spell, caster, and target.
+        Initialize the effect calculation with an ability, caster, and target.
 
         Args:
-            spell (Spell): The spell being cast.
-            caster (BaseCharacter): The character casting the spell.
-            target (BaseCharacter): The character receiving the effect of the spell.
+            ability (BaseAbility): The ability being used.
+            caster (BaseCharacter): The character using the ability.
+            target (BaseCharacter): The character receiving the effect of the ability.
         """
-        self.spell = spell
+        self.ability = ability
         self.caster = caster
         self.target = target
 
     def apply_effects(self):
         """
-        Apply the spell's effects to the target's attributes.
+        Apply the ability's effects to the target's attributes.
 
-        The effects are calculated based on the formulas provided in the spell's effects list.
+        The effects are calculated based on the formulas provided in the ability's effects list.
         """
-        effects = self.spell.get_attribute('effects')
+        effects = self.ability.get_attribute('effects')
         if not effects:
-            print(f"No effects to apply for spell '{self.spell.name}'.")
+            print(f"No effects to apply for ability '{self.ability.name}'.")
             return
 
         for effect in effects:
             attribute = effect.get('attribute')
             formula = effect.get('formula')
 
+            if not attribute or not formula:
+                print(f"Invalid effect definition in ability '{self.ability.name}': {effect}")
+                continue
+
             # Prepare the context for evaluating the formula
             context = {
-                'caster_attributes': self.caster.attributes,
-                'target_attributes': self.target.attributes,
-                'caster': self.caster,
-                'target': self.target,
-                'spell_attributes': self.spell.attributes,
-                # Include any other variables needed in the formula
+                'caster_stats': self.caster.stats.attributes,
+                'target_stats': self.target.stats.attributes,
+                'ability_attributes': self.ability.attributes,
             }
 
             # Evaluate the formula to calculate the amount
@@ -45,7 +49,7 @@ class EffectCalculation:
             self.target.process_effect(effect_dict)
             print(f"Applied effect on {self.target.name}: {attribute} changed by {amount}.")
 
-    def evaluate_formula(self, formula, context):
+    def evaluate_formula(self, formula: str, context: dict):
         """
         Evaluate the formula string using the provided context.
 
@@ -56,21 +60,24 @@ class EffectCalculation:
         Returns:
             The result of the evaluated formula.
         """
-        # Use eval in a safe way
-        allowed_names = {
+        # Define allowed built-in functions and safe variables
+        allowed_functions = {
             'min': min,
             'max': max,
             'abs': abs,
-            # Include any other safe built-in functions if needed
+            'round': round,
+            'int': int,
+            'float': float,
+            # Add any other safe built-in functions as needed
         }
 
-        # Combine allowed names and context
-        safe_dict = {**allowed_names, **context}
+        # Combine allowed functions and safe context
+        safe_globals = {"__builtins__": None}
+        safe_locals = {**allowed_functions, **context}
 
         try:
-            result = eval(formula, {"__builtins__": None}, safe_dict)
+            result = eval(formula, safe_globals, safe_locals)
+            return result
         except Exception as e:
             print(f"Error evaluating formula '{formula}': {e}")
-            result = 0
-
-        return result
+            return 0

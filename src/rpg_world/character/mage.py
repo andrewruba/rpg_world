@@ -1,8 +1,9 @@
 from .base_character import BaseCharacter
+from .character_stats import CharacterStats
 from ..ability.spell import Spell
 
 class Mage(BaseCharacter):
-    def __init__(self, name: str, health: float, mana: float, focus: float, armor: float, spells: list = None):
+    def __init__(self, name: str, health: float = 100, mana: float = 100, focus: float = 100, armor: float = 0, spells: list = None):
         """
         Initialize a Mage character with specific attributes, including an optional list of spells.
 
@@ -14,17 +15,14 @@ class Mage(BaseCharacter):
             armor (float): The amount of armor the mage has to reduce incoming damage.
             spells (list): A list of Spell objects the mage knows at initialization (optional).
         """
-        # Create a dictionary of attributes, including spells as a dictionary
-        attributes = {
-            'health': health,
-            'mana': mana,
-            'focus': focus,
-            'armor': armor,
-            'spells': {}  # Initialize spells as an empty dictionary
-        }
+        # Create CharacterStats instance with provided attributes
+        stats = CharacterStats(health=health, mana=mana, focus=focus, armor=armor)
         
-        # Initialize the BaseCharacter with the name and attributes
-        super().__init__(name, attributes)
+        # Initialize the BaseCharacter with the name and stats
+        super().__init__(name, stats=stats)
+
+        # Initialize spells dictionary
+        self.spells = {}
 
         # If spells are provided, learn them
         if spells:
@@ -38,7 +36,7 @@ class Mage(BaseCharacter):
         Args:
             spell (Spell): The spell the mage learns.
         """
-        self.attributes['spells'][spell.name] = spell
+        self.spells[spell.name] = spell
         print(f"{self.name} learned the spell: {spell.name}.")
 
     def forget_spell(self, spell_name: str):
@@ -48,8 +46,8 @@ class Mage(BaseCharacter):
         Args:
             spell_name (str): The name of the spell to forget.
         """
-        if spell_name in self.attributes['spells']:
-            del self.attributes['spells'][spell_name]
+        if spell_name in self.spells:
+            del self.spells[spell_name]
             print(f"{self.name} forgot the spell: {spell_name}.")
         else:
             print(f"{self.name} doesn't know the spell: {spell_name}.")
@@ -60,28 +58,29 @@ class Mage(BaseCharacter):
 
         Args:
             spell_name (str): The name of the spell to cast.
-            target: The target of the spell.
+            target (BaseCharacter): The target of the spell.
             current_time (float): The current time for checking cooldowns.
         """
-        # Find the spell by name in the mage's attributes['spells']
-        spell = self.attributes['spells'].get(spell_name)
+        # Find the spell by name in the mage's spells
+        spell = self.spells.get(spell_name)
         if not spell:
             print(f"{self.name} doesn't know the spell: {spell_name}.")
             return
 
         mana_cost = spell.get_attribute('mana_cost')
-        if self.get_attribute('mana') < mana_cost:
-            print(f"{self.name} doesn't have enough mana to cast {spell.name} (Required: {mana_cost}, Available: {self.get_attribute('mana')}).")
+        current_mana = self.get_attribute('mana')
+        if current_mana < mana_cost:
+            print(f"{self.name} doesn't have enough mana to cast {spell.name} (Required: {mana_cost}, Available: {current_mana}).")
             return
 
         # Deduct mana cost and cast the spell
-        self.set_attribute('mana', self.get_attribute('mana') - mana_cost)
+        self.stats.modify('mana', -mana_cost)
         spell.cast(self, target, current_time)
 
     def __str__(self):
         """
         String representation of the mage's attributes and learned spells.
         """
-        attrs = ', '.join(f"{key}: {value}" for key, value in self.attributes.items() if key != 'spells')
-        spells = ', '.join(spell for spell in self.attributes['spells'].keys())
+        attrs = ', '.join(f"{key}: {value}" for key, value in self.stats.attributes.items())
+        spells = ', '.join(spell for spell in self.spells.keys())
         return f"Mage {self.name}: {attrs}. Spells: [{spells}]"

@@ -1,5 +1,5 @@
 from rpg_world import Spell
-from rpg_world import BaseCharacter, Mage
+from rpg_world import BaseCharacter, CharacterStats,Mage
 import time
 
 # Create a spell where the health damage depends on the target's focus
@@ -10,7 +10,7 @@ multi_effect_spell = Spell(
     effects=[
         {
             'attribute': 'health',
-            'formula': '-(50 + (target_attributes.get("focus", 0) * 0.5)) * (1 - (target_attributes.get("armor", 0) / 100.0))'
+            'formula': '-(50 + (target_stats.get("focus") * 0.5)) * (1 - (target_stats.get("armor") / 100.0))'
         },
         {
             'attribute': 'focus',
@@ -23,13 +23,17 @@ multi_effect_spell = Spell(
     ]
 )
 
-# Create the caster (Mage) and the target (BaseCharacter)
-caster = Mage(name="Merlin", health=100.0, mana=100.0, focus=90.0, armor=10.0)
-target = BaseCharacter(name="Goblin", attributes={'health': 80.0, 'armor': 20.0, 'focus': 50.0})
+# Create a Mage character
+merlin = Mage(name="Merlin", health=100, mana=100, focus=90, armor=10, spells=[multi_effect_spell])
+print(merlin)
 
-# Caster learns the spell
-caster.learn_spell(multi_effect_spell)
+# Create a target character (e.g., a Goblin)
+goblin_stats = CharacterStats(health=80, focus=40, armor=10)
+goblin = BaseCharacter(name="Goblin", stats=goblin_stats)
 
-# Caster casts the spell on the target
+# Merlin casts Fireball on the Goblin
 current_time = time.time()
-caster.cast_spell("Mystic Blast", target, current_time)
+merlin.cast_spell("Mystic Blast", goblin, current_time)
+
+# Print the Goblin's updated stats
+print(goblin)
