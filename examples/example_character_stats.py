@@ -2,6 +2,7 @@ from rpg_world import BaseCharacter
 from rpg_world import CharacterStats
 from rpg_world import BaseEffect
 from rpg_world import BaseAbility
+from rpg_world import simple_change
 
 # Create character stats
 stats = CharacterStats(health=120, mana=80, focus=100, armor=10)
@@ -29,16 +30,16 @@ class PlaceholderAbility(BaseAbility):
 
 # Modify character attributes
 # Apply a damage effect to health
-health_effect = BaseEffect(attribute='health', formula='-30')
-health_effect.apply(PlaceholderAbility(), character, character)
+health_effect = BaseEffect(attribute='health', formula=simple_change(-30))
+health_effect.apply(character)
 
 # Apply a mana reduction effect
-mana_effect = BaseEffect(attribute='mana', formula='-20')
-mana_effect.apply(PlaceholderAbility(), character, character)
+mana_effect = BaseEffect(attribute='mana', formula=simple_change(-20))
+mana_effect.apply(character)
 
 # Apply a focus increase effect
-focus_effect = BaseEffect(attribute='focus', formula='10')
-focus_effect.apply(PlaceholderAbility(), character, character)
+focus_effect = BaseEffect(attribute='focus', formula=simple_change(10))
+focus_effect.apply(character)
 
 # Check if the character is alive
 if character.is_alive():

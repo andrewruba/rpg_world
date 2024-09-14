@@ -43,4 +43,10 @@ class Spell(BaseAbility):
 
         # Perform effect calculation and apply effects)
         for effect in self.get_attribute('effects'):
-            effect.apply(self, caster, target)
+            effect.apply(
+                caster=caster,
+                target=target,
+                kwargs = {
+                    'ability': self
+                }
+            )

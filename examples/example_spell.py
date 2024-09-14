@@ -1,6 +1,7 @@
 from rpg_world import Spell
 from rpg_world import BaseCharacter, CharacterStats,Mage
-from rpg_world import BaseEffect
+from rpg_world import SpellEffect
+from rpg_world import simple_change, multi_effect_target_example, multi_effect_recipient_example
 import time
 
 # Create a spell where the health damage depends on the target's focus
@@ -9,9 +10,10 @@ multi_effect_spell = Spell(
     mana_cost=25.0,
     cooldown=5.0,
     effects=[
-        BaseEffect(attribute='health', formula='-(50 + (target_stats.get("focus") * 0.5)) * (1 - (target_stats.get("armor") / 100.0))'),
-        BaseEffect(attribute='focus', formula='-15'),
-        BaseEffect(attribute='armor', formula='+5')
+        SpellEffect(attribute='health', formula=multi_effect_recipient_example, recipient='caster'),
+        SpellEffect(attribute='health', formula=multi_effect_target_example),
+        SpellEffect(attribute='focus', formula=simple_change(-15)),
+        SpellEffect(attribute='armor', formula=simple_change(5))
     ]
 )
 
@@ -27,6 +29,9 @@ print(goblin)
 # Merlin casts Mystic Blast on the Goblin
 current_time = time.time()
 merlin.cast_spell("Mystic Blast", goblin, current_time)
+
+# Print Merlin's updated stats
+print(merlin)
 
 # Print the Goblin's updated stats
 print(goblin)
