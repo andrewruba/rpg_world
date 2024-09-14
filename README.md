@@ -3,6 +3,7 @@ A Python library that can simulate RPG battles
 
 # Tentative project structure
 ```
+
 rpg_world/
 │
 ├── src/                                # Source code directory
@@ -20,9 +21,10 @@ rpg_world/
 │       │   ├── base_ability.py         # Base ability class
 │       │   └── spell.py                # Spell class with spell attributes and effects
 │       │
-│       ├── combat/                     # Combat system
+│       ├── effect/                    # Effects of abilties system
 │       │   ├── __init__.py
-│       │   └── effect_calculation.py   # Calculates effects of spells on targets
+│       │   ├── base_effect.py          # Calculates effects of abilities on targets
+│       │   └── spell_effect.py         # Calculates effects of spells on targets
 │       │
 │       ├── spellbook/                  # Spellbook system for different themes
 │       │   ├── __init__.py

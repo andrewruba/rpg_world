@@ -1,4 +1,4 @@
-# rpg_world/combat/__init__.py
+# rpg_world/effect/__init__.py
 
 from .base_effect import BaseEffect
 from .spell_effect import SpellEffect
