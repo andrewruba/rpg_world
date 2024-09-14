@@ -8,61 +8,63 @@ rpg_world/
 ├── src/                                # Source code directory
 │   └── rpg_world/                      # Core package folder (inside src)
 │       ├── __init__.py                 # Package initialization
+│       │
 │       ├── character/                  # Character-related logic
 │       │   ├── __init__.py
 │       │   ├── base_character.py       # Base class for characters
-│       │   ├── player_character.py     # Player character class, extending base
-│       │   ├── npc_character.py        # Non-player character (NPC) class with AI behavior
-│       │   ├── character_stats.py      # Character statistics (health, strength, etc.)
-│       │   └── status_effects.py       # Effects like stuns, freezes, buffs, debuffs
+│       │   ├── mage.py                 # Mage class with spellcasting abilities
+│       │   └── character_stats.py      # Character statistics (health, mana, etc.)
 │       │
-│       ├── ability/                    # ability/spells system
+│       ├── ability/                    # Ability/spell system
 │       │   ├── __init__.py
 │       │   ├── base_ability.py         # Base ability class
-│       │   └── spells.py               # Spell classes (fireball, shield, etc.)
+│       │   └── spell.py                # Spell class with spell attributes and effects
 │       │
-│       ├── items/                      # Item system (weapons, potions, etc.)
+│       ├── combat/                     # Combat system
 │       │   ├── __init__.py
-│       │   ├── base_item.py            # Base item class
-│       │   ├── weapon.py               # Weapon class
-│       │   ├── armor.py                # Armor class
-│       │   └── consumable.py           # Consumable item class (healing potions, etc.)
+│       │   └── effect_calculation.py   # Calculates effects of spells on targets
 │       │
-│       ├── combat/                     # Real-time combat system
+│       ├── spellbook/                  # Spellbook system for different themes
 │       │   ├── __init__.py
-│       │   ├── real_time_combat.py     # Core real-time combat mechanics (event-driven)
-│       │   ├── action_queue.py         # Queue of actions to handle in real-time processing
-│       │   ├── cooldown_manager.py     # Cooldowns for ability and items
-│       │   ├── damage_calculation.py   # Dynamic damage calculations
-│       │   └── spell_casting.py        # Continuous input for casting spells in real time
+│       │   ├── spellbook.py            # Base spellbook class
+│       │   ├── classic_spellbook.py    # Classic medieval magic spells
+│       │   ├── egyptian_spellbook.py   # Egyptian magic spells
+│       │   └── alien_spellbook.py      # Alien magic spells
 │       │
 │       ├── ai/                         # AI logic and training system
 │       │   ├── __init__.py
 │       │   ├── ai_training.py          # Core class for training AI characters
-│       │   ├── rl_agent.py             # Reinforcement learning agents for real-time AI
+│       │   ├── rl_agent.py             # Reinforcement learning agents for AI
 │       │   ├── behavior_tree.py        # Optional: Behavior trees for AI decisions
 │       │
-│       ├── balance/                    # Balancing utilities (modified for real-time)
+│       ├── balance/                    # Balancing utilities
 │       │   ├── __init__.py
-│       │   ├── ai_balancing.py         # AI vs AI real-time simulations for balancing
+│       │   ├── ai_balancing.py         # AI vs AI simulations for balancing
 │       │   └── metrics.py              # Metrics for tracking balance (win rates, etc.)
 │       │
 │       ├── utils/                      # Helper functions and utilities
 │       │   ├── __init__.py
 │       │   └── logger.py               # Logging and debug utilities
 │       │
-│       └── config.py                   # Configuration for RPG rules, settings, etc.
+│       ├── game/                       # Game logic and execution
+│       │   ├── __init__.py
+│       │   └── game.py                 # Main gameplay loop logic
+│       │
+│       ├── config.py                   # Configuration for game settings
 │
 ├── tests/                              # Unit and integration tests
 │   ├── test_character.py
-│   ├── test_combat_system.py
-│   ├── test_spells.py
+│   ├── test_spell.py
+│   ├── test_effect_calculation.py
+│   ├── test_ai.py
 │   ├── test_balance.py
-│   └── test_items.py
+│   └── test_spellbook.py
 │
 ├── examples/                           # Example scripts
-│   ├── basic_battle.py                 # Example of a simple battle setup
-│   └── rpg_world_example.py            # Example RPG simulation using various components
+│   ├── example_character.py            # Examples of character creation and interaction
+│   ├── example_game.py                 # Example of the game loop and gameplay mechanics
+│   ├── example_spell.py                # Examples of spell creation and casting
+│   └── typecast_demo.py                # Demonstration of the TypeCast game mechanics
 │
 ├── docs/                               # Documentation
 │   ├── index.md
@@ -72,6 +74,7 @@ rpg_world/
 ├── setup.py                            # Setup file for installation
 ├── README.md                           # Readme with project overview
 └── LICENSE                             # License for the package
+
 ```
 
 # Development
