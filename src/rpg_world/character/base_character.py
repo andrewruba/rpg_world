@@ -41,28 +41,6 @@ class BaseCharacter(ABC):
         """
         self.stats.set(attr_name, value)
 
-    def process_effect(self, effect: dict):
-        """
-        Process an effect applied to the character.
-
-        Args:
-            effect (dict): A dictionary describing the effect.
-        """
-        attribute = effect.get('attribute')
-        amount = effect.get('amount')
-
-        if not attribute:
-            print(f"No attribute specified in effect: {effect}")
-            return
-
-        self.stats.modify(attribute, amount)
-        print(f"{self.name}'s {attribute} changed by {amount}. New value: {self.get_attribute(attribute)}")
-
-        # Update alive status
-        if attribute == 'health' and not self.stats.is_alive():
-            self.is_alive_flag = False
-            print(f"{self.name} has died.")
-
     def is_alive(self) -> bool:
         """
         Checks if the character is still alive.

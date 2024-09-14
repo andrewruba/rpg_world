@@ -1,5 +1,4 @@
 from .base_ability import BaseAbility
-from ..combat.effect_calculation import EffectCalculation
 
 class Spell(BaseAbility):
     def __init__(self, name, mana_cost, cooldown, effects):
@@ -10,7 +9,7 @@ class Spell(BaseAbility):
             name (str): The name of the spell.
             mana_cost (float): The mana cost to cast the spell.
             cooldown (float): Time in seconds between spell uses.
-            effects (list): A list of effects, each effect is a dictionary with 'attribute' and 'formula'.
+            effects (list): A list of effects, each effect is a BaseEffect object.
         """
         # Create a dictionary of attributes with real values
         attributes = {
@@ -42,6 +41,6 @@ class Spell(BaseAbility):
         # Update the last cast time to the current time
         self.last_cast_time = current_time
 
-        # Perform effect calculation and apply effects
-        effect_calc = EffectCalculation(self, caster, target)
-        effect_calc.apply_effects()
+        # Perform effect calculation and apply effects)
+        for effect in self.get_attribute('effects'):
+            effect.apply(self, caster, target)

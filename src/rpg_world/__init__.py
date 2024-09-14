@@ -9,7 +9,7 @@ from .character.mage import Mage
 from .character.character_stats import CharacterStats
 from .ability.base_ability import BaseAbility
 from .ability.spell import Spell
-from .combat.effect_calculation import EffectCalculation
+from .combat.base_effect import BaseEffect
 from .game.game import Game
 
 # Any other core imports or package-wide initialization can go here.

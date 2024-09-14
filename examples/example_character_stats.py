@@ -1,5 +1,7 @@
-from rpg_world.character.base_character import BaseCharacter
-from rpg_world.character.character_stats import CharacterStats
+from rpg_world import BaseCharacter
+from rpg_world import CharacterStats
+from rpg_world import BaseEffect
+from rpg_world import BaseAbility
 
 # Create character stats
 stats = CharacterStats(health=120, mana=80, focus=100, armor=10)
@@ -10,10 +12,33 @@ character = BaseCharacter(name="Arcanist", stats=stats)
 # Display character stats
 print(character)
 
+class PlaceholderAbility(BaseAbility):
+    def __init__(self):
+        super().__init__("", {})
+
+    def cast(self, caster, target, current_time):
+        """
+        Abstract method for casting the ability. Must be implemented by subclasses.
+        
+        Args:
+            caster: The entity casting the ability.
+            target: The entity receiving the ability.
+            current_time (float): The current time to check cooldown.
+        """
+        pass
+
 # Modify character attributes
-character.process_effect({'attribute': 'health', 'amount': -30})
-character.process_effect({'attribute': 'mana', 'amount': -20})
-character.process_effect({'attribute': 'focus', 'amount': 10})
+# Apply a damage effect to health
+health_effect = BaseEffect(attribute='health', formula='-30')
+health_effect.apply(PlaceholderAbility(), character, character)
+
+# Apply a mana reduction effect
+mana_effect = BaseEffect(attribute='mana', formula='-20')
+mana_effect.apply(PlaceholderAbility(), character, character)
+
+# Apply a focus increase effect
+focus_effect = BaseEffect(attribute='focus', formula='10')
+focus_effect.apply(PlaceholderAbility(), character, character)
 
 # Check if the character is alive
 if character.is_alive():
