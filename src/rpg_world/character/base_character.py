@@ -39,17 +39,6 @@ class BaseCharacter(ABC):
         """
         self.attributes[attr_name] = value
 
-    @abstractmethod
-    def take_action(self, action_name: str, target=None):
-        """
-        Abstract method to define how the character performs an action.
-
-        Args:
-            action_name (str): The name of the action to perform.
-            target: The target of the action (optional).
-        """
-        pass
-
     def process_effect(self, effect: dict):
         """
         Process an effect applied to the character. The effect modifies the attribute by the specified amount.

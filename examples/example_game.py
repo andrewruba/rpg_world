@@ -1,4 +1,4 @@
-from rpg_world.game import Game  # Import the Game class from your rpg_world package
+from rpg_world import Game
 import time
 
 # Entry point for the game example

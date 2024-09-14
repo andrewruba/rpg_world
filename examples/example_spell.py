@@ -1,7 +1,8 @@
 from rpg_world import Spell
 from rpg_world import BaseCharacter, Mage
+import time
 
-# Create a spell that reduces health and focus, and increases armor temporarily
+# Create a spell where the health damage depends on the target's focus
 multi_effect_spell = Spell(
     name="Mystic Blast",
     mana_cost=25.0,
@@ -9,7 +10,7 @@ multi_effect_spell = Spell(
     effects=[
         {
             'attribute': 'health',
-            'formula': '-50 * (1 - (target_attributes.get("armor", 0) / 100.0))'
+            'formula': '-(50 + (target_attributes.get("focus", 0) * 0.5)) * (1 - (target_attributes.get("armor", 0) / 100.0))'
         },
         {
             'attribute': 'focus',
@@ -22,7 +23,7 @@ multi_effect_spell = Spell(
     ]
 )
 
-# Assuming BaseCharacter and Mage are defined as before
+# Create the caster (Mage) and the target (BaseCharacter)
 caster = Mage(name="Merlin", health=100.0, mana=100.0, focus=90.0, armor=10.0)
 target = BaseCharacter(name="Goblin", attributes={'health': 80.0, 'armor': 20.0, 'focus': 50.0})
 
@@ -32,4 +33,3 @@ caster.learn_spell(multi_effect_spell)
 # Caster casts the spell on the target
 current_time = time.time()
 caster.cast_spell("Mystic Blast", target, current_time)
-
