@@ -24,7 +24,8 @@ rpg_world/
 │       ├── effect/                    # Effects of abilties system
 │       │   ├── __init__.py
 │       │   ├── base_effect.py          # Calculates effects of abilities on targets
-│       │   └── spell_effect.py         # Calculates effects of spells on targets
+│       │   ├── spell_effect.py         # Calculates effects of spells on targets
+│       │   └── effect_formulas.py      # Formulas for calculating effects
 │       │
 │       ├── combat/                     # Combat system
 │       │   ├── __init__.py

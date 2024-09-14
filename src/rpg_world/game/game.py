@@ -109,11 +109,12 @@ class Game:
             self.update_game(delta_time)
             self.render()
 
-            # Sync to the target frame rate using the internal sync method
-            self._sync_to_target_frame_rate(current_time)
-
             # Check if the maximum run time has been reached
             self._check_time_elapsed(current_time)
+
+            # Sync to the target frame rate using the internal sync method
+            # Should always be last to run in game loop
+            self._sync_to_target_frame_rate(current_time)
 
     def stop(self):
         """
