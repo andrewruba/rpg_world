@@ -74,7 +74,7 @@ rpg_world/
 │       │   └── real_time_combat.py     # Handles real-time combat logic
 │       │
 │       ├── config.py                   # Configuration for game settings
-│
+│       │
 ├── tests/                              # Unit and integration tests
 │   ├── test_character.py
 │   ├── test_spell.py
