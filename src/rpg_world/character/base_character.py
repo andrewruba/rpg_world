@@ -2,7 +2,7 @@ from abc import ABC
 from .character_stats import CharacterStats
 
 class BaseCharacter(ABC):
-    def __init__(self, name: str, stats: CharacterStats = None, **kwargs):
+    def __init__(self, name: str, stats: CharacterStats):
         """
         Initialize a base character with character statistics.
 
@@ -12,12 +12,7 @@ class BaseCharacter(ABC):
             **kwargs: Additional attributes to be passed to CharacterStats if stats is not provided.
         """
         self.name = name
-        if stats:
-            self.stats = stats
-        else:
-            self.stats = CharacterStats(**kwargs)
-
-        self.is_alive_flag = True  # Track if the character is alive or not
+        self.stats = stats
 
     def get_attribute(self, attr_name: str):
         """
@@ -48,7 +43,7 @@ class BaseCharacter(ABC):
         Returns:
             bool: True if the character is alive, False otherwise.
         """
-        return self.is_alive_flag
+        return self.stats.is_alive()
 
     def __str__(self):
         """

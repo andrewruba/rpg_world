@@ -1,7 +1,6 @@
 from rpg_world import BaseCharacter
 from rpg_world import CharacterStats
 from rpg_world import BaseEffect
-from rpg_world import BaseAbility
 from rpg_world import simple_change
 
 # Create character stats
@@ -12,21 +11,6 @@ character = BaseCharacter(name="Arcanist", stats=stats)
 
 # Display character stats
 print(character)
-
-class PlaceholderAbility(BaseAbility):
-    def __init__(self):
-        super().__init__("", {})
-
-    def cast(self, caster, target, current_time):
-        """
-        Abstract method for casting the ability. Must be implemented by subclasses.
-        
-        Args:
-            caster: The entity casting the ability.
-            target: The entity receiving the ability.
-            current_time (float): The current time to check cooldown.
-        """
-        pass
 
 # Modify character attributes
 # Apply a damage effect to health

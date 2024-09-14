@@ -43,9 +43,8 @@ class BaseEffect(ABC):
         print(f"{target.name}'s {self.attribute} changed by {amount}. New value: {target.get_attribute(self.attribute)}")
 
         # Update alive status if health changes
-        if self.attribute == 'health' and not target.stats.is_alive():
-            target.is_alive_flag = False
-            print(f"{target.name} has died.")
+        if self.attribute == 'health' and not target.is_alive():
+            print(f"{target.name} is dead.")
 
     def __str__(self):
         """
