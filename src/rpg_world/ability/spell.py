@@ -42,7 +42,7 @@ class Spell(BaseAbility):
         self.last_cast_time = current_time
 
         # Perform effect calculation and apply effects)
-        for effect in self.get_attribute('effects'):
+        for effect in self.effects:
             effect.apply(
                 caster=caster,
                 target=target,

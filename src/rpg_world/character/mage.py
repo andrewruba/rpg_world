@@ -67,8 +67,8 @@ class Mage(BaseCharacter):
             print(f"{self.name} doesn't know the spell: {spell_name}.")
             return
 
-        mana_cost = spell.get_attribute('mana_cost')
-        current_mana = self.get_attribute('mana')
+        mana_cost = spell.mana_cost
+        current_mana = self.mana
         if current_mana < mana_cost:
             print(f"{self.name} doesn't have enough mana to cast {spell.name} (Required: {mana_cost}, Available: {current_mana}).")
             return
@@ -76,7 +76,7 @@ class Mage(BaseCharacter):
         spell_cast_success = spell.cast(self, target, current_time)
         if spell_cast_success:
             self.stats.modify('mana', -mana_cost)
-            print(f"{self.name} successfully cast {spell_name}. Mana remaining: {self.get_attribute('mana')}")
+            print(f"{self.name} successfully cast {spell_name}. Mana remaining: {self.mana}")
 
     def __str__(self):
         """

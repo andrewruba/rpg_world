@@ -17,28 +17,6 @@ class BaseAbility(ABC):
         if 'cooldown' not in self.attributes:
             self.attributes['cooldown'] = 0
 
-    def get_attribute(self, attr_name):
-        """
-        Retrieve the value of a specific attribute.
-        
-        Args:
-            attr_name (str): The name of the attribute to retrieve.
-        
-        Returns:
-            The value of the attribute or None if it doesn't exist.
-        """
-        return self.attributes.get(attr_name)
-
-    def set_attribute(self, attr_name, value):
-        """
-        Set the value of a specific attribute.
-        
-        Args:
-            attr_name (str): The name of the attribute to set.
-            value: The value to assign to the attribute.
-        """
-        self.attributes[attr_name] = value
-
     def is_on_cooldown(self, current_time):
         """
         Check if the ability is currently on cooldown.
@@ -49,9 +27,8 @@ class BaseAbility(ABC):
         Returns:
             bool: True if the ability is on cooldown, False otherwise.
         """
-        cooldown = self.get_attribute('cooldown')
-        if self.last_cast_time and cooldown:
-            return (current_time - self.last_cast_time) < cooldown
+        if self.last_cast_time and self.cooldown:
+            return (current_time - self.last_cast_time) < self.cooldown
         return False
 
     @abstractmethod
@@ -65,6 +42,29 @@ class BaseAbility(ABC):
             current_time (float): The current time to check cooldown.
         """
         pass
+
+    def __getattr__(self, attr_name):
+        """
+        Override __getattr__ to dynamically return attributes from the ability's attributes dictionary if they exist.
+
+        Args:
+            attr_name (str): The name of the attribute to retrieve.
+
+        Returns:
+            The value of the attribute if it exists in attributes.
+        """
+        if attr_name in self.attributes:
+            return self.attributes[attr_name]
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{attr_name}'")
+
+    def __setattr__(self, attr_name, value):
+        """
+        Override __setattr__ to dynamically set attributes in the attributes dictionary if they exist.
+        """
+        if attr_name == 'name' or attr_name == 'attributes' or attr_name == 'last_cast_time':
+            super().__setattr__(attr_name, value)
+        else:
+            self.attributes[attr_name] = value
 
     def __str__(self):
         attrs = ', '.join(f"{key}: {value}" for key, value in self.attributes.items())

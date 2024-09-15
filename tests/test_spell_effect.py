@@ -39,19 +39,19 @@ def test_mage_initialization(mage):
     """
     Test if the Mage character is initialized correctly.
     """
-    assert mage.get_attribute('health') == 100
-    assert mage.get_attribute('mana') == 100
-    assert mage.get_attribute('focus') == 90
-    assert mage.get_attribute('armor') == 10
+    assert mage.health == 100
+    assert mage.mana == 100
+    assert mage.focus == 90
+    assert mage.armor == 10
     assert "Mystic Blast" in mage.spells
 
 def test_goblin_initialization(goblin):
     """
     Test if the Goblin character is initialized correctly.
     """
-    assert goblin.get_attribute('health') == 80
-    assert goblin.get_attribute('focus') == 40
-    assert goblin.get_attribute('armor') == 10
+    assert goblin.health == 80
+    assert goblin.focus == 40
+    assert goblin.armor == 10
 
 def test_spell_cast(mage, goblin):
     """
@@ -60,25 +60,25 @@ def test_spell_cast(mage, goblin):
     current_time = time.time()
 
     # Assert initial stats before casting the spell
-    initial_mana = mage.get_attribute('mana')
-    initial_goblin_health = goblin.get_attribute('health')
-    initial_mage_health = mage.get_attribute('health')
+    initial_mana = mage.mana
+    initial_goblin_health = goblin.health
+    initial_mage_health = mage.health
 
     # Cast the spell
     mage.cast_spell("Mystic Blast", goblin, current_time)
 
     # Check if the spell reduced mana correctly
-    assert mage.get_attribute('mana') == initial_mana - 25.0
+    assert mage.mana == initial_mana - 25.0
 
     # Check the health effect on the goblin
-    assert goblin.get_attribute('health') < initial_goblin_health
+    assert goblin.health < initial_goblin_health
 
     # Check the focus and armor effects on the goblin
-    assert goblin.get_attribute('focus') == 25  # Reduced by 15
-    assert goblin.get_attribute('armor') == 15  # Increased by 5
+    assert goblin.focus == 25  # Reduced by 15
+    assert goblin.armor == 15  # Increased by 5
 
     # Check if the spell had an effect on the caster's health
-    assert mage.get_attribute('health') < initial_mage_health
+    assert mage.health < initial_mage_health
 
     # Verify if the spell is on cooldown
     assert mage.spells["Mystic Blast"].is_on_cooldown(current_time)
@@ -94,7 +94,7 @@ def test_spell_cooldown(mage, goblin):
     mage.cast_spell("Mystic Blast", goblin, time.time())
 
     # Assert that the second cast didn't occur (mana should remain unchanged)
-    assert mage.get_attribute('mana') == 75  # Mana only deducted once
+    assert mage.mana == 75  # Mana only deducted once
 
     # Wait for spell cooldown + little extra
     time.sleep(1.1)
@@ -103,4 +103,4 @@ def test_spell_cooldown(mage, goblin):
     mage.cast_spell("Mystic Blast", goblin, time.time())
 
     # Assert that the third cast did succeed and mana cost was deducted
-    assert mage.get_attribute('mana') == 50
+    assert mage.mana == 50

@@ -77,6 +77,33 @@ class CharacterStats:
         """
         return self.get('health') > 0
 
+    def __getattr__(self, attr_name):
+        """
+        Override __getattr__ to dynamically return attributes from the attributes dictionary.
+
+        Args:
+            attr_name (str): The name of the attribute to retrieve.
+
+        Returns:
+            The value of the attribute if it exists in the dictionary.
+        """
+        if attr_name in self.attributes:
+            return self.attributes[attr_name]
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{attr_name}'")
+
+    def __setattr__(self, attr_name, value):
+        """
+        Override __setattr__ to dynamically set attributes in the attributes dictionary.
+
+        Args:
+            attr_name (str): The name of the attribute to set.
+            value: The value to assign to the attribute.
+        """
+        if attr_name == 'attributes':
+            super().__setattr__(attr_name, value)
+        else:
+            self.attributes[attr_name] = value
+
     def __str__(self):
         """
         String representation of the character's statistics.

@@ -13,10 +13,10 @@ def test_character_initialization(arcanist):
     """
     Test if the Arcanist character is initialized correctly.
     """
-    assert arcanist.get_attribute('health') == 120
-    assert arcanist.get_attribute('mana') == 80
-    assert arcanist.get_attribute('focus') == 100
-    assert arcanist.get_attribute('armor') == 10
+    assert arcanist.health == 120
+    assert arcanist.mana == 80
+    assert arcanist.focus == 100
+    assert arcanist.armor == 10
 
 def test_apply_health_effect(arcanist):
     """
@@ -25,7 +25,7 @@ def test_apply_health_effect(arcanist):
     health_effect = BaseEffect(attribute='health', formula=SimpleChangeFormula(-30))
     health_effect.apply(arcanist)
     
-    assert arcanist.get_attribute('health') == 90
+    assert arcanist.health == 90
 
 def test_apply_mana_effect(arcanist):
     """
@@ -34,7 +34,7 @@ def test_apply_mana_effect(arcanist):
     mana_effect = BaseEffect(attribute='mana', formula=SimpleChangeFormula(-20))
     mana_effect.apply(arcanist)
 
-    assert arcanist.get_attribute('mana') == 60
+    assert arcanist.mana == 60
 
 def test_apply_focus_effect(arcanist):
     """
@@ -43,7 +43,7 @@ def test_apply_focus_effect(arcanist):
     focus_effect = BaseEffect(attribute='focus', formula=SimpleChangeFormula(-10))
     focus_effect.apply(arcanist)
 
-    assert arcanist.get_attribute('focus') == 90
+    assert arcanist.focus == 90
 
 def test_apply_zero_health_effect(arcanist):
     """
@@ -52,7 +52,7 @@ def test_apply_zero_health_effect(arcanist):
     health_effect = BaseEffect(attribute='health', formula=SimpleChangeFormula(0))
     health_effect.apply(arcanist)
     
-    assert arcanist.get_attribute('health') == 120
+    assert arcanist.health == 120
 
 def test_apply_health_effect_above_max(arcanist):
     """
@@ -61,7 +61,7 @@ def test_apply_health_effect_above_max(arcanist):
     health_effect = BaseEffect(attribute='health', formula=SimpleChangeFormula(1000))
     health_effect.apply(arcanist)
     
-    assert arcanist.get_attribute('health') == 120
+    assert arcanist.health == 120
 
 def test_character_alive_status(arcanist):
     """

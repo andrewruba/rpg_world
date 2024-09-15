@@ -48,7 +48,7 @@ class SpellEffect(BaseEffect):
 
         # Modify the recipient's attribute
         recipient.stats.modify(self.attribute, amount)
-        print(f"{recipient.name}'s {self.attribute} changed by {amount}. New value: {recipient.get_attribute(self.attribute)}")
+        print(f"{recipient.name}'s {self.attribute} changed by {amount}. New value: {recipient.stats.get(self.attribute)}")
 
         # Update alive status if health changes
         if self.attribute == 'health' and not recipient.is_alive():

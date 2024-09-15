@@ -40,7 +40,7 @@ class BaseEffect(ABC):
 
         # Modify the target's attribute
         target.stats.modify(self.attribute, amount)
-        print(f"{target.name}'s {self.attribute} changed by {amount}. New value: {target.get_attribute(self.attribute)}")
+        print(f"{target.name}'s {self.attribute} changed by {amount}. New value: {target.stats.get(self.attribute)}")
 
         # Update alive status if health changes
         if self.attribute == 'health' and not target.is_alive():

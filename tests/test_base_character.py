@@ -39,40 +39,40 @@ def test_warrior_initialization(conan, enemy_orc):
     """
     # Check Conan's initial stats
     assert conan.name == "Conan"
-    assert conan.get_attribute('health') == 100
-    assert conan.get_attribute('strength') == 20
-    assert conan.get_attribute('defense') == 5
+    assert conan.health == 100
+    assert conan.strength == 20
+    assert conan.defense == 5
 
     # Check Enemy Orc's initial stats
     assert enemy_orc.name == "Enemy Orc"
-    assert enemy_orc.get_attribute('health') == 80
-    assert enemy_orc.get_attribute('strength') == 15
-    assert enemy_orc.get_attribute('defense') == 3
+    assert enemy_orc.health == 80
+    assert enemy_orc.strength == 15
+    assert enemy_orc.defense == 3
 
 def test_warrior_stat_modification(conan, enemy_orc):
     """
     Test modification of warrior stats.
     """
     # Modify Conan's health
-    conan.set_attribute('health', 90)
-    assert conan.get_attribute('health') == 90
+    conan.health = 90
+    assert conan.health == 90
 
     # Modify Enemy Orc's defense
-    enemy_orc.set_attribute('defense', 10)
-    assert enemy_orc.get_attribute('defense') == 10
+    enemy_orc.defense = 10
+    assert enemy_orc.defense == 10
 
 def test_warrior_combat_scenario(conan, enemy_orc):
     """
     Test basic combat scenario where Conan attacks the Enemy Orc.
     """
     # Conan attacks Enemy Orc, reducing health based on strength and defense
-    initial_health = enemy_orc.get_attribute('health')
-    strength = conan.get_attribute('strength')
-    defense = enemy_orc.get_attribute('defense')
+    initial_health = enemy_orc.health
+    strength = conan.strength
+    defense = enemy_orc.defense
     
     # Simple damage calculation: damage = strength - defense
     damage = max(0, strength - defense)
-    enemy_orc.set_attribute('health', initial_health - damage)
+    enemy_orc.health = initial_health - damage
 
     # Check if the damage was applied correctly
-    assert enemy_orc.get_attribute('health') == initial_health - damage
+    assert enemy_orc.health == initial_health - damage
