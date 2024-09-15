@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from ..utils.logger import Logger
 
 class BaseAbility(ABC):
     def __init__(self, name, attributes):
@@ -17,6 +18,10 @@ class BaseAbility(ABC):
         if 'cooldown' not in self.attributes:
             self.attributes['cooldown'] = 0
 
+        # Initialize logger for this ability
+        self.logger = Logger(f"Ability-{self.name}")
+        self.logger.info(f"Ability '{self.name}' initialized with attributes: {self.attributes}")
+
     def is_on_cooldown(self, current_time):
         """
         Check if the ability is currently on cooldown.
@@ -28,7 +33,10 @@ class BaseAbility(ABC):
             bool: True if the ability is on cooldown, False otherwise.
         """
         if self.last_cast_time and self.cooldown:
-            return (current_time - self.last_cast_time) < self.cooldown
+            remaining_time = self.cooldown - (current_time - self.last_cast_time)
+            if remaining_time > 0:
+                self.logger.info(f"Ability '{self.name}' is on cooldown for another {remaining_time:.2f} seconds.")
+                return True
         return False
 
     @abstractmethod
@@ -61,10 +69,11 @@ class BaseAbility(ABC):
         """
         Override __setattr__ to dynamically set attributes in the attributes dictionary if they exist.
         """
-        if attr_name == 'name' or attr_name == 'attributes' or attr_name == 'last_cast_time':
+        if attr_name in ['name', 'attributes', 'last_cast_time', 'logger']:
             super().__setattr__(attr_name, value)
         else:
             self.attributes[attr_name] = value
+            self.logger.debug(f"Attribute '{attr_name}' of ability '{self.name}' set to {value}")
 
     def __str__(self):
         attrs = ', '.join(f"{key}: {value}" for key, value in self.attributes.items())

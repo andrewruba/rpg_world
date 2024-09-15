@@ -1,4 +1,5 @@
 from .base_ability import BaseAbility
+import logging
 
 class Spell(BaseAbility):
     def __init__(self, name, mana_cost, cooldown, effects):
@@ -32,17 +33,18 @@ class Spell(BaseAbility):
             current_time (float): The current time for checking the cooldown.
         """
         if self.is_on_cooldown(current_time):
-            print(f"{self.name} is on cooldown and cannot be cast yet.")
-            return
+            self.logger.warning(f"{self.name} is on cooldown and cannot be cast yet.")
+            return False
 
-        # Simulate spell casting process
-        print(f"{caster.name} casts {self.name} on {target.name}!")
+        # Log spell casting
+        self.logger.info(f"{caster.name} casts {self.name} on {target.name}!")
 
         # Update the last cast time to the current time
         self.last_cast_time = current_time
 
-        # Perform effect calculation and apply effects)
+        # Perform effect calculation and apply effects
         for effect in self.effects:
+            self.logger.debug(f"Applying effect: {effect}")
             effect.apply(
                 caster=caster,
                 target=target,
@@ -51,4 +53,5 @@ class Spell(BaseAbility):
                 }
             )
         
+        self.logger.info(f"Spell {self.name} cast successfully.")
         return True

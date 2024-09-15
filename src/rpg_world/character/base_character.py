@@ -1,5 +1,6 @@
 from abc import ABC
 from .character_stats import CharacterStats
+from ..utils.logger import Logger
 
 class BaseCharacter(ABC):
     def __init__(self, name: str, stats: CharacterStats):
@@ -13,6 +14,10 @@ class BaseCharacter(ABC):
         """
         self.name = name
         self.stats = stats
+
+        # Initialize logger for this ability
+        self.logger = Logger(f"Character-{self.name}")
+        self.logger.info(f"Character '{self.name}' initialized with stats: {self.stats}")
 
     def is_alive(self) -> bool:
         """

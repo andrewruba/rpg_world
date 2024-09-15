@@ -1,4 +1,5 @@
 import time
+from ..utils.logger import Logger
 
 class Game:
     def __init__(self, external_timer=None, target_fps=30, max_run_time=None):
@@ -17,6 +18,16 @@ class Game:
         self.max_run_time = max_run_time  # Maximum time to run (None means no time limit)
         self.start_time = None  # To track when the game starts
 
+        # Initialize logger for this ability
+        self.logger = Logger(f"Game")
+        self.logger.info(f"""Game initialized with attributes: {
+            {
+                "target_fps": self.target_fps,
+                "frame_duration": self.frame_duration,
+                "max_run_time": self.max_run_time,
+            }
+        }""")
+
         # Initialize game components (e.g., characters, spells, UI)
         self.init_game()
 
@@ -24,7 +35,7 @@ class Game:
         """
         Initialize the game state, characters, and other resources.
         """
-        print("Initializing game...")
+        self.logger.info("Initializing game...")
 
     def handle_input(self):
         """
@@ -47,7 +58,7 @@ class Game:
             fps = float('inf')  # To avoid division by zero in case delta_time is 0
 
         # Display the FPS and delta time
-        print(f"Updating game. Delta time: {delta_time:.8f} seconds, FPS: {fps:.8f}")
+        self.logger.debug(f"Updating game. Delta time: {delta_time:.8f} seconds, FPS: {fps:.8f}")
 
         # Placeholder for game update logic
         # For example, update player positions, handle physics, AI, etc.
@@ -57,7 +68,7 @@ class Game:
         Render the current game state to the screen.
         """
         # Placeholder for rendering logic
-        print("Rendering game...")
+        pass
 
     def _sync_to_target_frame_rate(self, current_time):
         """
@@ -89,7 +100,7 @@ class Game:
         if self.max_run_time is not None:
             time_elapsed = current_time - self.start_time
             if time_elapsed >= self.max_run_time:
-                print(f"Max run time of {self.max_run_time} seconds reached. Stopping the game.")
+                self.logger.info(f"Max run time of {self.max_run_time} seconds reached. Stopping the game.")
                 self.stop()
 
     def run(self):
@@ -121,4 +132,4 @@ class Game:
         Stop the game loop.
         """
         self.is_running = False
-        print("Game stopped.")
+        self.logger.info("Game stopped.")

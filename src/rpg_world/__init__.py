@@ -13,6 +13,7 @@ from .effect.base_effect import BaseEffect
 from .effect.spell_effect import SpellEffect
 from .formula.base_formula import BaseFormula
 from .formula.effect_formula import SimpleChangeFormula, MultiEffectTargetFormula, MultiEffectRecipientFormula
+from .utils.logger import Logger
 from .game.game import Game
 
 # Any other core imports or package-wide initialization can go here.

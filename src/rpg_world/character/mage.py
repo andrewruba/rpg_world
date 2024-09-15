@@ -37,7 +37,7 @@ class Mage(BaseCharacter):
             spell (Spell): The spell the mage learns.
         """
         self.spells[spell.name] = spell
-        print(f"{self.name} learned the spell: {spell.name}.")
+        self.logger.info(f"{self.name} learned the spell: {spell.name}.")
 
     def forget_spell(self, spell_name: str):
         """
@@ -48,9 +48,9 @@ class Mage(BaseCharacter):
         """
         if spell_name in self.spells:
             del self.spells[spell_name]
-            print(f"{self.name} forgot the spell: {spell_name}.")
+            self.logger.info(f"{self.name} forgot the spell: {spell_name}.")
         else:
-            print(f"{self.name} doesn't know the spell: {spell_name}.")
+            self.logger.info(f"{self.name} doesn't know the spell: {spell_name}.")
 
     def cast_spell(self, spell_name: str, target, current_time: float):
         """
@@ -64,19 +64,19 @@ class Mage(BaseCharacter):
         # Find the spell by name in the mage's spells
         spell = self.spells.get(spell_name)
         if not spell:
-            print(f"{self.name} doesn't know the spell: {spell_name}.")
+            self.logger.info(f"{self.name} doesn't know the spell: {spell_name}.")
             return
 
         mana_cost = spell.mana_cost
         current_mana = self.mana
         if current_mana < mana_cost:
-            print(f"{self.name} doesn't have enough mana to cast {spell.name} (Required: {mana_cost}, Available: {current_mana}).")
+            self.logger.info(f"{self.name} doesn't have enough mana to cast {spell.name} (Required: {mana_cost}, Available: {current_mana}).")
             return
 
         spell_cast_success = spell.cast(self, target, current_time)
         if spell_cast_success:
             self.stats.modify('mana', -mana_cost)
-            print(f"{self.name} successfully cast {spell_name}. Mana remaining: {self.mana}")
+            self.logger.info(f"{self.name} successfully cast {spell_name}. Mana remaining: {self.mana}")
 
     def __str__(self):
         """

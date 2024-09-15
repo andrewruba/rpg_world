@@ -1,4 +1,5 @@
 from abc import ABC
+from ..utils.logger import Logger
 
 class BaseEffect(ABC):
     """
@@ -17,6 +18,10 @@ class BaseEffect(ABC):
         self.attribute = attribute
         self.formula = formula
 
+        # Initialize logger for this ability
+        self.logger = Logger(f"Effect")
+        self.logger.info(f"Effect initialized to affect attribute: {self.attribute}")
+
     def apply(self, target, **kwargs):
         """
         Apply the effect to the target character.
@@ -26,7 +31,7 @@ class BaseEffect(ABC):
             **kwargs: Additional context variables that can be used in the formula.
         """
         if not self.attribute:
-            print(f"No attribute specified in effect: {self}")
+            self.logger.warning(f"No attribute specified in effect: {self}")
             return
 
         # Prepare the context for evaluating the formula
@@ -40,11 +45,11 @@ class BaseEffect(ABC):
 
         # Modify the target's attribute
         target.stats.modify(self.attribute, amount)
-        print(f"{target.name}'s {self.attribute} changed by {amount}. New value: {target.stats.get(self.attribute)}")
+        self.logger.info(f"{target.name}'s {self.attribute} changed by {amount}. New value: {target.stats.get(self.attribute)}")
 
         # Update alive status if health changes
         if self.attribute == 'health' and not target.is_alive():
-            print(f"{target.name} is dead.")
+            self.logger.info(f"{target.name} is dead.")
 
     def __str__(self):
         """

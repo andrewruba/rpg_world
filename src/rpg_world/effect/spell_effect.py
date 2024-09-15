@@ -29,7 +29,7 @@ class SpellEffect(BaseEffect):
             **kwargs: Additional context variables that can be used in the formula.
         """
         if not self.attribute:
-            print(f"No attribute specified in effect: {self}")
+            self.logger.warning(f"No attribute specified in effect: {self}")
             return
 
         # Determine the recipient of the effect
@@ -48,11 +48,11 @@ class SpellEffect(BaseEffect):
 
         # Modify the recipient's attribute
         recipient.stats.modify(self.attribute, amount)
-        print(f"{recipient.name}'s {self.attribute} changed by {amount}. New value: {recipient.stats.get(self.attribute)}")
+        self.logger.info(f"{recipient.name}'s {self.attribute} changed by {amount}. New value: {recipient.stats.get(self.attribute)}")
 
         # Update alive status if health changes
         if self.attribute == 'health' and not recipient.is_alive():
-            print(f"{recipient.name} is dead.")
+            self.logger.info(f"{recipient.name} is dead.")
 
     def __str__(self):
         """
