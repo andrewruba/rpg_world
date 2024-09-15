@@ -322,9 +322,11 @@ stats = CharacterStats(health=120, mana=80, strength=15, defense=10)
 
 # Create a base character
 hero = BaseCharacter(name="Arthas", stats=stats)
-Defining Abilities and Spells
-python
-Copy code
+```
+
+### Defining Abilities and Spells
+
+```python
 from rpg_world.ability.spell import Spell
 
 # Define a spell
@@ -686,7 +688,6 @@ Weather: Manages dynamic weather conditions.
 TimeOfDay: Manages the day-night cycle.
 
 ```python
-Copy code
 from rpg_world.environment.weather import Weather
 from rpg_world.environment.time_of_day import TimeOfDay
 
