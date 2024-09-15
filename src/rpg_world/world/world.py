@@ -28,15 +28,25 @@ class World:
         else:
             print(f"Location {location_name} not found in the world.")
 
-    def move_to_location(self, location_name):
+    def move_to_location(self, location_name, new_position=None):
         """
-        Move the player to a different location in the world.
+        Move the player to a different location in the world, ensuring the new location is connected to the current one.
 
         Args:
             location_name (str): The name of the location to move to.
+            new_position (Position, optional): A position within the new location to move to (default is (0, 0)).
         """
-        if location_name in self.locations:
-            self.current_location = self.locations[location_name]
-            print(f"Moved to: {self.current_location.name}")
-        else:
+        if location_name not in self.locations:
             print(f"Location {location_name} not found in the world.")
+            return
+        
+        if location_name not in self.current_location.connected_locations:
+            print(f"You cannot move to {location_name} from {self.current_location.name}. The locations are not connected.")
+            return
+        
+        self.current_location = self.locations[location_name]
+        print(f"Moved to: {self.current_location.name}")
+        
+        # Update position in the new location
+        if new_position:
+            self.current_location.update_position(new_position)

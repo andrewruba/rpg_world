@@ -5,41 +5,32 @@ class Event:
 
         Args:
             name (str): The name of the event.
-            trigger_condition (callable): A function or condition that triggers the event.
+            trigger_condition (callable): A function or condition that determines when the event is triggered.
             action (callable): A function representing the action to be performed when the event is triggered.
         """
         self.name = name
         self.trigger_condition = trigger_condition
         self.action = action
 
-    def check_trigger(self, **kwargs):
+    def check_trigger(self, game_state, **kwargs):
         """
-        Check if the event's trigger condition is met.
+        Check if the event's trigger condition is met based on the current game state.
 
         Args:
+            game_state (object): The current state of the game passed to evaluate the trigger.
             **kwargs: Additional arguments passed to the trigger condition.
 
         Returns:
             bool: True if the event is triggered, False otherwise.
         """
-        return self.trigger_condition(**kwargs)
+        return self.trigger_condition(game_state, **kwargs)
 
-    def execute_action(self, **kwargs):
+    def execute_action(self, game_state, **kwargs):
         """
-        Execute the event's action.
+        Execute the event's action if triggered.
 
         Args:
+            game_state (object): The current state of the game passed to execute the action.
             **kwargs: Additional arguments passed to the action function.
         """
-        self.action(**kwargs)
-
-
-# Example trigger and action functions
-def sample_trigger(player):
-    """A sample trigger condition that activates when the player's health is below 50."""
-    return player.get_attribute("health") < 50
-
-def sample_action(player):
-    """A sample action function that heals the player."""
-    player.set_attribute("health", 100)
-    print(f"{player.name} has been healed to full health!")
+        self.action(game_state, **kwargs)

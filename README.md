@@ -100,12 +100,13 @@ rpg_world/
 │       │   ├── __init__.py
 │       │   ├── world.py                # Represents the game world, locations, and navigation
 │       │   ├── location.py             # Represents locations in the game world
-│       │   └── event.py                # Represents game events and triggers
+│       │   └── position.py             # Represents position in a location
 │       │
-│       ├── event_system/               # Generic event system, more world/event here
+│       ├── event/                      # Generic event system
 │       │   ├── __init__.py
 │       │   ├── event_manager.py        # Manages events across the game
-│       │   └── events.py               # Defines different types of events
+│       │   ├── event.py                # Defines different types of events
+│       │   └── trigger.py              # Manages the conditions in the game state that cause events
 │       │
 │       ├── quest/                      # Quest and objective system
 │       │   ├── __init__.py
