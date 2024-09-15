@@ -1,6 +1,10 @@
 # rpg_world
 
-**rpg_world** is a Python library designed to simulate RPG battles, inspired by classic SNES-era turn-based and real-time RPGs. It provides a comprehensive framework to create and manage characters, abilities, items, combat systems, quests, dialogues, and more, allowing developers to build rich and engaging RPG experiences with ease.
+**rpg_world** is a Python library designed to simulate RPG battles, inspired by classic SNES-era turn-based and real-time RPGs. It provides a comprehensive framework to create and manage characters, abilities, items, combat systems, quests, dialogues, and more, allowing developers to build rich and engaging RPG experiences with ease. 
+
+Additionally, **rpg_world** specializes in managing the **game state** of an RPG, handling character states, world progression, event triggers, and overall game logic. This focus ensures that the core aspects of game state management are robust and reliable.
+
+> **Note:** While **rpg_world** excels at managing game state and providing the necessary tools for game logic, it intentionally omits broader functionalities typically handled by full-fledged game engines, such as rendering, audio processing, and real-time graphics. This design choice allows developers to integrate **rpg_world** seamlessly into existing projects or use it as a backend for custom game engines.
 
 ## Table of Contents
 
@@ -41,7 +45,7 @@
 - **World and Exploration**: Design expansive game worlds with interconnected locations and dynamic events.
 - **Quest System**: Create engaging quests with multiple objectives and rewarding outcomes.
 
-## Planned Features
+## Planned Features - not implemented yet!
 - **Dialogue System**: Facilitate interactive dialogues with NPCs, including branching conversations.
 - **Skill Trees**: Develop comprehensive skill trees for character progression and ability enhancements.
 - **Leveling and Experience**: Implement experience gain and leveling mechanics to advance characters.
@@ -53,7 +57,9 @@
 - **Achievements System**: Track and reward player achievements and milestones.
 - **AI and Balancing**: Develop intelligent AI opponents and ensure balanced gameplay through metrics.
 
-## Project Structure
+## Planned Project Structure
+
+The following directory layout outlines the intended structure of the **rpg_world** library once all features have been fully implemented. This organization ensures scalability, maintainability, and ease of navigation for developers.
 
 ```plaintext
 rpg_world/
@@ -212,40 +218,96 @@ rpg_world/
 ## Installation
 
 ### Prerequisites
-- **Python 3.7+**: Ensure you have Python installed. You can download it from the official website.
-- **Conda**: For environment management, install Conda.
+- **Python 3.7+**: Ensure you have Python installed. You can download it from the [official website](https://www.python.org/downloads/).
+- **Conda**: For environment management using Conda, install [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
+- **pip**: For environment management using `venv`, ensure `pip` is installed. It typically comes with Python 3.4+.
 
-### Steps
 
-#### Clone the Repository
-```bash
-git clone https://github.com/andrewruba/rpg_world.git
-cd rpg_world
-```
+### Installation Methods
 
-#### Set Up the Conda Environment
+You can install **rpg_world** using one of the following methods:
 
-```bash
-conda env create -f environment.yml
-```
+1. **Using pip** (Recommended)
+2. **Using Conda** (Building from source)
+3. **Using `venv`** (Building from source)
 
-#### Activate the Conda Environment
+---
 
-```bash
-conda activate rpg_world_env
-```
+#### Using pip (Recommended)
 
-#### Build the Package
+You can install **rpg_world** directly from PyPI using `pip`.
 
 ```bash
-python setup.py sdist bdist_wheel
+pip install rpg_world
 ```
 
-#### Install the Package
+#### Using Conda (Building from source)
 
-```bash
-pip install dist/rpg_world-*.whl --force-reinstall
-```
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/andrewruba/rpg_world.git
+    cd rpg_world
+    ```
+
+2. **Set Up the Conda Environment**
+    ```bash
+    conda env create -f environment.yml
+    ```
+
+3. **Activate the Conda Environment**
+    ```bash
+    conda activate rpg_world_env
+    ```
+
+4. **Build the Package**
+    ```bash
+    python setup.py sdist bdist_wheel
+    ```
+
+5. **Install the Package**
+    ```bash
+    pip install dist/rpg_world-*.whl --force-reinstall
+    ```
+
+---
+
+#### Using `venv` (Building from source)
+
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/yourusername/rpg_world.git
+    cd rpg_world
+    ```
+
+2. **Set Up the Virtual Environment**
+    ```bash
+    python -m venv venv
+    ```
+
+3. **Activate the Virtual Environment**
+    - **On macOS/Linux**:
+        ```bash
+        source venv/bin/activate
+        ```
+    - **On Windows**:
+        ```bash
+        venv\Scripts\activate
+        ```
+
+4. **Install the Required Dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5. **Build the Package**
+    ```bash
+    python setup.py sdist bdist_wheel
+    ```
+
+6. **Install the Package**
+    ```bash
+    pip install dist/rpg_world-*.whl --force-reinstall
+    ```
 
 ## Quick Start
 
@@ -712,13 +774,13 @@ trainer.train()
 
 The examples/ directory contains scripts demonstrating how to use various components of the rpg_world library.
 
-example_character.py: Examples of character creation and interaction.
+- example_character.py: Examples of character creation and interaction.
 
-example_character_stats.py: Examples of creating and modifying character stats.
+- example_character_stats.py: Examples of creating and modifying character stats.
 
-example_game.py: Demonstrates the game loop and basic gameplay mechanics.
+- example_game.py: Demonstrates the game loop and basic gameplay mechanics.
 
-example_spell.py: Shows how to create and cast spells.
+- example_spell.py: Shows how to create and cast spells.
 
 #### Running an Example
 
@@ -746,14 +808,6 @@ Unit and integration tests are located in the tests/ directory. These tests ensu
 ### Running Tests
 
 You can run the tests using the provided scripts or with pytest directly.
-
-### Using the Test Script
-
-```bash
-./scripts/run_tests.sh
-```
-
-### Using Pytest Directly
 
 ```bash
 pytest
