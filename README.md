@@ -46,6 +46,11 @@ rpg_world/
 │       │   ├── location.py             # Represents locations in the game world
 │       │   └── event.py                # Represents game events and triggers
 │       │
+|       ├── event_system/               # Generic event system, move world/event here
+|       │   ├── __init__.py
+|       │   ├── event_manager.py
+|       │   └── events.py
+│       │
 │       ├── quest/                      # Quest and objective system
 │       │   ├── __init__.py
 │       │   ├── quest.py                # Represents quests with objectives and rewards
