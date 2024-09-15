@@ -1,7 +1,7 @@
 from rpg_world import Spell
 from rpg_world import BaseCharacter, CharacterStats,Mage
 from rpg_world import SpellEffect
-from rpg_world import simple_change, multi_effect_target_example, multi_effect_recipient_example
+from rpg_world import *
 import time
 
 # Create a spell where the health damage depends on the target's focus
@@ -10,10 +10,10 @@ multi_effect_spell = Spell(
     mana_cost=25.0,
     cooldown=5.0,
     effects=[
-        SpellEffect(attribute='health', formula=multi_effect_recipient_example, recipient='caster'),
-        SpellEffect(attribute='health', formula=multi_effect_target_example),
-        SpellEffect(attribute='focus', formula=simple_change(-15)),
-        SpellEffect(attribute='armor', formula=simple_change(5))
+        SpellEffect(attribute='health', formula=MultiEffectRecipientFormula(), recipient='caster'),
+        SpellEffect(attribute='health', formula=MultiEffectTargetFormula()),
+        SpellEffect(attribute='focus', formula=SimpleChangeFormula(-15)),
+        SpellEffect(attribute='armor', formula=SimpleChangeFormula(5))
     ]
 )
 

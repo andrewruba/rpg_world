@@ -7,12 +7,12 @@ class BaseEffect(ABC):
 
     def __init__(self, attribute: str, formula):
         """
-        Initialize the BaseEffect with an attribute and a formula function.
+        Initialize the BaseEffect with an attribute and a formula object.
 
         Args:
             attribute (str): The name of the attribute to affect.
-            formula (callable): A function to calculate the change in attribute value.
-                                It should accept context variables as keyword arguments.
+            formula (BaseFormula): An instance of BaseFormula used to calculate the change in attribute value.
+                                   It should have a `calculate` method that accepts context variables as keyword arguments.
         """
         self.attribute = attribute
         self.formula = formula
@@ -36,7 +36,7 @@ class BaseEffect(ABC):
         context.update(kwargs)
 
         # Evaluate the formula to calculate the amount
-        amount = self.formula(**context)
+        amount = self.formula.calculate(**context)
 
         # Modify the target's attribute
         target.stats.modify(self.attribute, amount)

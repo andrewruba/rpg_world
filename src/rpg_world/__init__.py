@@ -11,7 +11,8 @@ from .ability.base_ability import BaseAbility
 from .ability.spell import Spell
 from .effect.base_effect import BaseEffect
 from .effect.spell_effect import SpellEffect
-from .effect.effect_formulas import simple_change, multi_effect_target_example, multi_effect_recipient_example
+from .formula.base_formula import BaseFormula
+from .formula.effect_formula import SimpleChangeFormula, MultiEffectTargetFormula, MultiEffectRecipientFormula
 from .game.game import Game
 
 # Any other core imports or package-wide initialization can go here.

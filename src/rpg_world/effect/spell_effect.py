@@ -7,14 +7,15 @@ class SpellEffect(BaseEffect):
 
     def __init__(self, attribute: str, formula, recipient: str = 'target'):
         """
-        Initialize the SpellEffect with an attribute, a formula function, and a recipient.
+        Initialize the SpellEffect with an attribute, a formula object, and a recipient.
 
         Args:
             attribute (str): The name of the attribute to affect.
-            formula (callable): A function to calculate the change in attribute value.
-                                It should accept context variables as keyword arguments.
-            recipient (str): Who receives the effect ('target' or 'caster'). Defaults to 'target'.
+            formula (BaseFormula): An instance of BaseFormula used to calculate the change in attribute value.
+                                   It should have a `calculate` method that accepts context variables as keyword arguments.
+            recipient (str): Specifies who receives the effect ('target' or 'caster'). Defaults to 'target'.
         """
+
         super().__init__(attribute, formula)
         self.recipient = recipient  # 'target' or 'caster'
 
@@ -43,7 +44,7 @@ class SpellEffect(BaseEffect):
         context.update(kwargs)
 
         # Evaluate the formula to calculate the amount
-        amount = self.formula(**context)
+        amount = self.formula.calculate(**context)
 
         # Modify the recipient's attribute
         recipient.stats.modify(self.attribute, amount)
