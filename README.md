@@ -97,6 +97,7 @@ rpg_world/
 │
 ├── scripts/                            # Folder for utility scripts
 │   ├── build_install.sh                # Script for building and installing the package
+│   ├── run_tests.sh                    # Script for running unit tests
 │   └── update_requirements.sh          # Script for updating the requirements.txt file
 │
 ├── .gitignore                          # Specifies files and directories to ignore in Git
