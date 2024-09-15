@@ -31,10 +31,9 @@ rpg_world/
 │       │   ├── __init__.py
 │       │   ├── battle_manager.py       # Manages battles, turn order, and actions
 │       │   ├── turn_order.py           # Turn-based combat system
-│       │   ├── action_queue.py         # Action queue for real-time combat
-│       │   └── battle_state.py         # Represents the current state of a battle
+│       │   └── action_queue.py         # Action queue for real-time combat system
 │       │
-│       ├── items/                      # Item system (weapons, potions, etc.)
+│       ├── item/                      # Item system (weapons, potions, etc.)
 │       │   ├── __init__.py
 │       │   ├── item.py                 # Base item class
 │       │   ├── consumable.py           # Consumable items (e.g., potions)
