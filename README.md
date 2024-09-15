@@ -1,10 +1,8 @@
 # rpg_world
 
-**rpg_world** is a Python library designed to simulate RPG battles, inspired by classic SNES-era turn-based and real-time RPGs. It provides a comprehensive framework to create and manage characters, abilities, items, combat systems, quests, dialogues, and more, allowing developers to build rich and engaging RPG experiences with ease. 
+**rpg_world** is a Python library designed to simplify the creation of RPGs by providing a robust backend system for managing RPG **game state**. Whether you're developing classic turn-based RPGs or real-time combat systems, **rpg_world** offers a comprehensive framework to manage the intricacies of character progression, combat mechanics, inventory systems, quests, dialogues, and more. By focusing on the backend game logic, it significantly reduces the complexity of developing RPGs, making them more accessible to developers of all levels.
 
-Additionally, **rpg_world** specializes in managing the **game state** of an RPG, handling character states, world progression, event triggers, and overall game logic. This focus ensures that the core aspects of game state management are robust and reliable.
-
-> **Note:** While **rpg_world** excels at managing game state and providing the necessary tools for game logic, it intentionally omits broader functionalities typically handled by full-fledged game engines, such as rendering, audio processing, and real-time graphics. This design choice allows developers to integrate **rpg_world** seamlessly into existing projects or use it as a backend for custom game engines.
+> **Note:** While **rpg_world** is specialized in managing the backend game logic and state, it does not include functionalities traditionally provided by full-fledged game engines, such as graphics rendering, audio processing, or real-time visual effects. This design allows **rpg_world** to be seamlessly integrated into existing projects or serve as a backend component for custom game engines, giving developers the freedom to pair it with their preferred tools for visuals and other front-end features.
 
 ## Table of Contents
 
