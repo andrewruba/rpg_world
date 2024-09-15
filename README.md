@@ -70,9 +70,7 @@ rpg_world/
 │       │
 │       ├── game/                       # Game logic and execution
 │       │   ├── __init__.py
-│       │   ├── game.py                 # Core game loop logic
-│       │   ├── turn_based_combat.py    # Handles turn-based combat logic
-│       │   └── real_time_combat.py     # Handles real-time combat logic
+│       │   └── game.py                 # Core game loop logic
 │       │
 │       ├── config.py                   # Configuration for game settings
 │       │
