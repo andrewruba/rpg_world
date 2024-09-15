@@ -21,7 +21,7 @@ rpg_world/
 │       │   ├── base_ability.py         # Base ability class
 │       │   └── spell.py                # Spell class with spell attributes and effects
 │       │
-│       ├── effect/                    # Effects of abilties system
+│       ├── effect/                     # Effects of abilties system
 │       │   ├── __init__.py
 │       │   ├── base_effect.py          # Calculates effects of abilities on targets
 │       │   ├── spell_effect.py         # Calculates effects of spells on targets
@@ -33,7 +33,7 @@ rpg_world/
 │       │   ├── turn_order.py           # Turn-based combat system
 │       │   └── action_queue.py         # Action queue for real-time combat system
 │       │
-│       ├── item/                      # Item system (weapons, potions, etc.)
+│       ├── item/                       # Item system (weapons, potions, etc.)
 │       │   ├── __init__.py
 │       │   ├── item.py                 # Base item class
 │       │   ├── consumable.py           # Consumable items (e.g., potions)
@@ -51,6 +51,54 @@ rpg_world/
 │       │   ├── quest.py                # Represents quests with objectives and rewards
 │       │   ├── quest_objective.py      # Individual objectives within a quest
 │       │   └── quest_manager.py        # Manages active quests and progression
+│       │
+│       ├── dialogue/
+│       │   ├── __init__.py
+│       │   ├── dialogue_manager.py       # Manages dialogue sequences and branching dialogue options
+│       │   ├── dialogue_node.py          # Represents individual lines of dialogue or choices
+│       │   └── dialogue_script.py        # Contains dialogue scripts for different NPCs or events
+│       │
+│       ├── skill_tree/
+│       │   ├── __init__.py
+│       │   ├── skill_node.py             # Represents an individual skill in the tree
+│       │   ├── skill_tree.py             # Manages the entire skill tree, unlocks, and dependencies
+│       │   └── skill_manager.py          # Handles the allocation of skill points and progression
+│       │
+│       ├── leveling/
+│       │   ├── __init__.py
+│       │   ├── experience_manager.py     # Manages experience gains and leveling up
+│       │   └── level_curve.py            # Determines XP thresholds for leveling up
+│       │
+│       ├── save_load/
+│       │   ├── __init__.py
+│       │   ├── save_manager.py           # Manages saving game data to a file
+│       │   └── load_manager.py           # Manages loading game data from a file
+│       │
+│       ├── cutscene/
+│       │   ├── __init__.py
+│       │   ├── cutscene_manager.py       # Manages the logic and timing for cutscenes
+│       │   ├── cutscene_sequence.py      # Defines sequences of events for a cutscene
+│       │   └── cutscene_event.py         # Individual events (e.g., dialogue, animations) within a cutscene
+│       │
+│       ├── party/
+│       │   ├── __init__.py
+│       │   ├── party_manager.py          # Manages the player's party, switching characters, etc.
+│       │   └── character_switch.py       # Logic for switching between active characters
+│       │
+│       ├── environment/
+│       │   ├── __init__.py
+│       │   ├── weather.py                # Manages weather effects (e.g., rain, snow, storms)
+│       │   └── time_of_day.py            # Manages time-of-day changes (e.g., day-night cycles)
+│       │
+│       ├── crafting/
+│       │   ├── __init__.py
+│       │   ├── crafting_manager.py       # Manages crafting recipes and processes
+│       │   └── recipe.py                 # Defines crafting recipes and required materials
+│       │
+│       ├── achievements/
+│       │   ├── __init__.py
+│       │   ├── achievement.py            # Defines individual achievements
+│       │   └── achievement_manager.py    # Tracks and manages unlocked achievements
 │       │
 │       ├── ai/                         # AI logic and training system
 │       │   ├── __init__.py
@@ -74,17 +122,17 @@ rpg_world/
 │       ├── config.py                   # Configuration for game settings
 │       │
 ├── tests/                              # Unit and integration tests
-│   ├── test_character.py
-│   ├── test_spell.py
-│   ├── test_effect_calculation.py
-│   ├── test_ai.py
-│   └── test_balance.py
+│   ├── test_base_character.py
+│   ├── test_spell_effect.py
+│   ├── test_character_stats.py
+│   ├── test_logger.py
+│   └── test_game.py
 │
 ├── examples/                           # Example scripts
 │   ├── example_character.py            # Examples of character creation and interaction
+│   ├── example_character_stats.py      # Examples of character stat creation
 │   ├── example_game.py                 # Example of the game loop and gameplay mechanics
-│   ├── example_spell.py                # Examples of spell creation and casting
-│   └── typecast_demo.py                # Demonstration of the TypeCast game mechanics
+│   └── example_spell.py                # Examples of spell creation and casting
 │
 ├── docs/                               # Documentation
 │   ├── index.md                        # Main documentation index
