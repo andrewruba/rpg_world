@@ -79,8 +79,7 @@ rpg_world/
 │   ├── test_spell.py
 │   ├── test_effect_calculation.py
 │   ├── test_ai.py
-│   ├── test_balance.py
-│   └── test_spellbook.py
+│   └── test_balance.py
 │
 ├── examples/                           # Example scripts
 │   ├── example_character.py            # Examples of character creation and interaction
