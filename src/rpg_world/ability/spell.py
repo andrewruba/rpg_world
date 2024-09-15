@@ -50,3 +50,5 @@ class Spell(BaseAbility):
                     'ability': self
                 }
             )
+        
+        return True
