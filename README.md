@@ -307,53 +307,6 @@ pip install rpg_world
     pip install dist/rpg_world-*.whl --force-reinstall
     ```
 
-## Quick Start
-
-Here's a quick example to get you started with creating characters, abilities, and simulating a simple battle.
-
-### Creating Characters
-
-```python
-from rpg_world.character.base_character import BaseCharacter
-from rpg_world.character.character_stats import CharacterStats
-
-# Create character stats
-stats = CharacterStats(health=120, mana=80, strength=15, defense=10)
-
-# Create a base character
-hero = BaseCharacter(name="Arthas", stats=stats)
-```
-
-### Defining Abilities and Spells
-
-```python
-from rpg_world.ability.spell import Spell
-
-# Define a spell
-fireball = Spell(
-    name="Fireball",
-    mana_cost=20,
-    cooldown=5.0,
-    effects=[]  # Add spell effects here
-)
-```
-
-### Simulating a Battle
-
-```python
-from rpg_world.combat.battle_manager import BattleManager
-
-# Create enemy characters
-enemy_stats = CharacterStats(health=100, mana=50, strength=12, defense=8)
-goblin = BaseCharacter(name="Goblin", stats=enemy_stats)
-
-# Initialize battle manager with player and enemy parties
-battle_manager = BattleManager(player_party=[hero], enemy_party=[goblin])
-
-# Run the battle
-battle_manager.run_battle()
-```
-
 ## Usage
 
 ### Creating Characters
@@ -845,7 +798,7 @@ Implement your feature or bug fix. Ensure that your code adheres to the project'
 
 #### Run Tests
 
-Ensure all existing tests pass and add new tests for your changes.
+Ensure all existing **tests pass** and **add new tests** for your changes.
 
 ```bash
 pytest
