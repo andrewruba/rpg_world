@@ -165,8 +165,7 @@ rpg_world/
 │       ├── ai/                         # AI logic and training system
 │       │   ├── __init__.py
 │       │   ├── ai_training.py          # Core class for training AI characters
-│       │   ├── rl_agent.py             # Reinforcement learning agents for AI
-│       │   ├── behavior_tree.py        # Optional: Behavior trees for AI decisions
+│       │   └── rl_agent.py             # Reinforcement learning agents for AI
 │       │
 │       ├── balance/                    # Balancing utilities
 │       │   ├── __init__.py
@@ -177,12 +176,10 @@ rpg_world/
 │       │   ├── __init__.py
 │       │   └── logger.py               # Logging and debug utilities
 │       │
-│       ├── game/                       # Game logic and execution
-│       │   ├── __init__.py
-│       │   └── game.py                 # Core game loop logic
-│       │   └── game_state.py           # Representation of the game state
-│       │
-│       ├── config.py                   # Configuration for game settings
+│       └── game/                       # Game logic and execution
+│           ├── __init__.py
+│           ├── game.py                 # Core game loop logic
+│           └── game_state.py           # Representation of the game state 
 │
 ├── tests/                              # Unit and integration tests
 │   ├── test_base_character.py
