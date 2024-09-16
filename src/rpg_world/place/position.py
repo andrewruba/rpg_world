@@ -14,7 +14,7 @@ class Position(Place):
         self.y = y
 
     def __repr__(self):
-        return f"Position({self.name}, {self.x}, {self.y})"
+        return f"Position('{self.name}', {self.x}, {self.y})"
 
     def equals(self, other_position):
         """

@@ -12,7 +12,7 @@ def test_position_representation():
     pos = Position("Test", 3, 7)
 
     # Check the string representation of the Position object
-    assert repr(pos) == "Position(Test, 3, 7)"
+    assert repr(pos) == "Position('Test', 3, 7)"
 
 def test_position_equals_true():
     pos1 = Position("Test1", 4, 8)
