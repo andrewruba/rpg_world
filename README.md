@@ -180,7 +180,7 @@ rpg_world/
 │       ├── game/                       # Game logic and execution
 │       │   ├── __init__.py
 │       │   └── game.py                 # Core game loop logic
-│       │   └── game_state.py                 # # Representation of the game state
+│       │   └── game_state.py           # Representation of the game state
 │       │
 │       ├── config.py                   # Configuration for game settings
 │
