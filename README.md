@@ -33,12 +33,12 @@
 - **Item System**: Manage consumables, equipment, and inventory with ease.
 - **World and Exploration**: Design expansive game worlds with interconnected locations and dynamic events.
 - **Quest System**: Create engaging quests with multiple objectives and rewarding outcomes.
+- **Saving and Loading**: Save and load game states seamlessly.
 
 ## Planned Features - not implemented yet!
 - **Dialogue System**: Facilitate interactive dialogues with NPCs, including branching conversations.
 - **Skill Trees**: Develop comprehensive skill trees for character progression and ability enhancements.
 - **Leveling and Experience**: Implement experience gain and leveling mechanics to advance characters.
-- **Saving and Loading**: Save and load game states seamlessly.
 - **Cutscene Management**: Create immersive cutscenes to advance the story.
 - **Party Management**: Manage and switch between party members efficiently.
 - **Environment Effects**: Introduce dynamic weather and time-of-day systems to enhance gameplay.
