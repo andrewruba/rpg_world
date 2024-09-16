@@ -1,5 +1,7 @@
-class Position:
-    def __init__(self, x, y):
+from .place import Place
+
+class Position(Place):
+    def __init__(self, name, x, y):
         """
         Initialize a Position within a location.
 
@@ -7,11 +9,12 @@ class Position:
             x (int): The x-coordinate of the position.
             y (int): The y-coordinate of the position.
         """
+        super().__init__(name)
         self.x = x
         self.y = y
 
     def __repr__(self):
-        return f"Position({self.x}, {self.y})"
+        return f"Position({self.name}, {self.x}, {self.y})"
 
     def equals(self, other_position):
         """

@@ -15,5 +15,9 @@ from .formula.base_formula import BaseFormula
 from .formula.effect_formula import SimpleChangeFormula, MultiEffectTargetFormula, MultiEffectRecipientFormula
 from .utils.logger import Logger
 from .game.game import Game
+from .place.place import Place
+from .place.world import World
+from .place.location import Location
+from .place.position import Position
 
 # Any other core imports or package-wide initialization can go here.

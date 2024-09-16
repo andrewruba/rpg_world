@@ -1,8 +1,11 @@
-class World:
-    def __init__(self):
+from .place import Place
+
+class World(Place):
+    def __init__(self, name):
         """
         Initialize the World with locations and an entry point.
         """
+        super().__init__(name)
         self.locations = {}
         self.current_location = None
 
@@ -24,9 +27,9 @@ class World:
         """
         if location_name in self.locations:
             self.current_location = self.locations[location_name]
-            print(f"Starting location set to: {self.current_location.name}")
+            self.logger.info(f"Starting location set to: {self.current_location.name}")
         else:
-            print(f"Location {location_name} not found in the world.")
+            self.logger.warning(f"Location {location_name} not found in the world.")
 
     def move_to_location(self, location_name, new_position=None):
         """
@@ -37,15 +40,15 @@ class World:
             new_position (Position, optional): A position within the new location to move to (default is (0, 0)).
         """
         if location_name not in self.locations:
-            print(f"Location {location_name} not found in the world.")
+            self.logger.warning(f"Location {location_name} not found in the world.")
             return
         
         if location_name not in self.current_location.connected_locations:
-            print(f"You cannot move to {location_name} from {self.current_location.name}. The locations are not connected.")
+            self.logger.warning(f"You cannot move to {location_name} from {self.current_location.name}. The locations are not connected.")
             return
         
         self.current_location = self.locations[location_name]
-        print(f"Moved to: {self.current_location.name}")
+        self.logger.info(f"Moved to: {self.current_location.name}")
         
         # Update position in the new location
         if new_position:
