@@ -31,16 +31,4 @@ class CharacterStats(BaseStats):
         Returns:
             bool: True if health is greater than zero, False otherwise.
         """
-        return self.get('health') > 0
-
-    def modify(self, attr_name, amount):
-        """
-        Modify the value of an attribute by a specified amount.
-
-        Args:
-            attr_name (str): The name of the attribute to modify.
-            amount (float): The amount to add (or subtract) from the attribute.
-        """
-        current_value = self.get(attr_name) or 0
-        new_value = current_value + amount
-        self.set(attr_name, new_value)
+        return self.health > 0
