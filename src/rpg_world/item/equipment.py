@@ -1,7 +1,8 @@
-from .item import Item
+from .base_item import BaseItem
+from ..utils.logger import Logger
 
-class Equipment(Item):
-    def __init__(self, name: str, description: str, value: int, attack_bonus: int = 0, defense_bonus: int = 0):
+class Equipment(BaseItem):
+    def __init__(self, name: str, description: str, value: int, effects: list):
         """
         Initialize an equippable item like a weapon or armor.
 
@@ -9,40 +10,50 @@ class Equipment(Item):
             name (str): The name of the equipment.
             description (str): A brief description of the equipment.
             value (int): The monetary value of the equipment.
-            attack_bonus (int): The bonus to attack when equipped (default is 0).
-            defense_bonus (int): The bonus to defense when equipped (default is 0).
+            effects (list): A list of effects (instances of BaseEffect) that the equipment applies.
         """
-        super().__init__(name, description, value)
-        self.attack_bonus = attack_bonus
-        self.defense_bonus = defense_bonus
+        super().__init__(name, description, value, effects)
+        self.equipped = False
+
+        # Initialize logger for this equipment
+        self.logger = Logger(f"Equipment-{self.name}")
+        self.logger.info(f"Equipment '{self.name}' initialized with {len(self.effects)} effects")
+
+    def use(self, target):
+        """
+        Toggle the equipped status of the item. If the item is equipped, it applies effects.
+        If the item is unequipped, it un-applies the effects.
+
+        Args:
+            target (BaseCharacter): The character equipping or unequipping the item.
+        """
+        if self.equipped:
+            self.unequip(target)
+        else:
+            self.equip(target)
 
     def equip(self, target):
         """
-        Equip the item and apply its bonuses to the target.
+        Equip the item and apply its effects to the target.
 
         Args:
             target (BaseCharacter): The character equipping the item.
         """
-        print(f"{target.name} equips {self.name}!")
-        target.stats.modify('strength', self.attack_bonus)
-        target.stats.modify('defense', self.defense_bonus)
+        if not self.equipped:
+            self.logger.info(f"{target.name} equips {self.name}!")
+            for effect in self.effects:
+                effect.apply(target)
+            self.equipped = True
 
     def unequip(self, target):
         """
-        Unequip the item and remove its bonuses from the target.
+        Unequip the item and unapply its effects from the target.
 
         Args:
             target (BaseCharacter): The character unequipping the item.
         """
-        print(f"{target.name} unequips {self.name}!")
-        target.stats.modify('strength', -self.attack_bonus)
-        target.stats.modify('defense', -self.defense_bonus)
-
-    def __str__(self):
-        """
-        String representation of the equipment.
-
-        Returns:
-            str: A string describing the equipment.
-        """
-        return f"{super().__str__()}, Attack Bonus: {self.attack_bonus}, Defense Bonus: {self.defense_bonus}"
+        if self.equipped:
+            self.logger.info(f"{target.name} unequips {self.name}!")
+            for effect in self.effects:
+                effect.unapply(target)
+            self.equipped = False

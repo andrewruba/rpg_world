@@ -10,6 +10,17 @@ class SimpleChangeFormula(BaseFormula):
     def calculate(self, **kwargs):
         return self.value
 
+class SimpleChangeFormulaWithStatLimits(BaseFormula):
+    """
+    A simple formula that returns a fixed change value.
+    """
+    def __init__(self, value):
+        self.value = value
+
+    def calculate(self, **kwargs):
+        target = kwargs.get("target")
+        attribute = kwargs.get("attribute")
+        return self.apply_limits(self.value, target, attribute)
 
 class MultiEffectTargetFormula(BaseFormula):
     """

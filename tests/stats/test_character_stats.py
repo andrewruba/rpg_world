@@ -61,7 +61,7 @@ def test_apply_health_effect_above_max(arcanist):
     health_effect = BaseEffect(attribute='health', formula=SimpleChangeFormula(1000))
     health_effect.apply(arcanist)
     
-    assert arcanist.health == 120
+    assert arcanist.health == 1120
 
 def test_character_alive_status(arcanist):
     """

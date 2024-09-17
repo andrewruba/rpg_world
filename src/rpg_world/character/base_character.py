@@ -1,5 +1,5 @@
 from abc import ABC
-from .character_stats import CharacterStats
+from ..stats.character_stats import CharacterStats
 from ..utils.logger import Logger
 
 class BaseCharacter(ABC):

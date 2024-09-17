@@ -38,13 +38,12 @@ class SpellEffect(BaseEffect):
         # Prepare the context for evaluating the formula
         context = {
             'caster': caster,
-            'target': target,
             'recipient': recipient
         }
         context.update(kwargs)
 
         # Evaluate the formula to calculate the amount
-        amount = self.formula.calculate(**context)
+        amount = self._calculate_amount(target, **context)
 
         # Modify the recipient's attribute
         recipient.stats.modify(self.attribute, amount)

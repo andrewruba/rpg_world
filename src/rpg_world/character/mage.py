@@ -1,5 +1,5 @@
 from .base_character import BaseCharacter
-from .character_stats import CharacterStats
+from ..stats.character_stats import CharacterStats
 from ..ability.spell import Spell
 
 class Mage(BaseCharacter):
