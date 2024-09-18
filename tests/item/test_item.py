@@ -1,12 +1,12 @@
 import pytest
-from rpg_world import BaseItem
-from rpg_world import BaseEffect
+from rpg_world import Item
+from rpg_world import Effect
 from rpg_world import SimpleChangeFormula, SimpleChangeFormulaWithStatLimits
-from rpg_world import BaseCharacter
+from rpg_world import Character
 from rpg_world import CharacterStats
 
 # Mock effect class for testing
-class MockEffect(BaseEffect):
+class MockEffect(Effect):
     def __init__(self, attribute, formula):
         super().__init__(attribute, formula)
     
@@ -18,13 +18,13 @@ class MockEffect(BaseEffect):
         return f"MockEffect({self.attribute})"
 
 # Mock character class for testing
-class MockCharacter(BaseCharacter):
+class MockCharacter(Character):
     def __init__(self, name, health, strength):
         stats = CharacterStats(health=health, strength=strength)
         super().__init__(name, stats)
 
-# Mock item class for testing BaseItem's functionality
-class MockItem(BaseItem):
+# Mock item class for testing Item's functionality
+class MockItem(Item):
     def __init__(self, name, description, value, effects):
         super().__init__(name, description, value, effects)
 

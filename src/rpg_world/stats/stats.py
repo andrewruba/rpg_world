@@ -1,4 +1,4 @@
-class BaseStats:
+class Stats:
     """
     Base class for managing general statistics. Provides methods to modify and retrieve attributes.
     """
@@ -81,4 +81,4 @@ class BaseStats:
             str: A string listing the attributes and their values.
         """
         attrs = ', '.join(f"{key}: {value}" for key, value in self.attributes.items())
-        return f"BaseStats({attrs})"
+        return f"Stats({attrs})"

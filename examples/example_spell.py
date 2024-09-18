@@ -1,5 +1,5 @@
 from rpg_world import Spell
-from rpg_world import BaseCharacter, CharacterStats,Mage
+from rpg_world import Character, CharacterStats,Mage
 from rpg_world import SpellEffect
 from rpg_world import *
 import time
@@ -23,7 +23,7 @@ print(merlin)
 
 # Create a target character (e.g., a Goblin)
 goblin_stats = CharacterStats(health=80, focus=40, armor=10)
-goblin = BaseCharacter(name="Goblin", stats=goblin_stats)
+goblin = Character(name="Goblin", stats=goblin_stats)
 print(goblin)
 
 # Merlin casts Mystic Blast on the Goblin

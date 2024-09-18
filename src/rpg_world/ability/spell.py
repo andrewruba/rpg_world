@@ -1,7 +1,7 @@
-from .base_ability import BaseAbility
+from .ability import Ability
 import logging
 
-class Spell(BaseAbility):
+class Spell(Ability):
     def __init__(self, name, mana_cost, cooldown, effects):
         """
         Initialize a spell with specific attributes.
@@ -10,7 +10,7 @@ class Spell(BaseAbility):
             name (str): The name of the spell.
             mana_cost (float): The mana cost to cast the spell.
             cooldown (float): Time in seconds between spell uses.
-            effects (list): A list of effects, each effect is a BaseEffect object.
+            effects (list): A list of effects, each effect is a Effect object.
         """
         # Create a dictionary of attributes with real values
         attributes = {
@@ -20,7 +20,7 @@ class Spell(BaseAbility):
             # Add any other attributes if necessary
         }
 
-        # Initialize the BaseAbility with the name and attributes
+        # Initialize the Ability with the name and attributes
         super().__init__(name, attributes)
 
     def cast(self, caster, target, current_time):

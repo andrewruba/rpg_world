@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class BaseFormula(ABC):
+class Formula(ABC):
     """
     Abstract base class for all formulas that calculate effect values.
     """
@@ -25,7 +25,7 @@ class BaseFormula(ABC):
 
         Args:
             value (float): The calculated effect amount on the target attribute.
-            target (BaseCharacter): The target character whose attribute is being modified.
+            target (Character): The target character whose attribute is being modified.
             attribute (str): The name of the attribute to apply the limits on.
 
         Returns:

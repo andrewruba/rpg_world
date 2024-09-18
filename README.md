@@ -59,18 +59,18 @@ rpg_world/
 │       │
 │       ├── character/                  # Character-related logic
 │       │   ├── __init__.py
-│       │   ├── base_character.py       # Base class for characters
+│       │   ├── character.py       # Base class for characters
 │       │   ├── mage.py                 # Mage class with spellcasting abilities
 │       │   └── character_stats.py      # Character statistics (health, mana, etc.)
 │       │
 │       ├── ability/                    # Ability/spell system
 │       │   ├── __init__.py
-│       │   ├── base_ability.py         # Base ability class
+│       │   ├── ability.py         # Base ability class
 │       │   └── spell.py                # Spell class with spell attributes and effects
 │       │
 │       ├── effect/                     # Effects of abilities system
 │       │   ├── __init__.py
-│       │   ├── base_effect.py          # Calculates effects of abilities on targets
+│       │   ├── effect.py          # Calculates effects of abilities on targets
 │       │   ├── spell_effect.py         # Calculates effects of spells on targets
 │       │   └── effect_formulas.py      # Formulas for calculating effects
 │       │
@@ -173,7 +173,7 @@ rpg_world/
 │           └── game_state.py           # Representation of the game state 
 │
 ├── tests/                              # Unit and integration tests
-│   ├── test_base_character.py
+│   ├── test_character.py
 │   ├── test_spell_effect.py
 │   ├── test_character_stats.py
 │   ├── test_logger.py
@@ -301,12 +301,12 @@ pip install rpg_world
 
 ### Creating Characters
 
-BaseCharacter: The foundational class for all characters.
+Character: The foundational class for all characters.
 
-Mage: A subclass of BaseCharacter with spellcasting abilities.
+Mage: A subclass of Character with spellcasting abilities.
 
 ```python
-from rpg_world.character.base_character import BaseCharacter
+from rpg_world.character.character import Character
 from rpg_world.character.mage import Mage
 from rpg_world.character.character_stats import CharacterStats
 
@@ -319,9 +319,9 @@ mage = Mage(name="Gandalf", stats=mage_stats)
 
 ### Defining Abilities and Spells
 
-BaseAbility: The base class for all abilities.
+Ability: The base class for all abilities.
 
-Spell: A subclass of BaseAbility tailored for spellcasting.
+Spell: A subclass of Ability tailored for spellcasting.
 
 ```python
 from rpg_world.ability.spell import Spell

@@ -1,8 +1,8 @@
-from .base_character import BaseCharacter
+from .character import Character
 from ..stats.character_stats import CharacterStats
 from ..ability.spell import Spell
 
-class Mage(BaseCharacter):
+class Mage(Character):
     def __init__(self, name: str, health: float = 100, mana: float = 100, focus: float = 100, armor: float = 0, spells: list = None):
         """
         Initialize a Mage character with specific attributes, including an optional list of spells.
@@ -18,7 +18,7 @@ class Mage(BaseCharacter):
         # Create CharacterStats instance with provided attributes
         stats = CharacterStats(health=health, mana=mana, focus=focus, armor=armor)
         
-        # Initialize the BaseCharacter with the name and stats
+        # Initialize the Character with the name and stats
         super().__init__(name, stats=stats)
 
         # Initialize spells dictionary
@@ -58,7 +58,7 @@ class Mage(BaseCharacter):
 
         Args:
             spell_name (str): The name of the spell to cast.
-            target (BaseCharacter): The target of the spell.
+            target (Character): The target of the spell.
             current_time (float): The current time for checking cooldowns.
         """
         # Find the spell by name in the mage's spells

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from ..utils.logger import Logger
 
-class BaseAbility(ABC):
+class Ability(ABC):
     def __init__(self, name, attributes):
         """
         Initialize the base ability class with dynamic attributes.

@@ -1,6 +1,6 @@
-from .base_formula import BaseFormula
+from .formula import Formula
 
-class SimpleChangeFormula(BaseFormula):
+class SimpleChangeFormula(Formula):
     """
     A simple formula that returns a fixed change value.
     """
@@ -10,7 +10,7 @@ class SimpleChangeFormula(BaseFormula):
     def calculate(self, **kwargs):
         return self.value
 
-class SimpleChangeFormulaWithStatLimits(BaseFormula):
+class SimpleChangeFormulaWithStatLimits(Formula):
     """
     A simple formula that returns a fixed change value.
     """
@@ -22,7 +22,7 @@ class SimpleChangeFormulaWithStatLimits(BaseFormula):
         attribute = kwargs.get("attribute")
         return self.apply_limits(self.value, target, attribute)
 
-class MultiEffectTargetFormula(BaseFormula):
+class MultiEffectTargetFormula(Formula):
     """
     A formula that applies an effect based on the target's focus and armor.
     """
@@ -31,7 +31,7 @@ class MultiEffectTargetFormula(BaseFormula):
         return -(50 + (target.stats.get("focus") * 0.5)) * (1 - (target.stats.get("armor") / 100.0))
 
 
-class MultiEffectRecipientFormula(BaseFormula):
+class MultiEffectRecipientFormula(Formula):
     """
     A formula that applies an effect based on the recipient's focus and armor.
     """

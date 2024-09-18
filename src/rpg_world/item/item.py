@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from ..utils.logger import Logger
 
-class BaseItem(ABC):
+class Item(ABC):
     def __init__(self, name: str, description: str, value: int, effects: list):
         """
         Initialize the base item class with effects.
@@ -10,7 +10,7 @@ class BaseItem(ABC):
             name (str): The name of the item.
             description (str): A brief description of the item.
             value (int): The monetary value of the item.
-            effects (list): A list of effects (instances of BaseEffect) that the item applies.
+            effects (list): A list of effects (instances of Effect) that the item applies.
         """
         self.name = name
         self.description = description
@@ -26,7 +26,7 @@ class BaseItem(ABC):
         Apply all the item's effects to the target character.
 
         Args:
-            target (BaseCharacter): The character that will use the item.
+            target (Character): The character that will use the item.
             **kwargs: Additional context for the effects to use in their calculations.
         """
         self.logger.info(f"{target.name} uses {self.name}!")

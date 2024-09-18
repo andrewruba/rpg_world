@@ -1,8 +1,8 @@
-from .base_item import BaseItem
-from ..effect.base_effect import BaseEffect
+from .item import Item
+from ..effect.effect import Effect
 from ..utils.logger import Logger
 
-class Consumable(BaseItem):
+class Consumable(Item):
     def __init__(self, name: str, description: str, value: int, effects: list):
         """
         Initialize a consumable item.
@@ -11,7 +11,7 @@ class Consumable(BaseItem):
             name (str): The name of the consumable.
             description (str): A brief description of the consumable.
             value (int): The monetary value of the consumable.
-            effects (list): A list of effects (instances of BaseEffect) that the consumable applies.
+            effects (list): A list of effects (instances of Effect) that the consumable applies.
         """
         super().__init__(name, description, value, effects)
 
@@ -24,7 +24,7 @@ class Consumable(BaseItem):
         Use the consumable and apply its effects to the target.
 
         Args:
-            target (BaseCharacter): The character using the consumable.
+            target (Character): The character using the consumable.
         """
         self.logger.info(f"{target.name} uses {self.name}.")
 

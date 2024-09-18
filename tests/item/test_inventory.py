@@ -1,11 +1,11 @@
 import pytest
 from rpg_world import Inventory
-from rpg_world import BaseItem
-from rpg_world import BaseCharacter
+from rpg_world import Item
+from rpg_world import Character
 from rpg_world import CharacterStats
 
-# Mock BaseItem for testing
-class MockItem(BaseItem):
+# Mock Item for testing
+class MockItem(Item):
     def __init__(self, name):
         super().__init__(name, "Test item", 10, [])
 
@@ -17,7 +17,7 @@ class MockItem(BaseItem):
 @pytest.fixture
 def setup_target():
     stats = CharacterStats(health=50, mana=50, focus=30, armor=20)
-    target = BaseCharacter("TestCharacter", stats)
+    target = Character("TestCharacter", stats)
     return target
 
 @pytest.fixture

@@ -1,6 +1,6 @@
-from .base_stats import BaseStats
+from .stats import Stats
 
-class CharacterStats(BaseStats):
+class CharacterStats(Stats):
     """
     Manages character statistics such as health, mana, focus, and armor.
     Provides methods to modify and retrieve these attributes safely.

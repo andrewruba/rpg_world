@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-class BaseEvent(ABC):
+class Event(ABC):
     def __init__(self, name, triggers):
         """
-        Initialize a BaseEvent in the game world.
+        Initialize a Event in the game world.
 
         Args:
             name (str): The name of the event.
@@ -55,7 +55,7 @@ class BaseEvent(ABC):
         self.triggered = False
 
 
-class HealEvent(BaseEvent):
+class HealEvent(Event):
     def __init__(self, name, triggers):
         """
         Initialize the HealEvent with a name and triggers.

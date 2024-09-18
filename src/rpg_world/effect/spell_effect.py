@@ -1,6 +1,6 @@
-from .base_effect import BaseEffect
+from .effect import Effect
 
-class SpellEffect(BaseEffect):
+class SpellEffect(Effect):
     """
     Represents a spell effect that can be applied to a character.
     """
@@ -11,7 +11,7 @@ class SpellEffect(BaseEffect):
 
         Args:
             attribute (str): The name of the attribute to affect.
-            formula (BaseFormula): An instance of BaseFormula used to calculate the change in attribute value.
+            formula (Formula): An instance of Formula used to calculate the change in attribute value.
                                    It should have a `calculate` method that accepts context variables as keyword arguments.
             recipient (str): Specifies who receives the effect ('target' or 'caster'). Defaults to 'target'.
         """
@@ -24,8 +24,8 @@ class SpellEffect(BaseEffect):
         Apply the effect to the recipient character (either the caster or the target).
 
         Args:
-            caster (BaseCharacter): The character casting the spell.
-            target (BaseCharacter): The character receiving the spell.
+            caster (Character): The character casting the spell.
+            target (Character): The character receiving the spell.
             **kwargs: Additional context variables that can be used in the formula.
         """
         if not self.attribute:

@@ -1,9 +1,9 @@
 import pytest
-from rpg_world import BaseCharacter
+from rpg_world import Character
 from rpg_world import CharacterStats
 from rpg_world import Consumable
 
-class Warrior(BaseCharacter):
+class Warrior(Character):
     def __init__(self, name, health=100, strength=15, defense=5, id=None):
         """
         Initialize a Warrior character with basic attributes.
@@ -18,7 +18,7 @@ class Warrior(BaseCharacter):
         # Create CharacterStats with provided attributes
         stats = CharacterStats(health=health, strength=strength, defense=defense)
 
-        # Initialize BaseCharacter with name, stats, and optional ID
+        # Initialize Character with name, stats, and optional ID
         super().__init__(name, stats, id=id)
 
 @pytest.fixture

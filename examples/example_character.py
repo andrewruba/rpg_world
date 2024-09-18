@@ -1,7 +1,7 @@
-from rpg_world import BaseCharacter
+from rpg_world import Character
 from rpg_world import CharacterStats
 
-class Warrior(BaseCharacter):
+class Warrior(Character):
     def __init__(self, name, health=100, strength=15, defense=5):
         """
         Initialize a Warrior character with basic attributes.
@@ -15,7 +15,7 @@ class Warrior(BaseCharacter):
         # Create CharacterStats with provided attributes
         stats = CharacterStats(health=health, strength=strength, defense=defense)
 
-        # Initialize BaseCharacter with name and stats
+        # Initialize Character with name and stats
         super().__init__(name, stats)
 
 if __name__ == "__main__":

@@ -1,18 +1,18 @@
 from abc import ABC
 from ..utils.logger import Logger
 
-class BaseEffect(ABC):
+class Effect(ABC):
     """
     Represents an effect that can be applied to a character.
     """
 
     def __init__(self, attribute: str, formula):
         """
-        Initialize the BaseEffect with an attribute and a formula object.
+        Initialize the Effect with an attribute and a formula object.
 
         Args:
             attribute (str): The name of the attribute to affect.
-            formula (BaseFormula): An instance of BaseFormula used to calculate the change in attribute value.
+            formula (Formula): An instance of Formula used to calculate the change in attribute value.
                                    It should have a `calculate` method that accepts context variables as keyword arguments.
         """
         self.attribute = attribute
@@ -27,7 +27,7 @@ class BaseEffect(ABC):
         Apply the effect to the target character.
 
         Args:
-            target (BaseCharacter): The character to apply the effect to.
+            target (Character): The character to apply the effect to.
             **kwargs: Additional context variables that can be used in the formula.
         """
         if not self.attribute:
@@ -46,7 +46,7 @@ class BaseEffect(ABC):
         Reverse the effect applied to the target character.
 
         Args:
-            target (BaseCharacter): The character to reverse the effect on.
+            target (Character): The character to reverse the effect on.
             **kwargs: Additional context variables that can be used in the formula.
         """
         if not self.attribute:
@@ -65,7 +65,7 @@ class BaseEffect(ABC):
         Calculate the amount of change using the formula.
 
         Args:
-            target (BaseCharacter): The character to apply the effect to.
+            target (Character): The character to apply the effect to.
             **kwargs: Additional context variables that can be used in the formula.
 
         Returns:

@@ -25,7 +25,7 @@ class TurnOrder:
         Returns the next character in the turn order.
 
         Returns:
-            BaseCharacter: The character whose turn it is next.
+            Character: The character whose turn it is next.
         """
         character = self.turn_queue.pop(0)
         self.turn_queue.append(character)  # Rotate turn order

@@ -1,12 +1,12 @@
 import pytest
 from rpg_world import Consumable
-from rpg_world import BaseEffect
-from rpg_world import BaseCharacter
+from rpg_world import Effect
+from rpg_world import Character
 from rpg_world import CharacterStats
 from rpg_world import SimpleChangeFormula
 
 # Mock effect class for testing
-class MockEffect(BaseEffect):
+class MockEffect(Effect):
     def __init__(self, attribute, formula):
         super().__init__(attribute, formula)
     
@@ -23,7 +23,7 @@ effect = MockEffect("health", SimpleChangeFormula(10))
 @pytest.fixture
 def setup_target():
     stats = CharacterStats(health=50, mana=50, focus=30, armor=20)
-    target = BaseCharacter("TestCharacter", stats)
+    target = Character("TestCharacter", stats)
     return target
 
 @pytest.fixture

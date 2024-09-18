@@ -1,7 +1,7 @@
-from .base_item import BaseItem
+from .item import Item
 from ..utils.logger import Logger
 
-class Equipment(BaseItem):
+class Equipment(Item):
     def __init__(self, name: str, description: str, value: int, effects: list):
         """
         Initialize an equippable item like a weapon or armor.
@@ -10,7 +10,7 @@ class Equipment(BaseItem):
             name (str): The name of the equipment.
             description (str): A brief description of the equipment.
             value (int): The monetary value of the equipment.
-            effects (list): A list of effects (instances of BaseEffect) that the equipment applies.
+            effects (list): A list of effects (instances of Effect) that the equipment applies.
         """
         super().__init__(name, description, value, effects)
         self.equipped = False
@@ -25,7 +25,7 @@ class Equipment(BaseItem):
         If the item is unequipped, it un-applies the effects.
 
         Args:
-            target (BaseCharacter): The character equipping or unequipping the item.
+            target (Character): The character equipping or unequipping the item.
         """
         if self.equipped:
             self.unequip(target)
@@ -37,7 +37,7 @@ class Equipment(BaseItem):
         Equip the item and apply its effects to the target.
 
         Args:
-            target (BaseCharacter): The character equipping the item.
+            target (Character): The character equipping the item.
         """
         if not self.equipped:
             self.logger.info(f"{target.name} equips {self.name}!")
@@ -50,7 +50,7 @@ class Equipment(BaseItem):
         Unequip the item and unapply its effects from the target.
 
         Args:
-            target (BaseCharacter): The character unequipping the item.
+            target (Character): The character unequipping the item.
         """
         if self.equipped:
             self.logger.info(f"{target.name} unequips {self.name}!")

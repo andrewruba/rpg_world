@@ -1,6 +1,6 @@
 import pytest
 import time
-from rpg_world import Spell, BaseCharacter, CharacterStats, Mage, SpellEffect
+from rpg_world import Spell, Character, CharacterStats, Mage, SpellEffect
 from rpg_world import SimpleChangeFormula, MultiEffectRecipientFormula, MultiEffectTargetFormula
 
 @pytest.fixture
@@ -33,7 +33,7 @@ def goblin():
     Fixture to initialize a target character (Goblin).
     """
     goblin_stats = CharacterStats(health=80, focus=40, armor=10)
-    return BaseCharacter(name="Goblin", stats=goblin_stats)
+    return Character(name="Goblin", stats=goblin_stats)
 
 def test_mage_initialization(mage):
     """

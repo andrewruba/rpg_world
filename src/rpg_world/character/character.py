@@ -3,7 +3,7 @@ from ..stats.character_stats import CharacterStats
 from ..item.inventory import Inventory
 from ..utils.logger import Logger
 
-class BaseCharacter(ABC):
+class Character(ABC):
     def __init__(self, name: str, stats: CharacterStats, id: str = None):
         """
         Initialize a base character with character statistics, an inventory, and an optional ID.
