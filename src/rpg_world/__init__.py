@@ -16,6 +16,7 @@ from .formula.formula import Formula
 from .formula.effect_formula import SimpleChangeFormula, MultiEffectTargetFormula, MultiEffectRecipientFormula, SimpleChangeFormulaWithStatLimits
 from .utils.logger import Logger
 from .game.game import Game
+from .game.game_state import GameState
 from .place.place import Place
 from .place.world import World
 from .place.location import Location
@@ -24,5 +25,6 @@ from .item.item import Item
 from .item.equipment import Equipment
 from .item.consumable import Consumable
 from .item.inventory import Inventory
+from .quest.quest import Quest
 
 # Any other core imports or package-wide initialization can go here.
