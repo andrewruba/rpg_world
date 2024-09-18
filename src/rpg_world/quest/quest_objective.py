@@ -1,37 +1,47 @@
-class QuestObjective:
-    def __init__(self, description, is_completed=False):
+from ..utils.logger import Logger
+from ..event.event import Event
+
+class QuestObjective(Event):
+    def __init__(self, name, description, triggers=None):
         """
-        Initialize a quest objective.
+        Initialize a quest objective that extends Event.
 
         Args:
+            name (str): The name of the quest objective.
             description (str): A description of the objective.
-            is_completed (bool): Whether the objective is initially completed (default False).
+            triggers (list of Trigger, optional): A list of triggers for the objective to be completed.
         """
+        triggers = triggers if triggers else []  # Initialize with an empty list if no triggers provided
+        super().__init__(name=name, triggers=triggers)
         self.description = description
-        self.is_completed = is_completed
+        self.logger = Logger(f"QuestObjective-{self.name}")
 
-    def mark_completed(self):
+    def execute_action(self, game_state):
         """
-        Mark the objective as completed.
-        """
-        self.is_completed = True
-        print(f"Objective '{self.description}' marked as completed.")
+        Execute the default action when the quest objective is triggered (completed).
+        By default, it logs the completion of the objective.
 
-    def is_completed(self):
+        Args:
+            game_state (object): The current state of the game.
         """
-        Check if the objective is completed.
+        if self.triggered:
+            self.logger.info(f"Objective '{self.name}' marked as completed.")
+
+    def is_complete(self):
+        """
+        Check if the quest objective is complete.
 
         Returns:
-            bool: True if the objective is completed, False otherwise.
+            bool: True if the objective is complete, False otherwise.
         """
-        return self.is_completed
+        return self.triggered
 
     def __str__(self):
         """
-        String representation of the objective.
+        String representation of the quest objective.
 
         Returns:
-            str: A summary of the objective and its completion status.
+            str: A summary of the objective, its description, and its completion status.
         """
-        status = "Completed" if self.is_completed else "Incomplete"
-        return f"Objective: {self.description} [{status}]"
+        status = "Completed" if self.is_complete() else "Incomplete"
+        return f"Objective: {self.name} - {self.description} [{status}]"

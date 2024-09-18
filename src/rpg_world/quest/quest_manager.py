@@ -1,59 +1,58 @@
-class QuestManager:
+from ..utils.logger import Logger
+from ..event.event_manager import EventManager
+
+class QuestManager(EventManager):
     def __init__(self):
         """
         Initialize the QuestManager with an empty list of active quests.
         """
-        self.active_quests = []
+        super().__init__()  # Inherit from EventManager
+        self.logger = Logger("QuestManager")
 
     def add_quest(self, quest):
         """
-        Add a new quest to the active quests list.
+        Add a new quest to the active quests list by registering it as an event.
 
         Args:
             quest (Quest): The quest to add.
         """
-        self.active_quests.append(quest)
-        print(f"Quest '{quest.name}' added to active quests.")
+        self.add_event(quest)  # Use EventManager's add_event method
+        self.logger.info(f"Quest '{quest.name}' added to active quests.")
 
     def remove_quest(self, quest):
         """
-        Remove a quest from the active quests list.
+        Remove a quest from the active quests list by removing the event.
 
         Args:
             quest (Quest): The quest to remove.
         """
-        if quest in self.active_quests:
-            self.active_quests.remove(quest)
-            print(f"Quest '{quest.name}' removed from active quests.")
+        self.remove_event(quest)  # Use EventManager's remove_event method
+        self.logger.info(f"Quest '{quest.name}' removed from active quests.")
 
-    def complete_quest(self, quest):
+    def get_all_quests(self):
         """
-        Complete a quest and remove it from the active quests if all objectives are done.
-
-        Args:
-            quest (Quest): The quest to complete.
-        """
-        if quest.is_completed():
-            quest.complete_quest()
-            self.remove_quest(quest)
-        else:
-            print(f"Quest '{quest.name}' is not yet completed.")
-
-    def get_active_quests(self):
-        """
-        Get a list of all active quests.
+        Get a list of all active quests (events).
 
         Returns:
             list: A list of active quests.
         """
-        return self.active_quests
+        return self.events
 
-    def list_active_quests(self):
+    def get_incomplete_quests(self):
         """
-        Print all active quests and their status.
+        Get a list of all active quests (events).
+
+        Returns:
+            list: A list of active quests.
         """
-        if not self.active_quests:
-            print("No active quests.")
-        else:
-            for quest in self.active_quests:
-                print(quest)
+        return [quest for quest in self.get_all_quests() if not quest.is_complete()]
+
+    def get_complete_quests(self):
+        """
+        Get a list of all active quests (events).
+
+        Returns:
+            list: A list of active quests.
+        """
+        return [quest for quest in self.get_all_quests() if quest.is_complete()]
+

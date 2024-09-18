@@ -7,7 +7,7 @@ class MockEvent:
         self.name = name
         self.triggered = triggered
 
-    def check_trigger(self, game_state):
+    def check_triggers(self, game_state):
         """
         Mock method to simulate checking the event trigger.
         """

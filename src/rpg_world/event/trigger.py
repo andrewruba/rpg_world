@@ -111,5 +111,5 @@ class QuestCompletedTrigger(Trigger):
         Returns:
             bool: True if the quest is completed, False otherwise.
         """
-        return game_state.quests[self.quest_id].is_completed()
+        return game_state.quests[self.quest_id].is_complete()
 

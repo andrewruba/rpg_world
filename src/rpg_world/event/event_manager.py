@@ -38,4 +38,4 @@ class EventManager:
         """
         for event in self.events:
             if not event.triggered:
-                event.check_trigger(game_state)
+                event.check_triggers(game_state)

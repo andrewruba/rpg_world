@@ -26,6 +26,8 @@ from .item.equipment import Equipment
 from .item.consumable import Consumable
 from .item.inventory import Inventory
 from .quest.quest import Quest
+from .quest.quest_objective import QuestObjective
+from .quest.quest_manager import QuestManager
 from .event.trigger import Trigger, HealthBelowThresholdTrigger, PlayerInLocationTrigger, QuestCompletedTrigger
 from .event.event import Event, HealEvent
 from .event.event_manager import EventManager
