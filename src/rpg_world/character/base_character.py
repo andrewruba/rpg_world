@@ -1,19 +1,22 @@
 from abc import ABC
 from ..stats.character_stats import CharacterStats
+from ..item.inventory import Inventory
 from ..utils.logger import Logger
 
 class BaseCharacter(ABC):
-    def __init__(self, name: str, stats: CharacterStats):
+    def __init__(self, name: str, stats: CharacterStats, id: str = None):
         """
-        Initialize a base character with character statistics.
+        Initialize a base character with character statistics, an inventory, and an optional ID.
 
         Args:
             name (str): The character's name.
-            stats (CharacterStats, optional): An instance of CharacterStats.
-            **kwargs: Additional attributes to be passed to CharacterStats if stats is not provided.
+            stats (CharacterStats): An instance of CharacterStats.
+            id (str, optional): A unique identifier for the character. Defaults to None.
         """
+        self.id = id
         self.name = name
         self.stats = stats
+        self.inventory = Inventory()
 
         # Initialize logger for this ability
         self.logger = Logger(f"Character-{self.name}")
@@ -46,7 +49,7 @@ class BaseCharacter(ABC):
         """
         Override __setattr__ to dynamically set attributes in CharacterStats if they exist.
         """
-        if attr_name == 'name' or attr_name == 'stats':
+        if attr_name in ['name', 'stats', 'inventory', 'id']:
             super().__setattr__(attr_name, value)
         elif attr_name in self.stats.attributes:
             self.stats.set(attr_name, value)

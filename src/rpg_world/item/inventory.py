@@ -42,18 +42,3 @@ class Inventory:
             self.logger.info("Listing inventory items:")
             for item in self.items:
                 self.logger.info(f"- {item}")
-
-    def use_item(self, item, target):
-        """
-        Use an item from the inventory.
-
-        Args:
-            item (Item): The item to be used.
-            target (BaseCharacter): The target on whom the item is used.
-        """
-        if item in self.items:
-            self.logger.info(f"Using {item.name} on {target.name}.")
-            item.use(target)
-            self.remove_item(item)
-        else:
-            self.logger.warning(f"Item {item.name} is not in the inventory.")

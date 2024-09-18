@@ -1,11 +1,12 @@
 from .place import Place
 
 class World(Place):
-    def __init__(self, name):
+    def __init__(self, name, id=None):
         """
         Initialize the World with locations and an entry point.
         """
         super().__init__(name)
+        self.id = id
         self.locations = {}
         self.current_location = None
 

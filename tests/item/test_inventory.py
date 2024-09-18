@@ -70,27 +70,3 @@ def test_list_items(setup_inventory, setup_item, caplog):
     inventory.add_item(item)
     inventory.list_items()
     assert f"- {item}" in caplog.text
-
-def test_use_item(setup_inventory, setup_item, setup_target):
-    inventory = setup_inventory
-    item = setup_item
-    target = setup_target
-
-    # Add the item to the inventory
-    inventory.add_item(item)
-
-    # Use the item and check that it was used correctly
-    initial_health = target.stats.get("health")
-    inventory.use_item(item, target)
-
-    # Verify item is removed and target's health increased
-    assert len(inventory.items) == 0
-    assert target.stats.get("health") == initial_health + 10
-
-def test_use_non_existent_item(setup_inventory, setup_item, setup_target):
-    inventory = setup_inventory
-    item = setup_item
-    target = setup_target
-
-    # Attempt to use an item not in the inventory
-    inventory.use_item(item, target)  # Should log a warning but not raise an error

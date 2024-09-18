@@ -85,3 +85,10 @@ def test_move_with_new_position(setup_world):
     assert world.current_location.name == "Forest"
     assert world.current_location.current_position.x == 5
     assert world.current_location.current_position.y == 10
+
+def test_world_id(setup_world):
+    world = setup_world
+    assert world.id is None
+
+    world.id = "world_id"
+    assert world.id == "world_id"

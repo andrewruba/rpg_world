@@ -102,56 +102,56 @@ rpg_world/
 │       ├── quest/                      # Quest and objective system
 │       │   ├── __init__.py
 │       │   ├── quest.py                # Represents quests with objectives and rewards
-│       │   ├── quest_objective.py      # Individual objectives within a quest
+│       │   ├── quest_objective.py      # Extends event, individual objectives within a quest
 │       │   └── quest_manager.py        # Manages active quests and progression
 │       │
 │       ├── dialogue/
 │       │   ├── __init__.py
-│       │   ├── dialogue_manager.py       # Manages dialogue sequences and branching dialogue options
-│       │   ├── dialogue_node.py          # Represents individual lines of dialogue or choices
-│       │   └── dialogue_script.py        # Contains dialogue scripts for different NPCs or events
+│       │   ├── dialogue_manager.py     # Manages dialogue sequences and branching dialogue options
+│       │   ├── dialogue_node.py        # Represents individual lines of dialogue or choices
+│       │   └── dialogue_script.py      # Contains dialogue scripts for different NPCs or events
 │       │
 │       ├── skill_tree/
 │       │   ├── __init__.py
-│       │   ├── skill_node.py             # Represents an individual skill in the tree
-│       │   ├── skill_tree.py             # Manages the entire skill tree, unlocks, and dependencies
-│       │   └── skill_manager.py          # Handles the allocation of skill points and progression
+│       │   ├── skill_node.py           # Represents an individual skill in the tree
+│       │   ├── skill_tree.py           # Manages the entire skill tree, unlocks, and dependencies
+│       │   └── skill_manager.py        # Handles the allocation of skill points and progression
 │       │
 │       ├── leveling/
 │       │   ├── __init__.py
-│       │   ├── experience_manager.py     # Manages experience gains and leveling up
-│       │   └── level_curve.py            # Determines XP thresholds for leveling up
+│       │   ├── experience_manager.py   # Manages experience gains and leveling up
+│       │   └── level_curve.py          # Determines XP thresholds for leveling up
 │       │
 │       ├── save_load/
 │       │   ├── __init__.py
-│       │   ├── save_manager.py           # Manages saving game data to a file
-│       │   └── load_manager.py           # Manages loading game data from a file
+│       │   ├── save_manager.py         # Manages saving game data to a file
+│       │   └── load_manager.py         # Manages loading game data from a file
 │       │
 │       ├── cutscene/
 │       │   ├── __init__.py
-│       │   ├── cutscene_manager.py       # Manages the logic and timing for cutscenes
-│       │   ├── cutscene_sequence.py      # Defines sequences of events for a cutscene
-│       │   └── cutscene_event.py         # Individual events (e.g., dialogue, animations) within a cutscene
+│       │   ├── cutscene_manager.py     # Manages the logic and timing for cutscenes
+│       │   ├── cutscene_sequence.py    # Defines sequences of events for a cutscene
+│       │   └── cutscene_event.py       # Individual events (e.g., dialogue, animations) within a cutscene
 │       │
 │       ├── party/
 │       │   ├── __init__.py
-│       │   ├── party_manager.py          # Manages the player's party, switching characters, etc.
-│       │   └── character_switch.py       # Logic for switching between active characters
+│       │   ├── party_manager.py        # Manages the player's party, switching characters, etc.
+│       │   └── character_switch.py     # Logic for switching between active characters
 │       │
 │       ├── environment/
 │       │   ├── __init__.py
-│       │   ├── weather.py                # Manages weather effects (e.g., rain, snow, storms)
-│       │   └── time_of_day.py            # Manages time-of-day changes (e.g., day-night cycles)
+│       │   ├── weather.py              # Manages weather effects (e.g., rain, snow, storms)
+│       │   └── time_of_day.py          # Manages time-of-day changes (e.g., day-night cycles)
 │       │
 │       ├── crafting/
 │       │   ├── __init__.py
-│       │   ├── crafting_manager.py       # Manages crafting recipes and processes
-│       │   └── recipe.py                 # Defines crafting recipes and required materials
+│       │   ├── crafting_manager.py     # Manages crafting recipes and processes
+│       │   └── recipe.py               # Defines crafting recipes and required materials
 │       │
 │       ├── achievements/
 │       │   ├── __init__.py
-│       │   ├── achievement.py            # Defines individual achievements
-│       │   └── achievement_manager.py    # Tracks and manages unlocked achievements
+│       │   ├── achievement.py          # Extends event, defines individual achievements
+│       │   └── achievement_manager.py  # Tracks and manages unlocked achievements
 │       │
 │       ├── ai/                         # AI logic and training system
 │       │   ├── __init__.py

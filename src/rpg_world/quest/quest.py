@@ -1,5 +1,5 @@
 class Quest:
-    def __init__(self, name, description, objectives=None, rewards=None):
+    def __init__(self, name, description, objectives=None, rewards=None, id=None):
         """
         Initialize a quest with a name, description, objectives, and rewards.
 
@@ -9,6 +9,7 @@ class Quest:
             objectives (list): A list of QuestObjective objects (optional).
             rewards (dict): A dictionary of rewards for completing the quest (optional).
         """
+        self.id = id
         self.name = name
         self.description = description
         self.objectives = objectives or []
