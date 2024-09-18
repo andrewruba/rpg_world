@@ -1,5 +1,6 @@
 import pickle
 import os
+from ..utils.logger import Logger
 
 class SaveManager:
     def __init__(self, save_directory='./save_data/', file_name='game_save.pkl'):
@@ -13,10 +14,12 @@ class SaveManager:
         self.save_directory = save_directory
         self.file_name = file_name
         self.save_path = os.path.join(save_directory, file_name)
+        self.logger = Logger("SaveManager")
 
         # Create the save directory if it doesn't exist
         if not os.path.exists(self.save_directory):
             os.makedirs(self.save_directory)
+            self.logger.info(f"Created save directory at {self.save_directory}")
 
     def save_game(self, game_state):
         """
@@ -28,6 +31,6 @@ class SaveManager:
         try:
             with open(self.save_path, 'wb') as save_file:
                 pickle.dump(game_state, save_file)
-            print(f"Game saved successfully to {self.save_path}.")
+            self.logger.info(f"Game saved successfully to {self.save_path}.")
         except Exception as e:
-            print(f"Error saving game: {e}")
+            self.logger.error(f"Error saving game: {e}")

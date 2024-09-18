@@ -1,4 +1,6 @@
 import pickle
+import os
+from ..utils.logger import Logger
 
 class LoadManager:
     def __init__(self, save_directory='./save_data/', file_name='game_save.pkl'):
@@ -12,6 +14,7 @@ class LoadManager:
         self.save_directory = save_directory
         self.file_name = file_name
         self.save_path = os.path.join(save_directory, file_name)
+        self.logger = Logger("LoadManager")
 
     def load_game(self):
         """
@@ -23,11 +26,11 @@ class LoadManager:
         try:
             with open(self.save_path, 'rb') as save_file:
                 game_state = pickle.load(save_file)
-                print(f"Game loaded successfully from {self.save_path}.")
+                self.logger.info(f"Game loaded successfully from {self.save_path}.")
                 return game_state
         except FileNotFoundError:
-            print(f"Save file not found: {self.save_path}.")
+            self.logger.warning(f"Save file not found: {self.save_path}.")
             return None
         except Exception as e:
-            print(f"Error loading game: {e}")
+            self.logger.error(f"Error loading game: {e}")
             return None

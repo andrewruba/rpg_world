@@ -29,5 +29,7 @@ from .quest.quest import Quest
 from .event.trigger import Trigger, HealthBelowThresholdTrigger, PlayerInLocationTrigger, QuestCompletedTrigger
 from .event.event import Event, HealEvent
 from .event.event_manager import EventManager
+from .save_load.save_manager import SaveManager
+from .save_load.load_manager import LoadManager
 
 # Any other core imports or package-wide initialization can go here.
