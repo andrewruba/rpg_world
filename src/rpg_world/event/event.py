@@ -13,7 +13,7 @@ class Event(ABC):
         self.triggers = triggers  # List of triggers
         self.triggered = False    # Flag to track if the event has been triggered
 
-    def check_triggers(self, game_state, **kwargs):
+    def check_triggers(self, game_state):
         """
         Check if all the event's triggers are met based on the current game state.
 
@@ -29,15 +29,16 @@ class Event(ABC):
             return False
 
         for trigger in self.triggers:
-            if not trigger.evaluate(game_state, **kwargs):
+            if not trigger.evaluate(game_state):
                 return False
 
-        # If all triggers are satisfied, mark the event as triggered
+        # If all triggers are satisfied, mark the event as triggered and execute action
         self.triggered = True
+        self.execute_action(game_state)
         return True
 
     @abstractmethod
-    def execute_action(self, game_state, **kwargs):
+    def execute_action(self, game_state):
         """
         Abstract method for executing the event's action. 
         Must be implemented by subclasses.
@@ -56,7 +57,7 @@ class Event(ABC):
 
 
 class HealEvent(Event):
-    def __init__(self, name, triggers):
+    def __init__(self, name, triggers, character_id):
         """
         Initialize the HealEvent with a name and triggers.
 
@@ -65,17 +66,15 @@ class HealEvent(Event):
             triggers (list of Trigger): A list of Trigger objects.
         """
         super().__init__(name, triggers)
+        self.character_id = character_id
 
-    def execute_action(self, game_state, **kwargs):
+    def execute_action(self, game_state):
         """
         Heal the player if all triggers are satisfied.
 
         Args:
             game_state (object): The current state of the game.
         """
-        if self.check_triggers(game_state, **kwargs):
-            player = game_state.get_player("Hero")
-            player.set_attribute("health", player.get_attribute("max_health"))
-            print(f"{player.name} has been healed to full health.")
-        else:
-            print(f"Event '{self.name}' not triggered. Conditions not met.")
+        if self.triggered:
+            character = game_state.characters[self.character_id]
+            character.health = character.max_health

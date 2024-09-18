@@ -1,7 +1,7 @@
 from .place import Place
 
 class Position(Place):
-    def __init__(self, name, x, y):
+    def __init__(self, name, x, y, id=None):
         """
         Initialize a Position within a location.
 
@@ -9,7 +9,7 @@ class Position(Place):
             x (int): The x-coordinate of the position.
             y (int): The y-coordinate of the position.
         """
-        super().__init__(name)
+        super().__init__(name, id)
         self.x = x
         self.y = y
 

@@ -26,5 +26,8 @@ from .item.equipment import Equipment
 from .item.consumable import Consumable
 from .item.inventory import Inventory
 from .quest.quest import Quest
+from .event.trigger import Trigger, HealthBelowThresholdTrigger, PlayerInLocationTrigger, QuestCompletedTrigger
+from .event.event import Event, HealEvent
+from .event.event_manager import EventManager
 
 # Any other core imports or package-wide initialization can go here.

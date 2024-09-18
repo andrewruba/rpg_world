@@ -2,7 +2,7 @@ from .place import Place
 from .position import Position
 
 class Location(Place):
-    def __init__(self, name, description, connected_locations=None, initial_position=None):
+    def __init__(self, name, description, connected_locations=None, initial_position=None, id=None):
         """
         Initialize a Location in the game world.
 
@@ -12,7 +12,7 @@ class Location(Place):
             connected_locations (list): A list of connected location names (optional).
             initial_position (Position, optional): The initial position of the player in the location. Defaults to (0, 0).
         """
-        super().__init__(name)
+        super().__init__(name, id)
         self.name = name
         self.description = description
         self.connected_locations = connected_locations or []

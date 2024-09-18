@@ -6,12 +6,13 @@ class Place(ABC):
     Abstract base class for game entities like World, Location, and Position.
     """
 
-    def __init__(self, name):
+    def __init__(self, name, id=None):
         """
         Initialize the entity with a name.
         Args:
             name (str): The name of the entity.
         """
+        self.id = id
         self.name = name
 
         # Initialize logger for this ability

@@ -5,8 +5,7 @@ class World(Place):
         """
         Initialize the World with locations and an entry point.
         """
-        super().__init__(name)
-        self.id = id
+        super().__init__(name, id)
         self.locations = {}
         self.current_location = None
 
