@@ -48,9 +48,7 @@ class Spell(Ability):
             effect.apply(
                 caster=caster,
                 target=target,
-                kwargs = {
-                    'ability': self
-                }
+                ability=self
             )
         
         self.logger.info(f"Spell {self.name} cast successfully.")

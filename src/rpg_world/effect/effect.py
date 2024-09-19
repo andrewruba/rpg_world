@@ -71,15 +71,12 @@ class Effect(ABC):
         Returns:
             float: The calculated amount.
         """
-        # Prepare the context for evaluating the formula
-        context = {
-            'target': target,
-            'attribute': self.attribute
-        }
-        context.update(kwargs)
-
         # Evaluate the formula to calculate the amount
-        amount = self.formula.calculate(**context)
+        amount = self.formula.calculate(
+            target=target,
+            attribute=self.attribute,
+            **kwargs
+        )
 
         return amount
 

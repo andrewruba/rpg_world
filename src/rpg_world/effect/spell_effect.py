@@ -35,23 +35,17 @@ class SpellEffect(Effect):
         # Determine the recipient of the effect
         recipient = caster if self.recipient == 'caster' else target
 
-        # Prepare the context for evaluating the formula
-        context = {
-            'caster': caster,
-            'recipient': recipient
-        }
-        context.update(kwargs)
-
         # Evaluate the formula to calculate the amount
-        amount = self._calculate_amount(target, **context)
+        amount = self._calculate_amount(
+            target=target,
+            caster=caster,
+            recipient=recipient,
+            **kwargs
+        )
 
         # Modify the recipient's attribute
         recipient.stats.modify(self.attribute, amount)
         self.logger.info(f"{recipient.name}'s {self.attribute} changed by {amount}. New value: {recipient.stats.get(self.attribute)}")
-
-        # Update alive status if health changes
-        if self.attribute == 'health' and not recipient.is_alive():
-            self.logger.info(f"{recipient.name} is dead.")
 
     def __str__(self):
         """
