@@ -14,6 +14,7 @@ from .effect.effect import Effect
 from .effect.spell_effect import SpellEffect
 from .formula.formula import Formula
 from .formula.effect_formula import SimpleChangeFormula, MultiEffectTargetFormula, MultiEffectRecipientFormula, SimpleChangeFormulaWithStatLimits
+from .formula.turn_order_formula import SimpleFocusTurnOrderFormula
 from .utils.logger import Logger
 from .game.game import Game
 from .game.game_state import GameState
@@ -33,5 +34,7 @@ from .event.event import Event, HealEvent
 from .event.event_manager import EventManager
 from .save_load.save_manager import SaveManager
 from .save_load.load_manager import LoadManager
+from .combat.turn_order import TurnOrder
+from .combat.battle_manager import BattleManager
 
 # Any other core imports or package-wide initialization can go here.

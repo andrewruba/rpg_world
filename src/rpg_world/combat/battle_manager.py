@@ -1,5 +1,8 @@
+from .turn_order import TurnOrder
+from ..utils.logger import Logger
+
 class BattleManager:
-    def __init__(self, player_party, enemy_party):
+    def __init__(self, player_party, enemy_party, turn_order_formula):
         """
         Initialize the BattleManager with the player's party and the enemy's party.
 
@@ -10,40 +13,30 @@ class BattleManager:
         self.player_party = player_party
         self.enemy_party = enemy_party
         self.turn_order = None
-        self.battle_state = None
+        self.turn_order_formula = turn_order_formula
+        self.logger = Logger("BattleManager")
 
     def start_battle(self):
         """
         Starts the battle by initializing the turn order and battle state.
         """
-        self.turn_order = TurnOrder(self.player_party + self.enemy_party)
-        print("Battle started!")
+        self.turn_order = TurnOrder(self.player_party + self.enemy_party, self.turn_order_formula)
+        self.logger.info("Battle started!")
 
-    def execute_turn(self):
+    def get_next_turn(self):
         """
         Executes a single turn in the battle.
         """
-        current_character = self.turn_order.get_next_turn()
-        if current_character.is_alive():
-            action = current_character.choose_action(self.battle_state)
-            action.execute()
+        return self.turn_order.get_next_turn()
 
     def check_battle_outcome(self):
         """
         Checks if the battle is over by evaluating the health of all parties.
         """
         if all(not char.is_alive() for char in self.enemy_party):
-            return "Player Wins!"
+            self.logger.info("Player Wins!")
+            return self.player_party
         elif all(not char.is_alive() for char in self.player_party):
-            return "Enemy Wins!"
-        return "Battle is ongoing."
-
-    def run_battle(self):
-        """
-        Runs the full battle loop, iterating through turns until a win condition is met.
-        """
-        self.start_battle()
-        while self.check_battle_outcome() == "Battle is ongoing.":
-            self.execute_turn()
-
-        print(self.check_battle_outcome())
+            self.logger.info("Enemy Wins!")
+            return self.enemy_party
+        return None

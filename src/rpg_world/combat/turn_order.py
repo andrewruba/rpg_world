@@ -1,7 +1,5 @@
-import random
-
 class TurnOrder:
-    def __init__(self, participants):
+    def __init__(self, participants, turn_order_formula):
         """
         Initialize the TurnOrder class with a list of participants.
 
@@ -9,16 +7,17 @@ class TurnOrder:
             participants (list): List of characters (player and enemy) in the battle.
         """
         self.participants = participants
+        self.turn_order_formula = turn_order_formula
         self.turn_queue = self.calculate_turn_order()
 
     def calculate_turn_order(self):
         """
-        Calculates the turn order based on character agility or speed stats.
+        Calculates the turn order based on the provided turn order formula.
 
         Returns:
             list: A sorted list of characters by their turn order.
         """
-        return sorted(self.participants, key=lambda char: char.get_attribute('speed'), reverse=True)
+        return self.turn_order_formula(self.participants).calculate()
 
     def get_next_turn(self):
         """
@@ -28,5 +27,6 @@ class TurnOrder:
             Character: The character whose turn it is next.
         """
         character = self.turn_queue.pop(0)
-        self.turn_queue.append(character)  # Rotate turn order
+        if len(self.turn_queue) == 0:
+            self.turn_queue = self.calculate_turn_order()  # Recalculate if queue is empty
         return character

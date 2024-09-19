@@ -77,8 +77,7 @@ rpg_world/
 │       ├── combat/                     # Combat system
 │       │   ├── __init__.py
 │       │   ├── battle_manager.py       # Manages battles, turn order, and actions
-│       │   ├── turn_order.py           # Turn-based combat system
-│       │   └── action_queue.py         # Action queue for real-time combat system
+│       │   └── turn_order.py           # Turn-based combat system
 │       │
 │       ├── item/                       # Item system (weapons, potions, etc.)
 │       │   ├── __init__.py
