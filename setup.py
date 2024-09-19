@@ -27,7 +27,7 @@ def get_python_version():
 setup(
     name='rpg_world',  # Replace with your package's name
     version=get_version(),  # Dynamically get version from __version__.py
-    description='A flexible RPG effects system for customizable battles and balancing',  # Brief description
+    description='A flexible RPG backend for managing game state',  # Brief description
     author='Andrew Ruba',  # Replace with your name
     author_email='ruba.andrew@gmail.com',  # Replace with your email
     url='https://github.com/andrewruba/rpg_world',  # Replace with your project's URL
