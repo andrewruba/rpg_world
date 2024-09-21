@@ -1,6 +1,5 @@
 import pytest
-from rpg_world import Location
-from rpg_world import Position
+from rpg_world import Location, Position
 
 @pytest.fixture
 def setup_location():

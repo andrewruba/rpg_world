@@ -1,7 +1,9 @@
 import pytest
-from rpg_world import Location
-from rpg_world import Position
-from rpg_world import World
+from rpg_world import (
+    Location,
+    Position,
+    World
+)
 
 
 # Fixtures for testing

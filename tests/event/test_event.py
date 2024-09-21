@@ -1,6 +1,13 @@
 import pytest
-from rpg_world import GameState, Character, Event, HealEvent, Trigger, CharacterStats
-from rpg_world import HealthBelowThresholdTrigger
+from rpg_world import (
+    GameState,
+    Character,
+    Event,
+    HealEvent,
+    Trigger,
+    CharacterStats,
+    HealthBelowThresholdTrigger
+)
 
 class MockTrigger(Trigger):
     """

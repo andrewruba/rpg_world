@@ -1,8 +1,12 @@
 import pytest
-from rpg_world import Quest, QuestObjective
-from rpg_world import HealthBelowThresholdTrigger
-from rpg_world import GameState
-from rpg_world import Character, CharacterStats
+from rpg_world import (
+    Quest,
+    QuestObjective,
+    HealthBelowThresholdTrigger,
+    GameState,
+    Character,
+    CharacterStats
+)
 
 # Mock Logger to avoid actual logging in tests
 class MockLogger:

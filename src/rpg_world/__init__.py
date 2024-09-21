@@ -13,7 +13,12 @@ from .ability.spell import Spell
 from .effect.effect import Effect
 from .effect.spell_effect import SpellEffect
 from .formula.formula import Formula
-from .formula.effect_formula import SimpleChangeFormula, MultiEffectTargetFormula, MultiEffectRecipientFormula, SimpleChangeFormulaWithStatLimits
+from .formula.effect_formula import (
+    SimpleChangeFormula,
+    MultiEffectTargetFormula,
+    MultiEffectRecipientFormula,
+    SimpleChangeFormulaWithStatLimits
+)
 from .formula.turn_order_formula import SimpleFocusTurnOrderFormula
 from .utils.logger import Logger
 from .game.game import Game
@@ -29,7 +34,12 @@ from .item.inventory import Inventory
 from .quest.quest import Quest
 from .quest.quest_objective import QuestObjective
 from .quest.quest_manager import QuestManager
-from .event.trigger import Trigger, HealthBelowThresholdTrigger, PlayerInLocationTrigger, QuestCompletedTrigger
+from .event.trigger import (
+    Trigger,
+    HealthBelowThresholdTrigger,
+    PlayerInLocationTrigger,
+    QuestCompletedTrigger
+)
 from .event.event import Event, HealEvent
 from .event.event_manager import EventManager
 from .save_load.save_manager import SaveManager

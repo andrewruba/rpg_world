@@ -1,6 +1,8 @@
 import pytest
-from rpg_world import TurnOrder
-from rpg_world import SimpleFocusTurnOrderFormula
+from rpg_world import (
+    TurnOrder,
+    SimpleFocusTurnOrderFormula
+)
 
 # Mock Character class for testing
 class MockCharacter:

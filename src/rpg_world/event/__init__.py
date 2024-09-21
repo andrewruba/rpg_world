@@ -1,6 +1,11 @@
 # rpg_world/even/__init__.py
 
-from .trigger import Trigger, HealthBelowThresholdTrigger, PlayerInLocationTrigger, QuestCompletedTrigger
+from .trigger import (
+    Trigger,
+    HealthBelowThresholdTrigger,
+    PlayerInLocationTrigger,
+    QuestCompletedTrigger
+)
 from .event import Event, HealEvent
 from .event_manager import EventManager
 

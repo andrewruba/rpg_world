@@ -1,7 +1,9 @@
 import pytest
-from rpg_world import Character
-from rpg_world import CharacterStats
-from rpg_world import Consumable
+from rpg_world import (
+    Character,
+    CharacterStats,
+    Consumable
+)
 
 class Warrior(Character):
     def __init__(self, name, health=100, strength=15, defense=5, id=None):

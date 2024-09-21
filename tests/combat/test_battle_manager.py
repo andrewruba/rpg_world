@@ -1,8 +1,11 @@
 import pytest
-from rpg_world import BattleManager
-from rpg_world import TurnOrder
-from rpg_world import SimpleFocusTurnOrderFormula
-from rpg_world import Character, CharacterStats
+from rpg_world import (
+    BattleManager,
+    TurnOrder,
+    SimpleFocusTurnOrderFormula,
+    Character,
+    CharacterStats
+)
 
 # Mock Character class for testing
 class MockCharacter(Character):

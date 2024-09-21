@@ -1,8 +1,10 @@
 import pytest
-from rpg_world import Inventory
-from rpg_world import Item
-from rpg_world import Character
-from rpg_world import CharacterStats
+from rpg_world import (
+    Inventory,
+    Item,
+    CharacterStats,
+    Character
+)
 
 # Mock Item for testing
 class MockItem(Item):

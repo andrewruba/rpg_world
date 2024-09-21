@@ -1,6 +1,14 @@
 import pytest
-from rpg_world import GameState, Character, Quest, World, CharacterStats
-from rpg_world import HealthBelowThresholdTrigger, PlayerInLocationTrigger, QuestCompletedTrigger
+from rpg_world import (
+    GameState,
+    Character,
+    Quest,
+    World,
+    CharacterStats,
+    HealthBelowThresholdTrigger,
+    PlayerInLocationTrigger,
+    QuestCompletedTrigger
+)
 
 @pytest.fixture
 def game_state():

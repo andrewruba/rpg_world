@@ -1,7 +1,15 @@
 import pytest
 import time
-from rpg_world import Spell, Character, CharacterStats, Mage, SpellEffect
-from rpg_world import SimpleChangeFormula, MultiEffectRecipientFormula, MultiEffectTargetFormula
+from rpg_world import (
+    Spell,
+    Character,
+    CharacterStats,
+    Mage,
+    SpellEffect,
+    SimpleChangeFormula,
+    MultiEffectTargetFormula,
+    MultiEffectRecipientFormula
+)
 
 @pytest.fixture
 def multi_effect_spell():

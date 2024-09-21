@@ -1,8 +1,10 @@
 import pytest
-from rpg_world import QuestManager
-from rpg_world import Quest
-from rpg_world import QuestObjective
-from rpg_world import GameState
+from rpg_world import (
+    QuestManager,
+    Quest,
+    QuestObjective,
+    GameState
+)
 
 # Mock Logger to avoid actual logging in tests
 class MockLogger:

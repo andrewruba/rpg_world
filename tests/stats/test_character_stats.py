@@ -1,5 +1,10 @@
 import pytest
-from rpg_world import Character, CharacterStats, Effect, SimpleChangeFormula
+from rpg_world import (
+    Character,
+    CharacterStats,
+    Effect,
+    SimpleChangeFormula
+)
 
 @pytest.fixture
 def arcanist():

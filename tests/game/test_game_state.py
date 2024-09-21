@@ -1,5 +1,11 @@
 import pytest
-from rpg_world import GameState, Character, Quest, World, CharacterStats
+from rpg_world import (
+    GameState,
+    Character,
+    Quest,
+    World,
+    CharacterStats
+)
 
 @pytest.fixture
 def game_state():

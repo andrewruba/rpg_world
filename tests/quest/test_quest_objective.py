@@ -1,7 +1,11 @@
 import pytest
-from rpg_world.quest.quest_objective import QuestObjective
-from rpg_world import HealthBelowThresholdTrigger
-from rpg_world import GameState, Character, CharacterStats
+from rpg_world import (
+    QuestObjective,
+    HealthBelowThresholdTrigger,
+    GameState,
+    Character,
+    CharacterStats
+)
 
 @pytest.fixture
 def mock_game_state():

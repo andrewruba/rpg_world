@@ -1,9 +1,12 @@
 import pytest
-from rpg_world import Item
-from rpg_world import Effect
-from rpg_world import SimpleChangeFormula, SimpleChangeFormulaWithStatLimits
-from rpg_world import Character
-from rpg_world import CharacterStats
+from rpg_world import (
+    Item,
+    Effect,
+    SimpleChangeFormula,
+    SimpleChangeFormulaWithStatLimits,
+    Character,
+    CharacterStats
+)
 
 # Mock effect class for testing
 class MockEffect(Effect):
