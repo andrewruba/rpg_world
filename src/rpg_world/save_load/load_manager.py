@@ -3,13 +3,17 @@ import os
 from ..utils.logger import Logger
 
 class LoadManager:
+    """
+    Manages loading the game state from a saved file. Handles deserialization of game data using pickle.
+    """
+
     def __init__(self, save_directory='./save_data/', file_name='game_save.pkl'):
         """
-        Initialize the LoadManager.
+        Initialize the LoadManager, which handles loading the game state from a file.
 
         Args:
-            save_directory (str): Directory where save files are stored.
-            file_name (str): Name of the save file.
+            save_directory (str): The directory where save files are stored. Defaults to './save_data/'.
+            file_name (str): The name of the save file. Defaults to 'game_save.pkl'.
         """
         self.save_directory = save_directory
         self.file_name = file_name
@@ -18,7 +22,7 @@ class LoadManager:
 
     def load_game(self):
         """
-        Load the saved game state from a file using pickle.
+        Load the saved game state from a file using pickle deserialization.
 
         Returns:
             GameState: The game state object loaded from the save file, or None if loading fails.

@@ -1,9 +1,18 @@
 from ..utils.logger import Logger
 
 class EventManager:
+    """
+    Manages a collection of events and checks their triggers during the game.
+    """
+
     def __init__(self, id=None, name=None, description=None):
         """
-        Initialize the EventManager with a list of events.
+        Initialize the EventManager with optional metadata and an empty list of events.
+
+        Args:
+            id (str, optional): The unique identifier for the event manager. Defaults to None.
+            name (str, optional): The name of the event manager. Defaults to None.
+            description (str, optional): A description of the event manager. Defaults to None.
         """
         self.id = id
         self.name = name
@@ -34,10 +43,10 @@ class EventManager:
 
     def check_events(self, game_state):
         """
-        Check all registered events against the current game state.
+        Check all registered events against the current game state to see if their triggers are satisfied.
 
         Args:
-            game_state (object): The current state of the game.
+            game_state (object): The current state of the game used to evaluate the event triggers.
         """
         for event in self.events:
             if not event.triggered:

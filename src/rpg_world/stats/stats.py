@@ -1,6 +1,7 @@
 class Stats:
     """
-    Base class for managing general statistics. Provides methods to modify and retrieve attributes.
+    Base class for managing general statistics. Provides methods to modify, retrieve, and manage attributes.
+    Attributes are stored in a dictionary and can be dynamically accessed.
     """
 
     def __init__(self, **kwargs):
@@ -8,7 +9,7 @@ class Stats:
         Initialize the statistics with any provided attributes.
 
         Args:
-            **kwargs: Key-value pairs for initializing the stats.
+            **kwargs: Key-value pairs for initializing the stats (e.g., health=100, mana=50).
         """
         self.attributes = kwargs
 
@@ -48,7 +49,7 @@ class Stats:
 
     def __getattr__(self, attr_name):
         """
-        Override __getattr__ to dynamically return attributes from the attributes dictionary.
+        Override __getattr__ to dynamically return attributes from the attributes dictionary if they exist.
 
         Args:
             attr_name (str): The name of the attribute to retrieve.
@@ -62,7 +63,8 @@ class Stats:
 
     def __setattr__(self, attr_name, value):
         """
-        Override __setattr__ to dynamically set attributes in the attributes dictionary.
+        Override __setattr__ to dynamically set attributes in the attributes dictionary if they exist.
+        Ensures that attributes are properly managed through the attributes dictionary.
 
         Args:
             attr_name (str): The name of the attribute to set.
@@ -78,7 +80,7 @@ class Stats:
         String representation of the statistics.
 
         Returns:
-            str: A string listing the attributes and their values.
+            str: A string listing the attributes and their values in the format 'key: value'.
         """
         attrs = ', '.join(f"{key}: {value}" for key, value in self.attributes.items())
         return f"Stats({attrs})"

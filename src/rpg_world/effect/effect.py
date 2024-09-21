@@ -3,7 +3,8 @@ from ..utils.logger import Logger
 
 class Effect(ABC):
     """
-    Represents an effect that can be applied to a character.
+    Represents an effect that can be applied to a character. Effects modify the specified
+    attribute of the target based on a formula.
     """
 
     def __init__(self, attribute: str, formula):
@@ -11,30 +12,34 @@ class Effect(ABC):
         Initialize the Effect with an attribute and a formula object.
 
         Args:
-            attribute (str): The name of the attribute to affect.
+            attribute (str): The name of the attribute to affect (e.g., 'health', 'mana').
             formula (Formula): An instance of Formula used to calculate the change in attribute value.
-                                   It should have a `calculate` method that accepts context variables as keyword arguments.
+                               The formula should have a `calculate` method that accepts context variables
+                               like 'target' and 'attribute'.
         """
         self.attribute = attribute
         self.formula = formula
 
-        # Initialize logger for this ability
-        self.logger = Logger(f"Effect")
+        # Initialize logger for this effect
+        self.logger = Logger("Effect")
         self.logger.info(f"Effect initialized to affect attribute: {self.attribute}")
 
     def apply(self, target, **kwargs):
         """
-        Apply the effect to the target character.
+        Apply the effect to the target character, modifying the specified attribute.
 
         Args:
             target (Character): The character to apply the effect to.
             **kwargs: Additional context variables that can be used in the formula.
+
+        Returns:
+            None
         """
         if not self.attribute:
             self.logger.warning(f"No attribute specified in effect: {self}")
             return
 
-        # Evaluate the formula to calculate the amount
+        # Calculate the amount to modify the attribute using the formula
         amount = self._calculate_amount(target, **kwargs)
 
         # Modify the target's attribute
@@ -43,17 +48,20 @@ class Effect(ABC):
 
     def unapply(self, target, **kwargs):
         """
-        Reverse the effect applied to the target character.
+        Reverse the effect applied to the target character by undoing the attribute modification.
 
         Args:
             target (Character): The character to reverse the effect on.
             **kwargs: Additional context variables that can be used in the formula.
+
+        Returns:
+            None
         """
         if not self.attribute:
             self.logger.warning(f"No attribute specified in effect: {self}")
             return
 
-        # Evaluate the formula to calculate the amount to reverse
+        # Calculate the amount to reverse the attribute modification
         amount = self._calculate_amount(target, **kwargs)
 
         # Reverse the modification of the target's attribute
@@ -62,16 +70,15 @@ class Effect(ABC):
 
     def _calculate_amount(self, target, **kwargs):
         """
-        Calculate the amount of change using the formula.
+        Calculate the amount of change to the target's attribute using the provided formula.
 
         Args:
-            target (Character): The character to apply the effect to.
-            **kwargs: Additional context variables that can be used in the formula.
+            target (Character): The character whose attribute is being modified.
+            **kwargs: Additional context variables for the formula.
 
         Returns:
-            float: The calculated amount.
+            float: The calculated amount of change for the attribute.
         """
-        # Evaluate the formula to calculate the amount
         amount = self.formula.calculate(
             target=target,
             attribute=self.attribute,
@@ -82,10 +89,9 @@ class Effect(ABC):
 
     def __str__(self):
         """
-        String representation of the effect.
+        Return a string representation of the effect.
 
         Returns:
-            str: A string describing the effect.
+            str: A string describing the effect, including the attribute and formula.
         """
         return f"Effect({self.attribute}, {self.formula})"
-

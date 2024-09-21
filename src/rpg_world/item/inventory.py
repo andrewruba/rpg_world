@@ -1,6 +1,10 @@
 from ..utils.logger import Logger
 
 class Inventory:
+    """
+    Represents an inventory that can store items, add or remove items, and list the contents.
+    """
+
     def __init__(self):
         """
         Initialize the inventory as an empty list of items.
@@ -14,7 +18,7 @@ class Inventory:
         Add an item to the inventory.
 
         Args:
-            item (Item): The item to be added.
+            item (Item): The item to be added to the inventory.
         """
         self.items.append(item)
         self.logger.info(f"Added {item.name} to the inventory.")
@@ -24,7 +28,7 @@ class Inventory:
         Remove an item from the inventory.
 
         Args:
-            item (Item): The item to be removed.
+            item (Item): The item to be removed from the inventory.
         """
         if item in self.items:
             self.items.remove(item)
@@ -34,7 +38,7 @@ class Inventory:
 
     def list_items(self):
         """
-        List all items in the inventory.
+        List all items currently stored in the inventory.
         """
         if not self.items:
             self.logger.info("The inventory is empty.")

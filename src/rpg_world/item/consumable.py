@@ -3,15 +3,20 @@ from ..effect.effect import Effect
 from ..utils.logger import Logger
 
 class Consumable(Item):
+    """
+    Represents a consumable item that can be used to apply effects to a target character.
+    Consumable items can only be used once.
+    """
+
     def __init__(self, name: str, description: str, value: int, effects: list):
         """
-        Initialize a consumable item.
+        Initialize a consumable item with a name, description, value, and a list of effects.
 
         Args:
-            name (str): The name of the consumable.
-            description (str): A brief description of the consumable.
+            name (str): The name of the consumable item.
+            description (str): A brief description of what the consumable does.
             value (int): The monetary value of the consumable.
-            effects (list): A list of effects (instances of Effect) that the consumable applies.
+            effects (list): A list of effects (instances of Effect) that the consumable applies when used.
         """
         super().__init__(name, description, value, effects)
 
@@ -26,7 +31,7 @@ class Consumable(Item):
 
     def use(self, target):
         """
-        Use the consumable and apply its effects to the target.
+        Use the consumable and apply its effects to the target character.
 
         Args:
             target (Character): The character using the consumable.

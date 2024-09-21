@@ -10,7 +10,7 @@ class Character(ABC):
 
         Args:
             name (str): The character's name.
-            stats (CharacterStats): An instance of CharacterStats.
+            stats (CharacterStats): An instance of CharacterStats that holds the character's core attributes.
             id (str, optional): A unique identifier for the character. Defaults to None.
         """
         self.id = id
@@ -18,28 +18,31 @@ class Character(ABC):
         self.stats = stats
         self.inventory = Inventory()
 
-        # Initialize logger for this ability
+        # Initialize logger for this character
         self.logger = Logger(f"Character-{self.name}")
         self.logger.info(f"Character '{self.name}' initialized with stats: {self.stats}")
 
     def is_alive(self) -> bool:
         """
-        Checks if the character is still alive.
+        Checks if the character is alive by verifying if their health is greater than 0.
 
         Returns:
-            bool: True if the character is alive, False otherwise.
+            bool: True if the character's health is above 0, False otherwise.
         """
         return self.stats.is_alive()
 
     def __getattr__(self, attr_name):
         """
-        Override __getattr__ to dynamically return attributes from CharacterStats if they exist.
+        Dynamically return attributes from CharacterStats if they exist.
 
         Args:
-            attr_name (str): The name of the attribute to retrieve.
+            attr_name (str): The name of the attribute to retrieve from the character's stats.
 
         Returns:
-            The value of the attribute if it exists in CharacterStats.
+            Any: The value of the attribute from CharacterStats.
+
+        Raises:
+            AttributeError: If the attribute does not exist in CharacterStats.
         """
         if attr_name in self.stats.attributes:
             return self.stats.get(attr_name)
@@ -47,7 +50,11 @@ class Character(ABC):
 
     def __setattr__(self, attr_name, value):
         """
-        Override __setattr__ to dynamically set attributes in CharacterStats if they exist.
+        Dynamically set attributes in CharacterStats if they exist in the stats dictionary.
+
+        Args:
+            attr_name (str): The name of the attribute to set.
+            value (Any): The value to set for the attribute.
         """
         if attr_name in ['name', 'stats', 'inventory', 'id']:
             super().__setattr__(attr_name, value)
@@ -58,6 +65,9 @@ class Character(ABC):
 
     def __str__(self):
         """
-        String representation of the character's name and stats.
+        Provides a string representation of the character's name and current stats.
+
+        Returns:
+            str: A string containing the character's name and their stats.
         """
         return f"{self.name}: {self.stats}"

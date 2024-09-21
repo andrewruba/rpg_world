@@ -1,9 +1,17 @@
 from .place import Place
 
 class World(Place):
+    """
+    Represents the game world, which contains multiple locations and manages the player's movement between them.
+    """
+
     def __init__(self, name, id=None):
         """
-        Initialize the World with locations and an entry point.
+        Initialize the World with a name and an optional identifier. The world contains locations and tracks the player's current location.
+
+        Args:
+            name (str): The name of the world.
+            id (str, optional): An optional unique identifier for the world. Defaults to None.
         """
         super().__init__(name, id)
         self.locations = {}
@@ -37,7 +45,7 @@ class World(Place):
 
         Args:
             location_name (str): The name of the location to move to.
-            new_position (Position, optional): A position within the new location to move to (default is (0, 0)).
+            new_position (Position, optional): A position within the new location to move to. Defaults to (0, 0).
         """
         if location_name not in self.locations:
             self.logger.warning(f"Location {location_name} not found in the world.")

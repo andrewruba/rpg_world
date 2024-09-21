@@ -2,6 +2,11 @@ from ..utils.logger import Logger
 from ..event.event_manager import EventManager
 
 class Quest(EventManager):
+    """
+    Represents a full quest consisting of multiple objectives and rewards for completion.
+    Inherits from EventManager to manage quest objectives as events.
+    """
+
     def __init__(self, name, description, objectives=None, rewards=None, id=None):
         """
         Initialize a quest with a name, description, objectives, and rewards.
@@ -9,11 +14,11 @@ class Quest(EventManager):
         Args:
             name (str): The name of the quest.
             description (str): A brief description of the quest.
-            objectives (list): A list of QuestObjective objects (optional).
-            rewards (dict): A dictionary of rewards for completing the quest (optional).
-            id (str): A unique identifier for the quest (optional).
+            objectives (list, optional): A list of QuestObjective objects. Defaults to None.
+            rewards (dict, optional): A dictionary of rewards for completing the quest. Defaults to an empty dictionary.
+            id (str, optional): A unique identifier for the quest. Defaults to None.
         """
-        super().__init__(id, name, description)  # Initialize the EventManager
+        super().__init__(id, name, description)  # Initialize EventManager with id, name, and description
         self.rewards = rewards or {}
         self.logger = Logger(f"Quest-{self.name}")
 
@@ -34,7 +39,7 @@ class Quest(EventManager):
 
     def is_complete(self):
         """
-        Check if all quest objectives (events) are completed.
+        Check if all quest objectives are completed.
 
         Returns:
             bool: True if all objectives (events) are completed, False otherwise.
@@ -43,10 +48,10 @@ class Quest(EventManager):
 
     def complete_quest(self):
         """
-        Complete the quest if all objectives are done and return the rewards.
+        Complete the quest if all objectives are completed and return the rewards.
 
         Returns:
-            dict: The rewards for completing the quest, or None if it's not yet completed.
+            dict: The rewards for completing the quest, or None if it is not yet completed.
         """
         if self.is_complete():
             self.logger.info(f"Quest '{self.name}' completed! Rewards: {self.rewards}")
@@ -63,7 +68,7 @@ class Quest(EventManager):
             game_state (object): The current state of the game to evaluate triggers.
         """
         self.logger.info(f"Checking progress for quest '{self.name}'.")
-        self.check_events(game_state)  # Use EventManager's check_events
+        self.check_events(game_state)  # Use EventManager's check_events method
 
     def __str__(self):
         """

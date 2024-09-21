@@ -2,15 +2,20 @@ from .item import Item
 from ..utils.logger import Logger
 
 class Equipment(Item):
+    """
+    Represents an equippable item, such as a weapon or armor, which can apply effects when equipped.
+    The effects are unapplied when the item is unequipped.
+    """
+
     def __init__(self, name: str, description: str, value: int, effects: list):
         """
-        Initialize an equippable item like a weapon or armor.
+        Initialize an equippable item with a name, description, value, and a list of effects.
 
         Args:
             name (str): The name of the equipment.
-            description (str): A brief description of the equipment.
+            description (str): A brief description of what the equipment does.
             value (int): The monetary value of the equipment.
-            effects (list): A list of effects (instances of Effect) that the equipment applies.
+            effects (list): A list of effects (instances of Effect) that the equipment applies when equipped.
         """
         super().__init__(name, description, value, effects)
         self.equipped = False
@@ -21,8 +26,8 @@ class Equipment(Item):
 
     def use(self, target):
         """
-        Toggle the equipped status of the item. If the item is equipped, it applies effects.
-        If the item is unequipped, it un-applies the effects.
+        Toggle the equipped status of the item. If the item is equipped, it applies its effects.
+        If the item is unequipped, it unapplies its effects.
 
         Args:
             target (Character): The character equipping or unequipping the item.
@@ -34,7 +39,7 @@ class Equipment(Item):
 
     def equip(self, target):
         """
-        Equip the item and apply its effects to the target.
+        Equip the item and apply its effects to the target character.
 
         Args:
             target (Character): The character equipping the item.
@@ -47,7 +52,7 @@ class Equipment(Item):
 
     def unequip(self, target):
         """
-        Unequip the item and unapply its effects from the target.
+        Unequip the item and remove its effects from the target character.
 
         Args:
             target (Character): The character unequipping the item.

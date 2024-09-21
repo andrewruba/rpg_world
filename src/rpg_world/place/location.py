@@ -2,6 +2,10 @@ from .place import Place
 from .position import Position
 
 class Location(Place):
+    """
+    Represents a specific location in the game world. A location can have connected locations and a current position.
+    """
+
     def __init__(self, name, description, connected_locations=None, initial_position=None, id=None):
         """
         Initialize a Location in the game world.
@@ -9,8 +13,9 @@ class Location(Place):
         Args:
             name (str): The name of the location.
             description (str): A description of the location.
-            connected_locations (list): A list of connected location names (optional).
+            connected_locations (list, optional): A list of connected location names (optional).
             initial_position (Position, optional): The initial position of the player in the location. Defaults to (0, 0).
+            id (str, optional): An optional identifier for the location. Defaults to None.
         """
         super().__init__(name, id)
         self.name = name
@@ -23,7 +28,7 @@ class Location(Place):
         Add a new connected location to this location.
 
         Args:
-            location_name (str): The name of the connected location.
+            location_name (str): The name of the connected location to add.
         """
         self.connected_locations.append(location_name)
 

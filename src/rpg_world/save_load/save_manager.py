@@ -3,13 +3,17 @@ import os
 from ..utils.logger import Logger
 
 class SaveManager:
+    """
+    Manages saving the current game state to a file. Handles serialization of game data using pickle.
+    """
+
     def __init__(self, save_directory='./save_data/', file_name='game_save.pkl'):
         """
-        Initialize the SaveManager.
+        Initialize the SaveManager, which handles saving the game state to a file.
 
         Args:
-            save_directory (str): Directory where save files will be stored.
-            file_name (str): Name of the save file.
+            save_directory (str): The directory where save files will be stored. Defaults to './save_data/'.
+            file_name (str): The name of the save file. Defaults to 'game_save.pkl'.
         """
         self.save_directory = save_directory
         self.file_name = file_name
@@ -23,7 +27,7 @@ class SaveManager:
 
     def save_game(self, game_state):
         """
-        Save the current game state to a file using pickle.
+        Save the current game state to a file using pickle serialization.
 
         Args:
             game_state (GameState): The current state of the game to be saved.

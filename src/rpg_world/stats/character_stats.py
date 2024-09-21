@@ -3,7 +3,7 @@ from .stats import Stats
 class CharacterStats(Stats):
     """
     Manages character statistics such as health, mana, focus, and armor.
-    Provides methods to modify and retrieve these attributes safely.
+    Ensures stats like health, mana, and focus are handled safely with max values.
     """
 
     def __init__(self, health=100, mana=100, focus=100, armor=0, **kwargs):
