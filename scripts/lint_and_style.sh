@@ -3,10 +3,10 @@
 # This script automates the process of activating a conda environment,
 # running pycodestyle and pyflakes for linting and code checks.
 # Usage:
-# 1. Ensure the script is executable: chmod +x scripts/run_linter.sh
+# 1. Ensure the script is executable: chmod +x scripts/lint_and_style.sh
 # 2. Run the script:
-#    - To lint all Python files: ./scripts/run_linter.sh
-#    - To lint specific files: ./scripts/run_linter.sh file1.py file2.py
+#    - To lint all Python files: ./scripts/lint_and_style.sh
+#    - To lint specific files: ./scripts/lint_and_style.sh file1.py file2.py
 
 # Activate the conda environment (if not already done by the script)
 echo "Activating conda environment: rpg_world_env"

@@ -3,8 +3,8 @@
 # This script automates the process of activating a conda environment,
 # building the package, and installing the generated wheel file.
 # Usage:
-# 1. Ensure the script is executable: chmod +x scripts/build_install.sh
-# 2. Run the script: ./scripts/build_install.sh
+# 1. Ensure the script is executable: chmod +x scripts/build_and_install.sh
+# 2. Run the script: ./scripts/build_and_install.sh
 
 # Define the conda environment and package name
 CONDA_ENV_NAME="rpg_world_env"

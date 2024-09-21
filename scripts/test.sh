@@ -3,10 +3,10 @@
 # This script automates the process of activating a conda environment,
 # building the package, installing the generated wheel file, and running tests.
 # Usage:
-# 1. Ensure the script is executable: chmod +x scripts/run_tests.sh
+# 1. Ensure the script is executable: chmod +x scripts/test.sh
 # 2. Run the script:
-#    - To run all tests: ./scripts/run_tests.sh
-#    - To run specific tests: ./scripts/run_tests.sh tests/test_file.py tests/another_test_file.py
+#    - To run all tests: ./scripts/test.sh
+#    - To run specific tests: ./scripts/test.sh tests/test_file.py tests/another_test_file.py
 
 # Run the build and install script
 ./scripts/build_install.sh
