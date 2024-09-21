@@ -2,7 +2,7 @@ import time
 from ..utils.logger import Logger
 
 class Game:
-    def __init__(self, external_timer=None, target_fps=30, max_run_time=None):
+    def __init__(self, game_state, external_timer=None, target_fps=30, max_run_time=None):
         """
         Initialize the game. Set up game state, load resources, etc.
         
@@ -11,6 +11,7 @@ class Game:
             target_fps (int): Target frames per second.
             max_run_time (float): Time (in seconds) after which the game loop should automatically stop.
         """
+        self.game_state = game_state
         self.is_running = True
         self.external_timer = external_timer if external_timer else time.time  # Use provided timer or default to time.time
         self.target_fps = target_fps  # Target frame rate
@@ -37,13 +38,6 @@ class Game:
         """
         self.logger.info("Initializing game...")
 
-    def handle_input(self):
-        """
-        Handle user inputs (e.g., keyboard, mouse, controller).
-        """
-        # Placeholder for input handling
-        pass
-
     def update_game(self, delta_time):
         """
         Update the game state (e.g., characters, physics, AI).
@@ -62,13 +56,6 @@ class Game:
 
         # Placeholder for game update logic
         # For example, update player positions, handle physics, AI, etc.
-
-    def render(self):
-        """
-        Render the current game state to the screen.
-        """
-        # Placeholder for rendering logic
-        pass
 
     def _sync_to_target_frame_rate(self, current_time):
         """
@@ -115,10 +102,8 @@ class Game:
             delta_time = current_time - last_time
             last_time = current_time
 
-            # Handle input, update game state, and render
-            self.handle_input()
+            # Update game state
             self.update_game(delta_time)
-            self.render()
 
             # Check if the maximum run time has been reached
             self._check_time_elapsed(current_time)
