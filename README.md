@@ -11,21 +11,12 @@
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
-  - [Creating Characters](#creating-characters)
-  - [Defining Abilities and Spells](#defining-abilities-and-spells)
-  - [Managing Combat](#managing-combat)
-  - [Handling Items and Inventory](#handling-items-and-inventory)
-  - [World and Exploration](#world-and-exploration)
-  - [Quests and Objectives](#quests-and-objectives)
-  - [Saving and Loading](#saving-and-loading)
-- [Examples](#examples)
-- [Documentation](#documentation)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
-## Current Features
+## Features
 
 - **Character Management**: Create and manage diverse characters with customizable stats and abilities.
 - **Ability and Spell System**: Define a wide range of abilities and spells with unique effects and cooldowns.
@@ -128,23 +119,23 @@ rpg_world/
 │           ├── game.py                 # Core game loop logic
 │           └── game_state.py           # Representation of the game state 
 │
-├── tests/                              # Unit and integration tests
-│   ├── test_character.py
-│   ├── test_spell_effect.py
-│   ├── test_character_stats.py
-│   ├── test_logger.py
-│   └── test_game.py
+├── tests/                              # Unit and integration tests for all classes
 │
 ├── scripts/                            # Folder for utility scripts
-│   ├── build_install.sh                # Script for building and installing the package
-│   ├── run_tests.sh                    # Script for running unit tests
-│   └── update_requirements.sh          # Script for updating the requirements.txt file
+│   ├── build_and_install.sh            # Script for building and installing the package
+│   ├── lint_and_style.sh               # Script for running code checks and linter
+│   ├── test.sh                         # Script for running unit tests
+│   └── update_reqs.sh                  # Script for updating the requirements.txt file
+│
+├── .github/                            # CI/CD pipeline
 │
 ├── .gitignore                          # Specifies files and directories to ignore in Git
 ├── environment.yml                     # Conda environment configuration
 ├── requirements.txt                    # Python package dependencies
 ├── setup.py                            # Setup file for package installation
+├── pytest.ini                          # Pytest config file
 ├── README.md                           # Readme with project overview
+├── CONTRIBUTING.md                     # How to contribute
 └── LICENSE                             # License for the package
 ```
 
@@ -233,9 +224,59 @@ You can install **rpg_world** using one of the following methods:
     pip install dist/rpg_world-*.whl --force-reinstall
     ```
 
+## Quick Start
+
+The following example demonstrates how to create a `Mage`, define a `Spell` with multiple `Effect`s, and cast that spell on a `Goblin`.
+
+```python
+from rpg_world import (
+    Character,
+    Mage,
+    CharacterStats,
+    Spell,
+    SpellEffect,
+    SimpleChangeFormula
+)
+
+# Create a Mage named Merlin
+merlin = Mage(name="Merlin", health=100, mana=100, focus=90, armor=10)
+
+# Define a spell called 'Mystic Blast' with multiple effects
+mystic_blast = Spell(
+    name="Mystic Blast",
+    mana_cost=25.0,
+    cooldown=1.0,   # second
+    effects=[
+        SpellEffect(attribute='health', formula=SimpleChangeFormula(-25)),  # Damage health
+        SpellEffect(attribute='focus', formula=SimpleChangeFormula(-15))  # Reduce focus
+    ]
+)
+
+# Merlin learns the 'Mystic Blast' spell
+merlin.learn_spell(mystic_blast)
+
+# Create a Goblin with specific stats
+goblin_stats = CharacterStats(health=80, focus=40, armor=10)
+goblin = Character(name="Goblin", stats=goblin_stats)
+
+# Print initial stats for both characters
+print(f"Before casting spell:")
+print(f"Merlin: {merlin.stats}")
+print(f"Goblin: {goblin.stats}")
+
+# Merlin casts 'Mystic Blast' on the Goblin
+current_time = 0.0  # This could be your game loop's current time, used for cooldowns
+merlin.cast_spell("Mystic Blast", goblin, current_time)
+
+# Print the updated stats after the spell is cast
+print(f"\nAfter casting 'Mystic Blast':")
+print(f"Merlin: {merlin.stats}")
+print(f"Goblin: {goblin.stats}")
+```
+
 ## Usage
 
-See unit tests in the `tests/` directory for examples of class usage for now.
+See unit tests in the `tests/` directory for more complete class usage examples for now.
 
 ## Testing
 
