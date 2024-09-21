@@ -40,7 +40,7 @@ def test_event_trigger_not_met(game_state, mock_character):
     trigger = MockTrigger(result=False)
 
     # Create an event with this trigger
-    event = HealEvent(name="Heal Event", triggers=[trigger], character_id="char_001")
+    event = HealEvent(name="Heal Event", description="Heals character.", triggers=[trigger], character_id="char_001")
 
     # Check if the event is triggered
     assert not event.check_triggers(game_state)
@@ -56,7 +56,7 @@ def test_event_trigger_met(game_state, mock_character):
     trigger = MockTrigger(result=True)
 
     # Create an event with this trigger
-    event = HealEvent(name="Heal Event", triggers=[trigger], character_id="char_001")
+    event = HealEvent(name="Heal Event", description="Heals character.", triggers=[trigger], character_id="char_001")
 
     # Check if the event is triggered
     assert event.check_triggers(game_state)
@@ -72,7 +72,7 @@ def test_event_action_execution(game_state, mock_character):
     trigger = MockTrigger(result=True)
 
     # Create a HealEvent with the trigger
-    event = HealEvent(name="Heal Event", triggers=[trigger], character_id="char_001")
+    event = HealEvent(name="Heal Event", description="Heals character.", triggers=[trigger], character_id="char_001")
 
     # Check if the event is triggered and action is executed (healing character)
     event.check_triggers(game_state)
@@ -91,7 +91,7 @@ def test_event_reset(game_state, mock_character):
     trigger = MockTrigger(result=True)
 
     # Create a HealEvent with the trigger
-    event = HealEvent(name="Heal Event", triggers=[trigger], character_id="char_001")
+    event = HealEvent(name="Heal Event", description="Heals character.", triggers=[trigger], character_id="char_001")
 
     # Trigger the event once
     assert event.check_triggers(game_state)
@@ -117,7 +117,7 @@ def test_event_triggered_only_once(game_state, mock_character):
     trigger = MockTrigger(result=True)
 
     # Create a HealEvent with the trigger
-    event = HealEvent(name="Heal Event", triggers=[trigger], character_id="char_001")
+    event = HealEvent(name="Heal Event", description="Heals character.", triggers=[trigger], character_id="char_001")
 
     # Trigger and execute the event
     event.check_triggers(game_state)

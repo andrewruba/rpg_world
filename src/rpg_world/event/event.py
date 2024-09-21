@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class Event(ABC):
-    def __init__(self, name, triggers):
+    def __init__(self, name, description, triggers):
         """
         Initialize a Event in the game world.
 
@@ -10,6 +10,7 @@ class Event(ABC):
             triggers (list of Trigger): A list of Trigger objects that determine when the event is triggered.
         """
         self.name = name
+        self.description = description
         self.triggers = triggers  # List of triggers
         self.triggered = False    # Flag to track if the event has been triggered
 
@@ -57,7 +58,7 @@ class Event(ABC):
 
 
 class HealEvent(Event):
-    def __init__(self, name, triggers, character_id):
+    def __init__(self, name, description, triggers, character_id):
         """
         Initialize the HealEvent with a name and triggers.
 
@@ -65,7 +66,7 @@ class HealEvent(Event):
             name (str): The name of the event.
             triggers (list of Trigger): A list of Trigger objects.
         """
-        super().__init__(name, triggers)
+        super().__init__(name, description, triggers)
         self.character_id = character_id
 
     def execute_action(self, game_state):

@@ -12,8 +12,7 @@ class QuestObjective(Event):
             triggers (list of Trigger, optional): A list of triggers for the objective to be completed.
         """
         triggers = triggers if triggers else []  # Initialize with an empty list if no triggers provided
-        super().__init__(name=name, triggers=triggers)
-        self.description = description
+        super().__init__(name=name, description=description, triggers=triggers)
         self.logger = Logger(f"QuestObjective-{self.name}")
 
     def execute_action(self, game_state):
