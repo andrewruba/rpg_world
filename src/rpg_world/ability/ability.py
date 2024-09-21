@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from ..utils.logger import Logger
 
 class Ability(ABC):
-    def __init__(self, name, attributes):
+    def __init__(self, name, attributes, effects = None):
         """
         Initialize the base ability class with dynamic attributes.
 
@@ -12,6 +12,7 @@ class Ability(ABC):
         """
         self.name = name
         self.attributes = attributes
+        self.effects = effects or []
         self.last_cast_time = None  # Track the last time the ability was cast
 
         # Ensure cooldown is an attribute, set to 0 if not specified
@@ -69,7 +70,7 @@ class Ability(ABC):
         """
         Override __setattr__ to dynamically set attributes in the attributes dictionary if they exist.
         """
-        if attr_name in ['name', 'attributes', 'last_cast_time', 'logger']:
+        if attr_name in ['name', 'attributes', 'effects', 'last_cast_time', 'logger']:
             super().__setattr__(attr_name, value)
         else:
             self.attributes[attr_name] = value

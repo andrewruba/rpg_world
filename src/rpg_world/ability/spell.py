@@ -15,13 +15,16 @@ class Spell(Ability):
         # Create a dictionary of attributes with real values
         attributes = {
             'mana_cost': mana_cost,
-            'cooldown': cooldown,
-            'effects': effects or [],
+            'cooldown': cooldown
             # Add any other attributes if necessary
         }
 
         # Initialize the Ability with the name and attributes
-        super().__init__(name, attributes)
+        super().__init__(
+            name=name,
+            attributes=attributes,
+            effects=effects
+        )
 
     def cast(self, caster, target, current_time):
         """
