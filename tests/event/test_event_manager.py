@@ -25,7 +25,7 @@ def event_manager():
     """
     Fixture to initialize the EventManager.
     """
-    return EventManager()
+    return EventManager(id="event_manager_id", name="Event Manager Name", description="Event Manager description.")
 
 
 @pytest.fixture
@@ -35,6 +35,14 @@ def mock_game_state():
     """
     return MockGameState()
 
+def test_init_event_manager(event_manager):
+    """
+    Test that EventManager is initialized properly.
+    """
+
+    assert event_manager.id == "event_manager_id"
+    assert event_manager.name == "Event Manager Name"
+    assert event_manager.description == "Event Manager description."
 
 def test_add_event(event_manager):
     """

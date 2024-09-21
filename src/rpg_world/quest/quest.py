@@ -13,10 +13,7 @@ class Quest(EventManager):
             rewards (dict): A dictionary of rewards for completing the quest (optional).
             id (str): A unique identifier for the quest (optional).
         """
-        super().__init__()  # Initialize the EventManager
-        self.id = id
-        self.name = name
-        self.description = description
+        super().__init__(id, name, description)  # Initialize the EventManager
         self.rewards = rewards or {}
         self.logger = Logger(f"Quest-{self.name}")
 

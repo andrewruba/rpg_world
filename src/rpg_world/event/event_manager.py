@@ -1,10 +1,13 @@
 from ..utils.logger import Logger
 
 class EventManager:
-    def __init__(self):
+    def __init__(self, id=None, name=None, description=None):
         """
         Initialize the EventManager with a list of events.
         """
+        self.id = id
+        self.name = name
+        self.description = description
         self.events = []
         self.logger = Logger("EventManager")
 
