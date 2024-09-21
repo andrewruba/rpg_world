@@ -529,79 +529,11 @@ You can run the tests using the provided scripts or with pytest directly.
 pytest
 ```
 
-### Adding New Tests
-
-To add new tests, create a new test file in the tests/ directory following the naming convention test_<module>.py. Write your test cases using the pytest framework. 
-
-## Contributing
-
-Contributions are welcome! To ensure a smooth collaboration process, please follow these guidelines:
-
-### How to Contribute
-
-#### Fork the Repository
-
-Click the "Fork" button at the top right of the repository page to create a copy of the repository in your GitHub account.
-
-#### Clone Your Fork
-
-```bash
-git clone https://github.com/andrewruba/rpg_world.git
-cd rpg_world
-```
-
-#### Create a New Branch
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-#### Make Your Changes
-
-Implement your feature or bug fix. Ensure that your code adheres to the project's coding standards.
-
-#### Run Tests
-
-Ensure all existing **tests pass** and **add new tests** for your changes.
-
-```bash
-pytest
-```
-
-#### Commit Your Changes
-
-```bash
-git add .
-git commit -m "Add feature: your feature description"
-```
-
-#### Push to Your Fork
-
-```bash
-git push origin feature/your-feature-name
-```
-
-#### Create a Pull Request
-
-Go to the original repository on GitHub and click "New Pull Request." Provide a clear description of your changes and submit the pull request.
-
-### Coding Standards
-
-Follow PEP 8 style guidelines.
-
-Write clear and concise docstrings for all classes and methods.
-
-Ensure readability and maintainability of code.
-
-### Reporting Issues
-
-If you encounter any bugs or have feature requests, please open an issue on the GitHub Issues page.
-
-### License
+## License
 
 This project is licensed under the MIT License. You are free to use, modify, and distribute it as per the terms of the license.
 
-### Contact
+## Contact
 
 For any questions, suggestions, or support, feel free to reach out.
 
