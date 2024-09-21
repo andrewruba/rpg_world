@@ -4,8 +4,6 @@ channels:
 dependencies:
   - python
   - pip
-  - numpy
-  - pandas
   - pip:
     - pytest
     - pytest-mock
@@ -16,3 +14,7 @@ dependencies:
 # conda env update --file environment.yml
 # conda remove -n ENV_NAME --all
 # conda env config vars set my_var=value
+
+# https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python
+
+# use this to build and test my python package in github actions. write the yml for me. make sure that the test results and linter results must pass to allow a pr to be merged. 
