@@ -6,6 +6,7 @@ dependencies:
   - pip
   - pip:
     - pytest
+    - pytest-cov
     - pytest-mock
     - pyflakes
     - pycodestyle
