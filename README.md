@@ -46,9 +46,9 @@
 - **Achievements System**: Track and reward player achievements and milestones.
 - **AI and Balancing**: Develop intelligent AI opponents and ensure balanced gameplay through metrics.
 
-## Planned Project Structure
+## Project Structure
 
-The following directory layout outlines the intended structure of the **rpg_world** library once all features have been fully implemented. This organization ensures scalability, maintainability, and ease of navigation for developers.
+The following directory layout outlines the current structure of the **rpg_world** library. This organization ensures scalability, maintainability, and ease of navigation for developers.
 
 ```plaintext
 rpg_world/
@@ -57,27 +57,37 @@ rpg_world/
 │   └── rpg_world/                      # Core package folder (inside src)
 │       ├── __init__.py                 # Package initialization
 │       │
-│       ├── character/                  # Character-related logic
-│       │   ├── __init__.py
-│       │   ├── character.py       # Base class for characters
-│       │   ├── mage.py                 # Mage class with spellcasting abilities
-│       │   └── character_stats.py      # Character statistics (health, mana, etc.)
-│       │
 │       ├── ability/                    # Ability/spell system
 │       │   ├── __init__.py
-│       │   ├── ability.py         # Base ability class
+│       │   ├── ability.py              # Base ability class
 │       │   └── spell.py                # Spell class with spell attributes and effects
 │       │
-│       ├── effect/                     # Effects of abilities system
+│       ├── character/                  # Character-related logic
 │       │   ├── __init__.py
-│       │   ├── effect.py          # Calculates effects of abilities on targets
-│       │   ├── spell_effect.py         # Calculates effects of spells on targets
-│       │   └── effect_formulas.py      # Formulas for calculating effects
+│       │   ├── character.py            # Base class for characters
+│       │   └── mage.py                 # Mage class with spellcasting abilities
 │       │
 │       ├── combat/                     # Combat system
 │       │   ├── __init__.py
 │       │   ├── battle_manager.py       # Manages battles, turn order, and actions
 │       │   └── turn_order.py           # Turn-based combat system
+│       │
+│       ├── effect/                     # Effects of abilities system
+│       │   ├── __init__.py
+│       │   ├── effect.py               # Calculates effects of abilities on targets
+│       │   └── spell_effect.py         # Calculates effects of spells on targets
+│       │
+│       ├── event/                      # Generic event system
+│       │   ├── __init__.py
+│       │   ├── event_manager.py        # Manages events across the game
+│       │   ├── event.py                # Defines different types of events
+│       │   └── trigger.py              # Manages the conditions in the game state that cause events
+│       │
+│       ├── formula/                    # Formulas for making calculations
+│       │   ├── __init__.py
+│       │   ├── formula.py              # Base formula class
+│       │   ├── effect_formula.py       # Example formulas for calculating effects
+│       │   └── turn_order_formula.py   # Example formulas for calculating turn order
 │       │
 │       ├── item/                       # Item system (weapons, potions, etc.)
 │       │   ├── __init__.py
@@ -86,17 +96,12 @@ rpg_world/
 │       │   ├── equipment.py            # Equipment items (weapons, armor)
 │       │   └── inventory.py            # Manages inventory of items for characters/party
 │       │
-│       ├── world/                      # World and exploration logic
+│       ├── place/                      # World and exploration logic
 │       │   ├── __init__.py
+│       │   ├── place.py                # Base place class
 │       │   ├── world.py                # Represents the game world, locations, and navigation
 │       │   ├── location.py             # Represents locations in the game world
 │       │   └── position.py             # Represents position in a location
-│       │
-│       ├── event/                      # Generic event system
-│       │   ├── __init__.py
-│       │   ├── event_manager.py        # Manages events across the game
-│       │   ├── event.py                # Defines different types of events
-│       │   └── trigger.py              # Manages the conditions in the game state that cause events
 │       │
 │       ├── quest/                      # Quest and objective system
 │       │   ├── __init__.py
@@ -104,63 +109,15 @@ rpg_world/
 │       │   ├── quest_objective.py      # Extends event, individual objectives within a quest
 │       │   └── quest_manager.py        # Manages active quests and progression
 │       │
-│       ├── dialogue/
-│       │   ├── __init__.py
-│       │   ├── dialogue_manager.py     # Manages dialogue sequences and branching dialogue options
-│       │   ├── dialogue_node.py        # Represents individual lines of dialogue or choices
-│       │   └── dialogue_script.py      # Contains dialogue scripts for different NPCs or events
-│       │
-│       ├── skill_tree/
-│       │   ├── __init__.py
-│       │   ├── skill_node.py           # Represents an individual skill in the tree
-│       │   ├── skill_tree.py           # Manages the entire skill tree, unlocks, and dependencies
-│       │   └── skill_manager.py        # Handles the allocation of skill points and progression
-│       │
-│       ├── leveling/
-│       │   ├── __init__.py
-│       │   ├── experience_manager.py   # Manages experience gains and leveling up
-│       │   └── level_curve.py          # Determines XP thresholds for leveling up
-│       │
 │       ├── save_load/
 │       │   ├── __init__.py
 │       │   ├── save_manager.py         # Manages saving game data to a file
 │       │   └── load_manager.py         # Manages loading game data from a file
 │       │
-│       ├── cutscene/
+│       ├── stats/                      # Generic stat system
 │       │   ├── __init__.py
-│       │   ├── cutscene_manager.py     # Manages the logic and timing for cutscenes
-│       │   ├── cutscene_sequence.py    # Defines sequences of events for a cutscene
-│       │   └── cutscene_event.py       # Individual events (e.g., dialogue, animations) within a cutscene
-│       │
-│       ├── party/
-│       │   ├── __init__.py
-│       │   ├── party_manager.py        # Manages the player's party, switching characters, etc.
-│       │   └── character_switch.py     # Logic for switching between active characters
-│       │
-│       ├── environment/
-│       │   ├── __init__.py
-│       │   ├── weather.py              # Manages weather effects (e.g., rain, snow, storms)
-│       │   └── time_of_day.py          # Manages time-of-day changes (e.g., day-night cycles)
-│       │
-│       ├── crafting/
-│       │   ├── __init__.py
-│       │   ├── crafting_manager.py     # Manages crafting recipes and processes
-│       │   └── recipe.py               # Defines crafting recipes and required materials
-│       │
-│       ├── achievements/
-│       │   ├── __init__.py
-│       │   ├── achievement.py          # Extends event, defines individual achievements
-│       │   └── achievement_manager.py  # Tracks and manages unlocked achievements
-│       │
-│       ├── ai/                         # AI logic and training system
-│       │   ├── __init__.py
-│       │   ├── ai_training.py          # Core class for training AI characters
-│       │   └── rl_agent.py             # Reinforcement learning agents for AI
-│       │
-│       ├── balance/                    # Balancing utilities
-│       │   ├── __init__.py
-│       │   ├── ai_balancing.py         # AI vs AI simulations for balancing
-│       │   └── metrics.py              # Metrics for tracking balance (win rates, etc.)
+│       │   ├── stats.py                # Base stats class
+│       │   └── character_stats.py      # Character statistics (health, mana, etc.)
 │       │
 │       ├── utils/                      # Helper functions and utilities
 │       │   ├── __init__.py
@@ -177,17 +134,6 @@ rpg_world/
 │   ├── test_character_stats.py
 │   ├── test_logger.py
 │   └── test_game.py
-│
-├── examples/                           # Example scripts
-│   ├── example_character.py            # Examples of character creation and interaction
-│   ├── example_character_stats.py      # Examples of character stat creation
-│   ├── example_game.py                 # Example of the game loop and gameplay mechanics
-│   └── example_spell.py                # Examples of spell creation and casting
-│
-├── docs/                               # Documentation
-│   ├── index.md                        # Main documentation index
-│   ├── usage.md                        # Usage instructions
-│   └── api_reference.md                # API reference for developers
 │
 ├── scripts/                            # Folder for utility scripts
 │   ├── build_install.sh                # Script for building and installing the package
@@ -214,19 +160,10 @@ rpg_world/
 
 You can install **rpg_world** using one of the following methods:
 
-1. **Using pip** (Recommended)
-2. **Using Conda** (Building from source)
-3. **Using `venv`** (Building from source)
+1. **Using Conda** (Building from source)
+2. **Using `venv`** (Building from source)
 
 ---
-
-#### Using pip (Recommended)
-
-You can install **rpg_world** directly from PyPI using `pip`.
-
-```bash
-pip install rpg_world
-```
 
 #### Using Conda (Building from source)
 
@@ -298,224 +235,7 @@ pip install rpg_world
 
 ## Usage
 
-### Creating Characters
-
-Character: The foundational class for all characters.
-
-Mage: A subclass of Character with spellcasting abilities.
-
-```python
-from rpg_world.character.character import Character
-from rpg_world.character.mage import Mage
-from rpg_world.character.character_stats import CharacterStats
-
-# Create stats for a mage
-mage_stats = CharacterStats(health=80, mana=150, strength=8, defense=5)
-
-# Create a mage character
-mage = Mage(name="Gandalf", stats=mage_stats)
-```
-
-### Defining Abilities and Spells
-
-Ability: The base class for all abilities.
-
-Spell: A subclass of Ability tailored for spellcasting.
-
-```python
-from rpg_world.ability.spell import Spell
-from rpg_world.effect.spell_effect import SpellEffect
-
-# Define a spell effect
-burn = SpellEffect(effect_type="burn", damage=15, duration=3)
-
-# Create a spell
-flame_strike = Spell(
-    name="Flame Strike",
-    mana_cost=25,
-    cooldown=10.0,
-    effects=[burn]
-)
-```
-
-### Managing Combat
-
-BattleManager: Manages the flow of battles.
-
-TurnOrder: Handles the sequence of turns in turn-based combat.
-
-ActionQueue: Manages actions in real-time combat.
-
-```python
-from rpg_world.combat.battle_manager import BattleManager
-
-# Initialize battle manager
-battle_manager = BattleManager(player_party=[mage], enemy_party=[goblin])
-
-# Start and run the battle
-battle_manager.run_battle()
-```
-
-### Handling Items and Inventory
-
-Item: Base class for all items.
-
-Consumable: Items like potions that can be used.
-
-Equipment: Items like weapons and armor that can be equipped.
-
-Inventory: Manages a collection of items.
-
-```python
-from rpg_world.item.consumable import Consumable
-from rpg_world.item.equipment import Equipment
-from rpg_world.item.inventory import Inventory
-
-# Create items
-health_potion = Consumable(name="Health Potion", description="Heals 50 HP", value=50, healing_amount=50)
-iron_sword = Equipment(name="Iron Sword", description="A sturdy iron sword", value=100, attack_bonus=5, defense_bonus=0)
-
-# Create inventory and add items
-inventory = Inventory()
-inventory.add_item(health_potion)
-inventory.add_item(iron_sword)
-
-# List items
-inventory.list_items()
-
-# Use a consumable
-inventory.use_item(health_potion, mage)
-
-# Equip equipment
-iron_sword.equip(mage)
-```
-
-### World and Exploration
-
-World: Represents the entire game world.
-
-Location: Specific areas within the world.
-
-Event: Triggers and actions within locations.
-
-```python
-from rpg_world.world.world import World
-from rpg_world.world.location import Location
-from rpg_world.world.event import Event
-
-# Create a world instance
-game_world = World()
-
-# Create locations
-village = Location(name="Village", description="A peaceful village with friendly inhabitants.")
-forest = Location(name="Forest", description="A dense forest teeming with wildlife.")
-
-# Connect locations
-village.add_connected_location("Forest")
-forest.add_connected_location("Village")
-
-# Add locations to the world
-game_world.add_location(village)
-game_world.add_location(forest)
-
-# Set the starting location
-game_world.set_starting_location("Village")
-
-# Move to a different location
-game_world.move_to_location("Forest")
-```
-
-### Quests and Objectives
-
-Quest: Represents a quest with multiple objectives and rewards.
-
-QuestObjective: Individual tasks within a quest.
-
-QuestManager: Manages active quests and their progression.
-
-```python
-from rpg_world.quest.quest import Quest
-from rpg_world.quest.quest_objective import QuestObjective
-from rpg_world.quest.quest_manager import QuestManager
-
-# Define quest objectives
-collect_herbs = QuestObjective(description="Collect 5 healing herbs")
-defeat_goblin = QuestObjective(description="Defeat the forest goblin")
-
-# Create a quest
-herbal_remedy = Quest(
-    name="Herbal Remedy",
-    description="Collect herbs and defeat the forest goblin to create a healing potion.",
-    objectives=[collect_herbs, defeat_goblin],
-    rewards={"gold": 100, "experience": 50}
-)
-
-# Initialize quest manager and add quest
-quest_manager = QuestManager()
-quest_manager.add_quest(herbal_remedy)
-
-# List active quests
-quest_manager.list_active_quests()
-
-# Mark objectives as completed
-collect_herbs.mark_completed()
-defeat_goblin.mark_completed()
-
-# Complete the quest
-quest_manager.complete_quest(herbal_remedy)
-```
-
-### Saving and Loading
-
-SaveManager: Handles saving game data.
-
-LoadManager: Handles loading game data.
-
-```python
-from rpg_world.save_load.save_manager import SaveManager
-from rpg_world.save_load.load_manager import LoadManager
-
-# Initialize save and load managers
-save_manager = SaveManager(file_path="savegame.json")
-load_manager = LoadManager(file_path="savegame.json")
-
-# Save game state
-save_manager.save_game(game_state)
-
-# Load game state
-loaded_game_state = load_manager.load_game()
-```
-
-### Examples
-
-The examples/ directory contains scripts demonstrating how to use various components of the rpg_world library.
-
-- example_character.py: Examples of character creation and interaction.
-
-- example_character_stats.py: Examples of creating and modifying character stats.
-
-- example_game.py: Demonstrates the game loop and basic gameplay mechanics.
-
-- example_spell.py: Shows how to create and cast spells.
-
-#### Running an Example
-
-To run an example, navigate to the examples/ directory and execute the desired script:
-
-```bash
-cd examples
-python example_game.py
-```
-
-## Documentation
-
-Comprehensive documentation is available in the docs/ directory. It includes detailed information on usage, API references, and tutorials to help you get the most out of the rpg_world library.
-
-- index.md: Main documentation index.
-- usage.md: Instructions on how to use various features.
-- api_reference.md: Detailed API reference for developers.
-
-To view the documentation, open the Markdown files in your preferred Markdown viewer or generate HTML documentation using tools like Sphinx.
+See unit tests in the `tests/` directory for examples of class usage for now.
 
 ## Testing
 
@@ -528,6 +248,10 @@ You can run the tests using the provided scripts or with pytest directly.
 ```bash
 pytest
 ```
+
+## Contributing
+
+See CONTRIBUTING.md
 
 ## License
 
