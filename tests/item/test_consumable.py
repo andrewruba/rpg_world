@@ -36,13 +36,15 @@ def test_consumable_use(setup_consumable, setup_target):
     consumable = setup_consumable
     target = setup_target
 
-    # Ensure initial health and mana values
+    # Ensure initial health and mana values and consumable not used
+    assert not consumable.is_used
     assert target.stats.get("health") == 50
     assert target.stats.get("mana") == 50
 
     # Use the consumable
     consumable.use(target)
 
-    # Check that the effects were applied correctly
+    # Check that the effects were applied correctly and consumable used
+    assert consumable.is_used
     assert target.stats.get("health") == 60  # Health modified by 10
     assert target.stats.get("mana") == 50  # Mana modified by 10
