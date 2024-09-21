@@ -1,18 +1,63 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Build, Lint, and Test Python Package
+
+on:
+  # Run this workflow on pull requests and pushes to the main branch
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
 jobs:
-  Explore-GitHub-Actions:
+  build-test-lint:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+    # Step 1: Check out the repository
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python environment (you might not need this because you're using Conda in the bash scripts)
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    # Step 3: Install Miniconda (for Conda environment)
+    - name: Install Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        python-version: 3.11
+        activate-environment: base
+        auto-update-conda: true
+        use-mamba: false
+    
+    # Step 4: Install Dependencies for Scripts (including Conda)
+    - name: Install dependencies
+      run: |
+        chmod +x scripts/build_install.sh
+        chmod +x scripts/run_linter.sh
+        chmod +x scripts/run_tests.sh
+        conda install -y conda
+        conda init bash
+
+    # Step 5: Run the build and installation script
+    - name: Build and Install Package
+      run: ./scripts/build_install.sh
+
+    # Step 6: Run the linter script (pycodestyle and pyflakes)
+    - name: Run Linter
+      run: ./scripts/run_linter.sh
+
+    # Step 7: Run the tests
+    - name: Run Tests
+      run: ./scripts/run_tests.sh
+
+    # Step 8: Upload test results (for reporting in the PR checks)
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: reports/test-results.xml
+
+# Enforce checks on pull requests
+# Ensure that tests and linters pass before merging
