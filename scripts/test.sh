@@ -9,7 +9,7 @@
 #    - To run specific tests: ./scripts/test.sh tests/test_file.py tests/another_test_file.py
 
 # Run the build and install script
-./scripts/build_install.sh
+./scripts/build_and_install.sh
 
 # Check if the build was successful
 if [ $? -ne 0 ]; then
