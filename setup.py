@@ -29,7 +29,7 @@ setup(
     version=get_version(),  # Dynamically get version from __version__.py
     description='A flexible RPG backend for managing game state',  # Brief description
     author='Andrew Ruba',  # Replace with your name
-    author_email='ruba.andrew@gmail.com',  # Replace with your email
+    author_email='',  # Replace with your email
     url='https://github.com/andrewruba/rpg_world',  # Replace with your project's URL
     package_dir={'': 'src'},  # Point to the 'src' folder
     packages=find_packages(where='src'),  # Automatically find all packages in the 'src' directory
