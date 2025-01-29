@@ -302,6 +302,8 @@ This project is licensed under the MIT License. You are free to use, modify, and
 
 For any questions, suggestions, or support, feel free to reach out.
 
+GitHub Repo: [rpg_world](https://github.com/andrewruba/rpg_world)
+
 GitHub Issues: [rpg_world Issues](https://github.com/andrewruba/rpg_world/issues)
 
 GitHub Discussions: [rpg_world Discussions](https://github.com/andrewruba/rpg_world/discussions)
